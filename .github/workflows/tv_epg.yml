@@ -6,8 +6,13 @@ on:
       - 'm_playlist.m3u8'
       - 'd_playlist.m3u8'
   schedule:
-    - cron: '0 11 * * *'   # 12 pm CET / 1 pm CEST
+    - cron: '0 11 * * *'
   workflow_dispatch:
+    inputs:
+      no_dashboard:
+        description: 'No dashboard commit'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -19,7 +24,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Grab EPG
   build_epg:
     if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
@@ -142,7 +146,7 @@ jobs:
                     if cid and cid not in chs:
                       r0.append(c); chs.add(cid)
                   for pr in r.findall('programme'):
-                    k=(pr.get('channel',''),pr.get('start',''))
+                    k=(pr.get('channel',''),p.get('start','')) if False else (pr.get('channel',''),pr.get('start',''))
                     if k not in progs:
                       r0.append(pr); progs.add(k)
                 try: ET.indent(t0,space="  ",level=0)
@@ -167,7 +171,7 @@ jobs:
           set -euo pipefail
           printf '%s\n' "$PIPELINE" > "$RUNNER_TEMP/pipeline.sh"
           chmod +x "$RUNNER_TEMP/pipeline.sh"
-          bash "$RUNNER_TEMP/pipeline.sh" 2>&1 | tee "$GITHUB_WORKSPACE/tv_epg.log"          
+          bash "$RUNNER_TEMP/pipeline.sh" 2>&1 | tee "$GITHUB_WORKSPACE/tv_epg.log"
 
       - name: Upload artifact to Pages
         uses: actions/upload-pages-artifact@v3
@@ -186,24 +190,49 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-  # Update Github Pages playlists
+  update_readme:
+    if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+    needs: build_epg
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      NO_DASH: ${{ inputs.no_dashboard && '1' || '0' }}
+      TV_LOG: tv_epg.log
+      RUN_AT: ${{ github.event.workflow_run.created_at || '' }}
+      RUN_URL: ${{ github.server_url }}//${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Copy log from previous job
+        run: |
+          cp "${{ github.workspace }}/tv_epg.log" . || true
+
+      - name: Update README via dashboard.py
+        run: |
+          python -c "import sys,subprocess,os; sys.exit(0)" || true
+          python dashboard.py
+
   publish_assets:
     if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Prepare site (reuse existing EPG from Pages)
         shell: bash
         run: |
           set -euo pipefail
           OUTDIR="${RUNNER_TEMP}/site"
           mkdir -p "$OUTDIR"
-          # recupera gli EPG già pubblicati così non spariscono
           curl -fsSL "https://dtvabrand.github.io/entertainment/m_epg.xml" -o "$OUTDIR/m_epg.xml" || true
           curl -fsSL "https://dtvabrand.github.io/entertainment/d_epg.xml" -o "$OUTDIR/d_epg.xml" || true
-          # copia le playlist aggiornate
           [ -f "m_playlist.m3u8" ] && cp "m_playlist.m3u8" "$OUTDIR/"
           [ -f "d_playlist.m3u8" ] && cp "d_playlist.m3u8" "$OUTDIR/"
           echo "SITE=$OUTDIR" >> "$GITHUB_ENV"
