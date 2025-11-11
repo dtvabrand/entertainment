@@ -1,0 +1,121 @@
+#EXTM3U url-tvg="https://raw.githubusercontent.com/dtvabrand/Universal_Entertainment/refs/heads/main/d_epg.xml"
+
+#EXTINF:-1 group-title="Rai" tvg-id="rai-1" tvg-logo="https://i.imgur.com/CAx7yRm.png" tvg-name="Rai 1",Rai 1
+https://raiuno3-live.akamaized.net/hls/live/2017910/raiuno3/raiuno3/playlist.m3u8
+
+#EXTINF:-1 group-title="Rai" tvg-id="rai-2" tvg-logo="https://i.imgur.com/zA0PTcs.png" tvg-name="Rai 2",Rai 2 
+https://raidue3-live.akamaized.net/hls/live/2017983/raidue3/raidue3/playlist.m3u8
+
+#EXTINF:-1 group-title="Rai" tvg-id="rai-3" tvg-logo="https://i.imgur.com/9kuQCIi.png" tvg-name="Rai 3",Rai 3
+https://raitre3-live.akamaized.net/hls/live/2018002/raitre3/raitre3/playlist.m3u8
+
+#EXTINF:-1 group-title="Mediaset" tvg-id="rete-4" tvg-logo="https://i.imgur.com/GWx2Fkl.png" tvg-name="Rete 4",Rete 4
+https://live02-seg.msf.cdn.mediaset.net/live/ch-r4/r4-clr.isml/index.m3u8
+
+#EXTINF:-1 group-title="Mediaset" tvg-id="canale-5" tvg-logo="https://i.imgur.com/p6YdiR1.png" tvg-name="Canale 5",Canale 5
+https://live02-seg.msf.cdn.mediaset.net/live/ch-c5/c5-clr.isml/index.m3u8
+
+#EXTINF:-1 group-title="Mediaset" tvg-id="italia-1" tvg-logo="https://i.imgur.com/oCiOxBG.png" tvg-name="Italia 1",Italia 1
+https://live02-seg.msf.cdn.mediaset.net/live/ch-i1/i1-clr.isml/index.m3u8
+
+#EXTINF:-1 group-title="Cairo Communication" tvg-id="la7" tvg-logo="https://i.imgur.com/F90mpSa.png" tvg-name="LA7" ,LA7
+https://cloudflare-api.zappr.stream/api?https://viamotionhsi.netplus.ch/live/eds/la7/browser-dash/la7.mpd
+
+#EXTINF:-1 group-title="Sky Italia" tvg-id="tv8" tvg-logo="https://i.imgur.com/xvoHVOU.png" tvg-name="TV8",TV8
+https://hlslive-web-gcdn-skycdn-it.akamaized.net/TACT/11223/tv8web/master.m3u8?hdnea=st=1701861650~exp=1765449000~acl=/*~hmac=84c9f3f71e57b13c3a67afa8b29a8591ea9ed84bf786524399545d94be1ec04d
+
+#EXTINF:-1 group-title="Warner Bros. Discovery EMEA" tvg-id="nove" tvg-logo="https://i.imgur.com/Hp723RU.png" tvg-name="Nove",Nove
+https://d31mw7o1gs0dap.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-y5pbi2sq9r609/NOVE_IT.m3u8
+
+#EXTINF:-1 group-title="Sky Italia" tvg-id="skytg24" tvg-logo="https://i.imgur.com/q4d3Dah.png" tvg-name="SkyTG24",SkyTG24
+https://hlslive-web-gcdn-skycdn-it.akamaized.net/TACT/12221/web/master.m3u8?hdnts=st=1701861650~exp=1765449000~acl=/*~hmac=84c9f3f71e57b13c3a67afa8b29a8591ea9ed84bf786524399545d94be1ec04d
+
+#EXTINF:-1 group-title="Rai" tvg-id="rai-news-24" tvg-logo="https://i.imgur.com/gdzGwB6.png" tvg-name="Rai News 24",Rai News 24
+https://rainews2-live.akamaized.net/hls/live/598327/rainews2/rainews2/playlist.m3u8
+
+#EXTINF:-1 group-title="Mediaset" tvg-id="tgcom24" tvg-logo="https://i.imgur.com/xautVD8.png" tvg-name="TGCOM24",TGCOM24
+https://live02-seg.msf.cdn.mediaset.net/live/ch-kf/kf-clr.isml/index.m3u8
+
+#EXTINF:-1 group-title="Campania" tvg-logo="https://www.infocilento.it/wp-content/uploads/2024/03/logo-retina-120.png",InfoCilento  
+https://nrvideo1.newradio.it:1936/pskfvahhcs/pskfvahhcs/playlist.m3u8
+
+#EXTINF:-1 group-title="Campania" tvg-logo="https://i.imgur.com/ZP3cJi7.png",StileTV
+https://proxy.media.convergenze.it/stiletv/streams/oQOFd7JglHjO1631525551097.m3u8
+
+#EXTINF:-1 group-title="Rai" tvg-id="rai-storia" tvg-logo="https://i.imgur.com/K8y5q8x.png" tvg-name="Rai Storia",Rai Storia
+https://raistoria3-live.akamaized.net/hls/live/2018017/raistoria3/raistoria3/playlist.m3u8
+
+#EXTINF:-1 group-title="Rai" tvg-id="rai-scuola" tvg-logo="https://i.imgur.com/tmtJW6s.png" tvg-name="Rai Scuola",Rai Scuola
+https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=747011&output=7&forceUserAgent=raiplayappletv
+
+#EXTINF:-1 group-title="Rai" tvg-id="rai-sport" tvg-logo="https://i.imgur.com/xsGljsb.png" tvg-name="Rai Sport",Rai Sport
+https://raisportuno3-live.akamaized.net/hls/live/2018008/raisportuno3/raisportuno3/playlist.m3u8
+
+#EXTINF:-1 group-title="Campania" tvg-logo="http://odmsto.com/uploads/tv_image/sm/lira-tv.png",LIRATV
+https://a928c0678d284da5b383f29ecc5dfeec.msvdn.net/live/S57315730/8kTBWibNteJA/playlist.m3u8
+
+#EXTINF:-1 group-title="Italia Sport Communication" tvg-id="sportitalia" tvg-logo="https://i.imgur.com/hu56Ya5.png" tvg-name="Sportitalia",Sportitalia
+https://sportsitalia-samsungitaly.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 group-title="Mediaset" tvg-id="20" tvg-logo="https://i.imgur.com/It13jwX.png" tvg-name="20 Mediaset",20 Mediaset
+https://live02-seg.msf.cdn.mediaset.net/live/ch-lb/lb-clr.isml/index.m3u8
+
+#EXTINF:-1 group-title="Rai" tvg-id="rai-4" tvg-logo="https://i.imgur.com/XFkZRfv.png" tvg-name="Rai 4",Rai 4
+https://raiquattro3-live.akamaized.net/hls/live/2018003/raiquattro3/raiquattro3/playlist.m3u8
+
+#EXTINF:-1 group-title="Mediaset" tvg-id="iris" tvg-logo="https://i.imgur.com/Ixz1BY3.png" tvg-name="Iris",Iris
+https://live02-seg.msf.cdn.mediaset.net/live/ch-ki/ki-clr.isml/index.m3u8
+
+#EXTINF:-1 group-title="Rai" tvg-id="rai-5" tvg-logo="https://i.imgur.com/Leu2zTO.png" tvg-name="Rai 5",Rai 5
+https://raicinque3-live.akamaized.net/hls/live/2018007/raicinque3/raicinque3/playlist.m3u8
+
+#EXTINF:-1 group-title="Rai" tvg-id="rai-movie" tvg-logo="https://i.imgur.com/RKpO8CE.png" tvg-name="Rai Movie",Rai Movie
+https://raimovie3-live.akamaized.net/hls/live/2018010/raimovie3/raimovie3/playlist.m3u8
+
+#EXTINF:-1 group-title="Rai" tvg-id="rai-premium" tvg-logo="https://i.imgur.com/RKI4nFy.png" tvg-name="Rai Premium",Rai Premium
+https://raipremium3-live.akamaized.net/hls/live/2018013/raipremium3/raipremium3/playlist.m3u8
+
+#EXTINF:-1 group-title="Sky Italia" tvg-id="cielo" tvg-logo="https://i.imgur.com/cPluF03.png" tvg-name="Cielo",Cielo
+https://hlslive-web-gcdn-skycdn-it.akamaized.net/TACT/11219/cieloweb/master.m3u8?hdnea=st=1701861650~exp=1765449000~acl=/*~hmac=84c9f3f71e57b13c3a67afa8b29a8591ea9ed84bf786524399545d94be1ec04d
+
+#EXTINF:-1 group-title="Mediaset" tvg-id="27-twentyseven" tvg-logo="https://i.imgur.com/y2PdPCK.png" tvg-name="27 Twentyseven",27 Twentyseven
+https://live02-seg.msf.cdn.mediaset.net/live/ch-ts/ts-clr.isml/index.m3u8
+
+#EXTINF:-1 group-title="Rete Blu" tvg-id="tv2000" tvg-logo="https://i.imgur.com/x7RaK3a.png" tvg-name="TV2000",TV2000
+https://hls.live2.meride.tv/hls/live/2028947/pu934tjb/hls_1_3000/chunklist.m3u8
+
+#EXTINF:-1 group-title="Cairo Communication" tvg-id="la7-cinema" tvg-logo="https://i.imgur.com/AOL9nMw.png" tvg-name="LA7 Cinema",LA7 Cinema
+https://cloudflare-api.zappr.stream/api?https://viamotionhsi.netplus.ch/live/eds/la7d/browser-dash/la7d.mpd
+
+#EXTINF:-1 group-title="Mediaset" tvg-id="la5" tvg-logo="https://i.imgur.com/UNyJaho.png" tvg-name="La5",La5
+https://live02-seg.msf.cdn.mediaset.net/live/ch-ka/ka-clr.isml/index.m3u8
+
+#EXTINF:-1 group-title="Warner Bros. Discovery EMEA" tvg-id="real-time" tvg-logo="https://i.imgur.com/9dcTYg1.png" tvg-name="Real Time",Real Time
+https://d3562mgijzx0zq.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-kizqtzpvvl3i8/Realtime_IT.m3u8
+
+#EXTINF:-1 group-title="Campania" tvg-logo="https://patbuweb.com/tivustream/chanlogoz/ita/telecolore.png",Telecolore
+https://stream10.xdevel.com/video14s975955-1911/stream/playlist.m3u8
+
+#EXTINF:-1 group-title="Campania" tvg-logo="https://patbuweb.com/tivustream/chanlogoz/ita/Tvoggisalerno.jpg",Tv Oggi
+https://dotfvxkfj90ca.cloudfront.net/live/tvoggi_aac/chunklist.m3u8?token=48f1850e-a17b-45c3-9234-e1e625929c9d&streamSessionId=5462af7e-a7cd-4a1d-8469-a9e5029f39b8&code=REGIA1982&expires=1762932921252&ctrl=6369410475d359d3c281ee3c3e71c8d76cd12f7a5ea183ea6819b36cf8dd87e01425ef7c8fad73d126167079bd29e9ea68471ea228ab97ce9ec74fe7125ff624
+
+#EXTINF:-1 group-title="Mediaset" tvg-id="cine34" tvg-logo="https://i.imgur.com/YyldwhI.png" tvg-name="Cine34",Cine34
+https://live02-seg.msf.cdn.mediaset.net/live/ch-b6/b6-clr.isml/index.m3u8
+
+#EXTINF:-1 group-title="Mediaset" tvg-id="top-crime" tvg-logo="https://i.imgur.com/RFIwv9O.png" tvg-name="Top Crime",Top Crime
+https://live02-seg.msf.cdn.mediaset.net/live/ch-lt/lt-clr.isml/index.m3u8
+
+#EXTINF:-1 group-title="Mediaset" tvg-id="mediaset-extra" tvg-logo="https://i.imgur.com/mM8lopo.png" tvg-name="Mediaset Extra",Mediaset Extra
+https://live02-seg.msf.cdn.mediaset.net/live/ch-kq/kq-clr.isml/index.m3u8
+
+#EXTINF:-1 group-title="Campania" tvg-logo="https://i.imgur.com/b8y6ImZ.png",Antenna Sud
+https://stream.antennasudwebtv.it:9443/hls/vod720.m3u8
+
+#EXTINF:-1 group-title="Puglia" tvg-logo="https://i.imgur.com/SCDETZC.jpeg",Telesveva
+https://live2.telesveva.com/hls/svevahd.m3u8
+
+#EXTINF:-1 group-title="Puglia" tvg-logo="http://odmsto.com/uploads/tv_image/sm/telenorba.jpg",Telenorba
+https://stream10.xdevel.com/video2s976570-2117/stream/playlist_dvr.m3u8
+
+#EXTINF:-1 group-title="Puglia" tvg-logo="http://odmsto.com/uploads/tv_image/sm/telebari.png",Telebari
+https://w1.mediastreaming.it/telebari/livestream/playlist.m3u8

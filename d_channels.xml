@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<channels>
+
+  <channel site="raiplay.it"                    lang="it" xmltv_id="rai-1"       site_id="rai-1">RAI 1</channel>
+  <channel site="raiplay.it"                    lang="it" xmltv_id="rai-2"       site_id="rai-2">RAI 2</channel>
+  <channel site="raiplay.it"                    lang="it" xmltv_id="rai-3"       site_id="rai-3">RAI 3</channel>
+  <channel site="mediasetinfinity.mediaset.it"  lang="it" xmltv_id="rete-4"      site_id="R4">Rete 4</channel>
+  <channel site="mediasetinfinity.mediaset.it"  lang="it" xmltv_id="canale-5"    site_id="C5">Canale 5</channel>
+  <channel site="mediasetinfinity.mediaset.it"  lang="it" xmltv_id="italia-1"    site_id="I1">Italia 1</channel>
+  <channel site="guidatv.sky.it"                lang="it" xmltv_id="la7"         site_id="DTH#319">La7</channel>
+  <channel site="guidatv.sky.it"                lang="it" xmltv_id="tv8"         site_id="DTH#8195">TV8</channel>
+  <channel site="guida.tv"                      lang="it" xmltv_id="nove"        site_id="68748486/nove">Nove</channel>
+  
+  <channel site="guidatv.sky.it"                lang="it" xmltv_id="skytg24"     site_id="DTH#9117">SkyTG24</channel>
+  <channel site="raiplay.it"                    lang="it" xmltv_id="rai-news-24" site_id="rai-news-24">RAI News 24</channel>
+  <channel site="mediasetinfinity.mediaset.it"  lang="it" xmltv_id="tgcom24"     site_id="KF">TGCOM 24</channel>
+  
+  <channel site="raiplay.it"                    lang="it" xmltv_id="rai-storia"      site_id="rai-storia">RAI Storia</channel>
+  <channel site="raiplay.it"                    lang="it" xmltv_id="rai-scuola"      site_id="rai-scuola">RAI Scuola</channel>
+  <channel site="raiplay.it"                    lang="it" xmltv_id="rai-sport"       site_id="rai-sport">RAI Sport</channel>
+  <channel site="guida.tv"                      lang="it" xmltv_id="sportitalia"     site_id="83807384/sport-italia">Sportitalia</channel>
+  <channel site="mediasetinfinity.mediaset.it"  lang="it" xmltv_id="20"              site_id="LB">20 Mediaset</channel>
+  <channel site="raiplay.it"                    lang="it" xmltv_id="rai-4"           site_id="rai-4">RAI 4</channel>
+  <channel site="mediasetinfinity.mediaset.it"  lang="it" xmltv_id="iris"            site_id="KI">Iris</channel>
+  <channel site="raiplay.it"                    lang="it" xmltv_id="rai-5"           site_id="rai-5">RAI 5</channel>
+  <channel site="raiplay.it"                    lang="it" xmltv_id="rai-movie"       site_id="rai-movie">RAI Movie</channel>
+  <channel site="raiplay.it"                    lang="it" xmltv_id="rai-premium"     site_id="rai-premium">RAI Premium</channel>
+  <channel site="guidatv.sky.it"                lang="it" xmltv_id="cielo"           site_id="DTH#8133">Cielo</channel>
+  <channel site="mediasetinfinity.mediaset.it"  lang="it" xmltv_id="27-twentyseven"  site_id="TS">27 Twentyseven</channel>
+  <channel site="guidatv.sky.it"                lang="it" xmltv_id="tv2000"          site_id="DTH#7588">TV2000</channel>
+  <channel site="guidatv.sky.it"                lang="it" xmltv_id="la7-cinema"      site_id="DTH#6624">La7 Cinema</channel>
+  <channel site="mediasetinfinity.mediaset.it"  lang="it" xmltv_id="la5"             site_id="LA">La5</channel>
+  <channel site="guida.tv"                      lang="it" xmltv_id="real-time"       site_id="82847384/real-time">Real Time</channel>
+  <channel site="mediasetinfinity.mediaset.it"  lang="it" xmltv_id="cine34"          site_id="B6">Cine34</channel>
+  <channel site="mediasetinfinity.mediaset.it"  lang="it" xmltv_id="top-crime"       site_id="LT">Top Crime</channel>
+  <channel site="mediasetinfinity.mediaset.it"  lang="it" xmltv_id="mediaset-extra"  site_id="KQ">Mediaset Extra</channel>
+
+</channels>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<channels>
+
+  <!-- ================== ITALY ================== -->
+  <channel site="raiplay.it"                       lang="it" xmltv_id="Rai1.it"         site_id="rai-1">Rai 1</channel>
+  <channel site="raiplay.it"                       lang="it" xmltv_id="Rai2.it"         site_id="rai-2">Rai 2</channel>
+  <channel site="raiplay.it"                       lang="it" xmltv_id="Rai3.it"         site_id="rai-3">Rai 3</channel>
+  <channel site="mediasetinfinity.mediaset.it"     lang="it" xmltv_id="Rete4.it"        site_id="R4">Rete 4</channel>
+  <channel site="mediasetinfinity.mediaset.it"     lang="it" xmltv_id="Canale5.it"      site_id="C5">Canale 5</channel>
+  <channel site="mediasetinfinity.mediaset.it"     lang="it" xmltv_id="Italia1.it"      site_id="I1">Italia 1</channel>
+  <channel site="guidatv.sky.it"                   lang="it" xmltv_id="TV2000.it"       site_id="DTH#7588">TV 2000</channel>
+
+  <!-- ================== USA ================== -->
+  <channel site="tvpassport.com"   lang="en" xmltv_id="abc-news-live"      site_id="abc-news-live/36224">ABC News Live</channel>
+  <channel site="tvpassport.com"   lang="en" xmltv_id="livenowfromfox"     site_id="livenow-from-fox/39129">LiveNOW from FOX</channel>
+
+  <channel site="tvpassport.com"   lang="en" xmltv_id="wabc"               site_id="abc-wabc-new-york-ny/1769">ABC</channel>
+  <channel site="tvpassport.com"   lang="en" xmltv_id="wnbc"               site_id="nbc-wnbc-new-york-ny-hd/4559">NBC</channel>
+  <channel site="tvpassport.com"   lang="en" xmltv_id="wcbs"               site_id="cbs-wcbs-new-york-ny-hd/4555">CBS</channel>
+  <channel site="tvpassport.com"   lang="en" xmltv_id="wnyw"               site_id="fox-wnyw-new-york-ny-hd/4557">FOX</channel>
+
+  <channel site="tvpassport.com"    lang="en" xmltv_id="bravo"              site_id="bravo-usa--eastern-feed/646">Bravo</channel>
+  <channel site="tvpassport.com"    lang="en" xmltv_id="e-entertainment"    site_id="e-entertainment-usa--eastern-feed/617">E!</channel>
+  <channel site="tvpassport.com"    lang="en" xmltv_id="boomerang"          site_id="boomerang/2268">Boomerang</channel>
+
+  <channel site="tvpassport.com"    lang="en" xmltv_id="espn"               site_id="espn/594">ESPN</channel>
+  <channel site="tvpassport.com"    lang="en" xmltv_id="espn2"              site_id="espn2/650">ESPN2</channel>
+  <channel site="tvpassport.com"    lang="en" xmltv_id="espnu"              site_id="espn-u/3331">ESPNU</channel>
+  <channel site="tvpassport.com"    lang="en" xmltv_id="acc-network"        site_id="acc-network/33964">ACC Network</channel>
+  <channel site="tvpassport.com"    lang="en" xmltv_id="sec-network"        site_id="sec-network/13711">SEC Network</channel>
+
+</channels>

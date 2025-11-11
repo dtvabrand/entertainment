@@ -1,0 +1,59 @@
+#EXTM3U url-tvg="https://raw.githubusercontent.com/dtvabrand/Universal_Entertainment/refs/heads/main/epg.xml"
+
+#EXTINF:-1 group-title="Italy" tvg-id="Rai1.it" tvg-logo="http://odmsto.com/uploads/tv_image/sm/rai-1-prtwes3x26ld.png" tvg-name="Rai 1",Rai 1
+https://raiuno3-live.akamaized.net/hls/live/2017910/raiuno3/raiuno3/playlist.m3u8
+#EXTINF:-1 group-title="Italy" tvg-id="Rai2.it" tvg-logo="http://odmsto.com/uploads/tv_image/sm/rai-2-bobi5do2jjqa.png" tvg-name="Rai 2",Rai 2
+https://raidue3-live.akamaized.net/hls/live/2017983/raidue3/raidue3/playlist.m3u8
+#EXTINF:-1 group-title="Italy" tvg-id="Rai3.it" tvg-logo="http://odmsto.com/uploads/tv_image/sm/rai-3-kwvj7ve82k1u.png" tvg-name="Rai 3",Rai 3
+https://raitre3-live.akamaized.net/hls/live/2018002/raitre3/raitre3/playlist.m3u8
+#EXTINF:-1 group-title="Italy" tvg-id="Rete4.it" tvg-logo="https://static2.mediasetplay.mediaset.it/mam/2021/02/11/144338957-20212311-a45d-4002-a783-e9cde2ded4c0@2.png" tvg-name="Rete 4",Rete 4
+https://live02-seg.msf.cdn.mediaset.net/live/ch-r4/r4-clr.isml/index.m3u8
+#EXTINF:-1 group-title="Italy" tvg-id="Canale5.it" tvg-logo="https://static2.mediasetplay.mediaset.it/mam/2021/01/20/132645331-a3b3b56f-d240-4fcc-b4a0-2fd1f5b9124f@2.png" tvg-name="Canale 5",Canale 5
+https://live02-seg.msf.cdn.mediaset.net/live/ch-c5/c5-clr.isml/index.m3u8
+#EXTINF:-1 group-title="Italy" tvg-id="Italia1.it" tvg-logo="https://static2.mediasetplay.mediaset.it/mam/2021/02/11/110049715-66fb66f3-bbf6-43fc-9c22-f0e3e01be65d@2.png" tvg-name="Italia 1",Italia 1
+https://live02-seg.msf.cdn.mediaset.net/live/ch-i1/i1-clr.isml/index.m3u8
+#EXTINF:-1 group-title="Italy" tvg-id="TV2000.it" tvg-logo="https://i.imgur.com/x7RaK3a.png" tvg-name="TV 2000",TV 2000
+https://hls.live2.meride.tv/hls/live/2028947/pu934tjb/hls_1_3000/chunklist.m3u8
+
+
+#EXTINF:-1 group-title="News" tvg-id="abc-news-live" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/ABC_News_Live_logo_2021.svg/512px-ABC_News_Live_logo_2021.svg.png" tvg-name="ABC News Live",ABC News Live
+https://livetv-fa.tubi.video/abc-news/index.m3u8
+
+#EXTINF:-1 group-title="News" tvg-id="livenowfromfox" tvg-logo="https://images.sr.roku.com/idType/roku-trc/context/trc/id/f9c0d48b540a55dcb98b04d2cc8abf25/https%3A%2F%2Fimage.roku.com%2Fbh-uploads%2Fproduction%2FinfoHUDLogo%2F1693442636429_1688568583363_177281_LiveNow-Monochromatic_Banner_Logo_260x147_001.png",LiveNOW from FOX
+https://fox-foxnewsnow-vizio.amagi.tv/playlist.m3u8
+
+#EXTINF:-1 group-title="Variety" tvg-id="wabc" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/abc-us.png" tvg-name="WABC",ABC 7
+https://fl61.moveonjoy.com/ABC_EAST/index.m3u8
+
+#EXTINF:-1 group-title="Variety" tvg-id="wnbc" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/nbc-logo-alt-us.png?raw=true" tvg-name="WNBC",NBC 4
+https://fl61.moveonjoy.com/NY_New_York_NBC/tracks-v1a1/mono.ts.m3u8
+
+#EXTINF:-1 group-title="Variety" tvg-id="wcbs" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/cbs-logo-white-us.png?raw=true" tvg-name="WCBS",CBS 2
+https://tvpass.org/live/WCBSDT1/hd
+
+#EXTINF:-1 group-title="Variety" tvg-id="wnyw" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/fox-us.png?raw=true" tvg-name="WNYW",FOX 5
+https://livetv-fa.tubi.video/wnyw/index_1.m3u8
+
+#EXTINF:-1 group-title="Entertainment" tvg-id="bravo" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/bravo-us.png?raw=true" tvg-name="Bravo",Bravo
+https://fl61.moveonjoy.com/BRAVO/index.m3u8
+
+#EXTINF:-1 group-title="Entertainment" tvg-id="e-entertainment" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/e-entertainment-us.png?raw=true" tvg-name="E! Entertainment",E! Entertainment
+https://fl61.moveonjoy.com/E_ENTERTAINMENT_TELEVISION/index.m3u8
+
+#EXTINF:-1 group-title="Kids" tvg-id="boomerang" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/boomerang-us.png" tvg-name="Boomerang",Boomerang
+http://23.237.104.106:8080/USA_BOOMERANG/index.m3u8
+
+#EXTINF:-1 group-title="Sport" tvg-id="espn" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/espn-icon-us.png?raw=true" tvg-name="ESPN",ESPN
+https://fl2.moveonjoy.com/ESPN/index.m3u8
+
+#EXTINF:-1 group-title="Sport" tvg-id="espn2" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/espn-2-us.png?raw=true" tvg-name="ESPN2",ESPN2
+http://fl2.moveonjoy.com/ESPN_2/index.m3u8
+
+#EXTINF:-1 group-title="Sport" tvg-id="espnu" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/espn-u-us.png?raw=true" tvg-name="ESPN U",ESPN U
+https://fl31.moveonjoy.com/ESPN_U/index.m3u8
+
+#EXTINF:-1 group-title="Sport" tvg-id="acc-network" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/acc-network-us.png?raw=true" tvg-name="ACC Network",ACC Network
+https://fl31.moveonjoy.com/ACC_NETWORK/index.m3u8
+
+#EXTINF:-1 group-title="Sport" tvg-id="sec-network" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/espn-sec-us.png?raw=true" tvg-name="SEC Network",SEC Network
+http://fl7.moveonjoy.com/SEC_NETWORK/index.m3u8
