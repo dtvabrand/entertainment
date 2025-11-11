@@ -137,6 +137,9 @@ jobs:
           path: .
 
       - name: Update README (badges + anchors)
+        env:
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          RUN_AT: ${{ steps.ts.outputs.now }}
         run: |
           python dashboard.py trakt --log trakt_run.log --status "${STATUS}"
 
