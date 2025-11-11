@@ -1,0 +1,149 @@
+name: Trakt lists
+
+on:
+  schedule:
+    - cron: '0 5 * * *'   # 6 am CET / 7 am CEST
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "No dashboard commit"
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: trakt-lists-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  trakt_lists:
+    runs-on: ubuntu-latest
+    env:
+      RUN_EVENT: ${{ github.event_name }}
+      RUN_ID: ${{ github.run_id }}
+    outputs:
+      status: ${{ steps.run_trakt.outputs.status }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install deps (runner 1)
+        env:
+          PIP_DISABLE_PIP_VERSION_CHECK: '1'
+          PIP_NO_PYTHON_VERSION_WARNING: '1'
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests lxml todoist-api-python
+
+      - name: Setup SSH for updates repo
+        env:
+          UPDATES_DEPLOY_KEY: ${{ secrets.UPDATES_DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$UPDATES_DEPLOY_KEY" > ~/.ssh/ue_updates_ed25519
+          chmod 600 ~/.ssh/ue_updates_ed25519
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          eval "$(ssh-agent -s)"
+          ssh-add ~/.ssh/ue_updates_ed25519
+
+      - name: Clone private updates repo
+        run: |
+          rm -rf updates
+          git clone git@github.com:dtvabrand/updates.git updates
+
+      - name: Run trakt
+        id: run_trakt
+        env:
+          TODOIST_API_KEY: ${{ secrets.TODOIST_API_KEY }}
+        run: |
+          set +e
+          python trakt_lists.py 2>&1 | tee trakt_run.log
+          ec=${PIPESTATUS[0]}
+          set -e
+          st=$([ $ec -eq 0 ] && echo success || echo failure)
+          echo "status=$st" >> "$GITHUB_OUTPUT"
+
+      - name: Commit tokens to private repo if changed
+        run: |
+          cd updates
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add trakt_tokens.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Trakt tokens updated"
+            git push || true
+          fi
+
+      - name: Commit QIDS if changed (public repo)
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add trakt_lists.py
+          if ! git diff --cached --quiet; then
+            git commit --allow-empty-message -m ""
+            git pull --rebase --autostash || true
+            git push || true
+          fi
+
+      - name: Upload run log (artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: trakt-log
+          path: trakt_run.log
+          if-no-files-found: warn
+          retention-days: 7
+
+  update_readme:
+    if: ${{ always() && (github.event_name != 'workflow_dispatch' || github.event.inputs.dry_run != 'true') }}
+    needs: trakt_lists
+    runs-on: ubuntu-latest
+    env:
+      RUN_EVENT: ${{ github.event_name }}
+      RUN_ID: ${{ github.run_id }}
+      GITHUB_TOKEN: ${{ github.token }}
+      STATUS: ${{ needs.trakt_lists.outputs.status || needs.trakt_lists.result }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install deps (runner 2)
+        env:
+          PIP_DISABLE_PIP_VERSION_CHECK: '1'
+          PIP_NO_PYTHON_VERSION_WARNING: '1'
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Download trakt log artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: trakt-log
+          path: .
+
+      - name: Update README (badges + anchors)
+        run: |
+          python dashboard.py trakt --log trakt_run.log --status "${STATUS}"
+
+      - name: Commit README
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          rm -f *_run.log || true
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add -A
+          git commit -m "New films available! 🛸" || echo "No changes"
+          git pull --rebase --autostash || true
+          git push || true
