@@ -15,7 +15,7 @@ on:
         default: false
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -146,7 +146,7 @@ jobs:
                     if cid and cid not in chs:
                       r0.append(c); chs.add(cid)
                   for pr in r.findall('programme'):
-                    k=(pr.get('channel',''),p.get('start','')) if False else (pr.get('channel',''),pr.get('start',''))
+                    k=(pr.get('channel',''),pr.get('start',''))
                     if k not in progs:
                       r0.append(pr); progs.add(k)
                 try: ET.indent(t0,space="  ",level=0)
@@ -172,6 +172,14 @@ jobs:
           printf '%s\n' "$PIPELINE" > "$RUNNER_TEMP/pipeline.sh"
           chmod +x "$RUNNER_TEMP/pipeline.sh"
           bash "$RUNNER_TEMP/pipeline.sh" 2>&1 | tee "$GITHUB_WORKSPACE/tv_epg.log"
+
+      - name: Upload log artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tv-logs
+          path: tv_epg.log
+          if-no-files-found: warn
+          retention-days: 7
 
       - name: Upload artifact to Pages
         uses: actions/upload-pages-artifact@v3
@@ -199,24 +207,24 @@ jobs:
     env:
       NO_DASH: ${{ inputs.no_dashboard && '1' || '0' }}
       TV_LOG: tv_epg.log
-      RUN_AT: ${{ github.event.workflow_run.created_at || '' }}
-      RUN_URL: ${{ github.server_url }}//${{ github.repository }}/actions/runs/${{ github.run_id }}
+      RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Python
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
-      - name: Copy log from previous job
-        run: |
-          cp "${{ github.workspace }}/tv_epg.log" . || true
+      - name: Download log artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: tv-logs
+          path: .
 
       - name: Update README via dashboard.py
         run: |
-          python -c "import sys,subprocess,os; sys.exit(0)" || true
           python dashboard.py
 
   publish_assets:
