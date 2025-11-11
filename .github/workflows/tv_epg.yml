@@ -208,6 +208,8 @@ jobs:
       NO_DASH: ${{ inputs.no_dashboard && '1' || '0' }}
       TV_LOG: tv_epg.log
       RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      RUN_AT: ${{ github.event.head_commit.timestamp || '' }}
+      DASH_COMMIT_MSG: 'EPG Updated! 📺'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
