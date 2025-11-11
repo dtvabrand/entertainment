@@ -12,18 +12,19 @@
 
 ### 🎬 Trakt lists
 <!-- DASH:TRAKT -->
-[![X](https://img.shields.io/badge/New%20Movie-1-27ae60?cacheSeconds=300)](https://github.com/dtvabrand/updates/actions/runs/19255783906/job/55049995158#step:5:36) [![X](https://img.shields.io/badge/Token-valid-3498db)](https://github.com/dtvabrand/updates/actions/runs/19255783906/job/55049995158#step:5:19) [![X](https://badgen.net/badge/Run/2025-11-11%2006%3A17/f1c40f)](https://github.com/dtvabrand/updates/actions/runs/19255783906)
+[![X](https://img.shields.io/badge/New Movie-0-27ae60?cacheSeconds=300)]() [![X](https://img.shields.io/badge/Token-valid-3498db?cacheSeconds=300)]() [![X](https://badgen.net/badge/Run/2025-11-11 21:06:49/f1c40f)]()
 <!-- /DASH:TRAKT -->
 
 <h4>🛸 New movies!</h4>
 
 <!-- TRAKT:OUTPUT -->
-🍿 Rose Red
+
 <!-- /TRAKT:OUTPUT -->
 
 <details><summary>Previous days</summary>
   
 <!-- TRAKT:HISTORY -->
+[![X](https://img.shields.io/badge/New Movie-0-27ae60?cacheSeconds=300)]() [![X](https://img.shields.io/badge/Token-valid-3498db?cacheSeconds=300)]() [![X](https://badgen.net/badge/Run/2025-11-11 21:06:49/f1c40f)]() <!-- TRAKT_RUN:19278518055 -->
 [![X](https://img.shields.io/badge/New%20Movie-1-27ae60?cacheSeconds=300)](https://github.com/dtvabrand/updates/actions/runs/19255783906/job/55049995158#step:5:36) [![X](https://img.shields.io/badge/Token-valid-3498db)](https://github.com/dtvabrand/updates/actions/runs/19255783906/job/55049995158#step:5:19) [![X](https://badgen.net/badge/Run/2025-11-11%2006%3A17/f1c40f)](https://github.com/dtvabrand/updates/actions/runs/19255783906) <!-- TRAKT_RUN:19255783906 --><br>
 🍿 Rose Red
 
@@ -67,14 +68,20 @@
 
 ### 📺 Live TV
 <!-- DASH:TV -->
+[![X](https://img.shields.io/badge/M-0-27ae60?cacheSeconds=300)]() [![X](https://img.shields.io/badge/D-0-27ae60?cacheSeconds=300)]() [![X](https://badgen.net/badge/Run/2025-11-11 21:06:49/f1c40f)]()
 <!-- /DASH:TV -->
 
 <!-- TV:OUTPUT -->
+| Site | M | D | Status |
+|---|---:|---:|---|
+
 <!-- /TV:OUTPUT -->
 
 <details><summary>Previous days</summary>
 
 <!-- TV:HISTORY -->
+[![X](https://img.shields.io/badge/M-0-95a5a6?cacheSeconds=300)]() [![X](https://img.shields.io/badge/D-0-95a5a6?cacheSeconds=300)]() [![X](https://badgen.net/badge/Run/2025-11-11 21:06:49/f1c40f)]() <!-- TV_RUN:19278518055 -->
+
 <!-- /TV:HISTORY -->
 </details>
 
