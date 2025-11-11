@@ -46,13 +46,21 @@ jobs:
         env:
           UPDATES_DEPLOY_KEY: ${{ secrets.UPDATES_DEPLOY_KEY }}
         run: |
+          set -e
           mkdir -p ~/.ssh
-          printf '%s\n' "$UPDATES_DEPLOY_KEY" > ~/.ssh/updates_ed25519
+          echo "$UPDATES_DEPLOY_KEY" | tr -d '\r' > ~/.ssh/updates_ed25519
           chmod 600 ~/.ssh/updates_ed25519
           ssh-keyscan github.com >> ~/.ssh/known_hosts
+          cat > ~/.ssh/config <<'EOF'
+          Host github.com
+            IdentityFile ~/.ssh/updates_ed25519
+            IdentitiesOnly yes
+            StrictHostKeyChecking accept-new
+          EOF
+          chmod 600 ~/.ssh/config
           eval "$(ssh-agent -s)"
           ssh-add ~/.ssh/updates_ed25519
-          ssh -o StrictHostKeyChecking=no -T git@github.com || true
+          ssh -T git@github.com || true
 
       - name: Clone private updates repo
         run: |
