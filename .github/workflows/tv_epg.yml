@@ -5,11 +5,8 @@ on:
     paths:
       - 'm_playlist.m3u8'
       - 'd_playlist.m3u8'
-      - 'm_channels.xml'
-      - 'd_channels.xml'
-      - '.github/workflows/tv_epg.yml'
   schedule:
-    - cron: '0 11 * * *'   # 12:00 CET / 13:00 CEST
+    - cron: '0 11 * * *'   # 12 pm CET / 1 pm CEST
   workflow_dispatch:
 
 permissions:
@@ -22,7 +19,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  # Grab EPG
+  build_epg:
+    if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     timeout-minutes: 35
     env:
@@ -157,14 +156,12 @@ jobs:
             echo "m_epg.xml ->  $(grep -c '<channel' "${GITHUB_WORKSPACE}/m_epg.xml") channels"
             echo "d_epg.xml ->  $(grep -c '<channel' "${GITHUB_WORKSPACE}/d_epg.xml") channels"
 
-            # Prepara i file da pubblicare su GitHub Pages (gh-pages)
             SITE="${OUTDIR}/site"
             mkdir -p "$SITE"
             cp "${GITHUB_WORKSPACE}/m_epg.xml" "${SITE}/"
             cp "${GITHUB_WORKSPACE}/d_epg.xml" "${SITE}/"
             [ -f "${GITHUB_WORKSPACE}/m_playlist.m3u8" ] && cp "${GITHUB_WORKSPACE}/m_playlist.m3u8" "${SITE}/"
             [ -f "${GITHUB_WORKSPACE}/d_playlist.m3u8" ] && cp "${GITHUB_WORKSPACE}/d_playlist.m3u8" "${SITE}/"
-
             echo "SITE=${SITE}" >> "$GITHUB_ENV"
         run: |
           set -euo pipefail
@@ -177,8 +174,48 @@ jobs:
         with:
           path: ${{ env.SITE }}
 
-  deploy:
-    needs: build
+  deploy_epg:
+    if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+    needs: build_epg
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  # Update Github Pages playlists
+  publish_assets:
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Prepare site (reuse existing EPG from Pages)
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUTDIR="${RUNNER_TEMP}/site"
+          mkdir -p "$OUTDIR"
+          # recupera gli EPG già pubblicati così non spariscono
+          curl -fsSL "https://dtvabrand.github.io/entertainment/m_epg.xml" -o "$OUTDIR/m_epg.xml" || true
+          curl -fsSL "https://dtvabrand.github.io/entertainment/d_epg.xml" -o "$OUTDIR/d_epg.xml" || true
+          # copia le playlist aggiornate
+          [ -f "m_playlist.m3u8" ] && cp "m_playlist.m3u8" "$OUTDIR/"
+          [ -f "d_playlist.m3u8" ] && cp "d_playlist.m3u8" "$OUTDIR/"
+          echo "SITE=$OUTDIR" >> "$GITHUB_ENV"
+
+      - name: Upload artifact to Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.SITE }}
+
+  deploy_assets:
+    if: ${{ github.event_name == 'push' }}
+    needs: publish_assets
     runs-on: ubuntu-latest
     environment:
       name: github-pages
