@@ -67,12 +67,12 @@ jobs:
         env:
           TODOIST_API_KEY: ${{ secrets.TODOIST_API_KEY }}
         run: |
-          set +e
+          set -o pipefail
           python trakt_lists.py 2>&1 | tee trakt_run.log
           ec=${PIPESTATUS[0]}
-          set -e
           st=$([ $ec -eq 0 ] && echo success || echo failure)
           echo "status=$st" >> "$GITHUB_OUTPUT"
+          exit $ec
 
       - name: Commit tokens to private repo if changed
         run: |
