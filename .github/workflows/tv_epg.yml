@@ -231,6 +231,10 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Install deps
+        run: |
+          pip install requests
+          
       - name: Download log artifact
         uses: actions/download-artifact@v4
         with:
