@@ -1,284 +1,292 @@
 name: TV EPG
 
 on:
-  push:
-    paths:
-      - 'm_playlist.m3u8'
-      - 'd_playlist.m3u8'
-  schedule:
-    - cron: '0 11 * * *'    # 12 pm CET / 1 pm CEST
-  workflow_dispatch:
-    inputs:
-      no_dashboard:
-        description: 'No dashboard commit'
-        type: boolean
-        default: false
+  push:
+    paths:
+      - 'm_playlist.m3u8'
+      - 'd_playlist.m3u8'
+  schedule:
+    - cron: '0 11 * * *'
+  workflow_dispatch:
+    inputs:
+      no_dashboard:
+        description: 'No dashboard commit'
+        type: boolean
+        default: false
 
 permissions:
-  contents: write
-  pages: write
-  id-token: write
+  contents: write
+  pages: write
+  id-token: write
 
 concurrency:
-  group: epg-pages
-  cancel-in-progress: true
+  group: epg-pages
+  cancel-in-progress: true
 
 jobs:
-  build_epg:
+  build_epg:
+    if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    outputs:
+      job_id: ${{ steps.build_step.outputs.job_id }}
+    env:
+      PER_SITE_JOBS: "10"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Clone iptv-org/epg
+        run: git clone --depth 1 https://github.com/iptv-org/epg.git
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: epg/package-lock.json
+
+      - name: Build EPG
+        id: build_step
+        shell: bash
+        env:
+          PIPELINE: |
+            #!/usr/bin/env bash
+            set -euo pipefail
+            OUTDIR="${OUTDIR:-$RUNNER_TEMP}"; export OUTDIR
+
+            echo "::group::Install"
+            pushd epg >/dev/null
+            npm ci --no-audit --no-fund --silent
+            popd >/dev/null
+            echo "::endgroup::"
+
+            echo "::group::Prepare"
+            test -s "${GITHUB_WORKSPACE}/m_channels.xml"
+            test -s "${GITHUB_WORKSPACE}/d_channels.xml"
+            python - << 'PY'
+            import os, xml.etree.ElementTree as ET
+            gw, outdir = os.environ["GITHUB_WORKSPACE"], os.environ["OUTDIR"]
+            def split_by_site(src, prefix):
+                r = ET.parse(src).getroot()
+                groups = {}
+                for ch in r.findall('channel'):
+                    s = (ch.get('site') or '').strip().lower()
+                    if s:
+                        groups.setdefault(s, []).append(ch)
+                for site, items in groups.items():
+                    root = ET.Element('channels')
+                    for ch in items:
+                        root.append(ch)
+                    try:
+                        ET.indent(root, space="  ", level=0)
+                    except:
+                        pass
+                    ET.ElementTree(root).write(os.path.join(outdir, f"{prefix}__{site}.channels.xml"),
+                                               encoding='utf-8', xml_declaration=True)
+            split_by_site(os.path.join(gw, 'm_channels.xml'), '_main')
+            split_by_site(os.path.join(gw, 'd_channels.xml'), '_d')
+            PY
+            echo "::endgroup::"
+
+            cat > "${RUNNER_TEMP}/helpers.sh" <<'BASH'
+            set -euo pipefail
+            tune_params(){ local s="$1" maxc=6 tout=45000; case "$s" in
+              raiplay.it) maxc=8; tout=45000;;
+              mediasetinfinity.mediaset.it) maxc=10; tout=40000;;
+              guidatv.sky.it) maxc=6; tout=45000;;
+              tvpassport.com) maxc=6; tout=45000;;
+              tivu.tv|guida.tv) maxc=3; tout=70000;;
+            esac; echo "$maxc $tout"; }
+            filter_log(){ awk '/^\s*info\s+\[[0-9]+\/[0-9]+\].*\([0-9]+ programs\)/||/saving to/||/^\s*success\s+done/'; }
+            throttle(){ local lim="${PER_SITE_JOBS:-10}"; while [ "$(jobs -rp | wc -l)" -ge "$lim" ]; do wait -n || true; done; }
+            retry_grab(){ local ch="$1" site="$2" out="$3" maxc="$4" tout="$5"
+              echo "Grab $site -> $out (maxc=$maxc timeout=${tout}ms)"
+              try(){ npm run grab -- --channels="$ch" --days=7 --maxConnections="$maxc" --timeout="$tout" --output="$out" | filter_log; }
+              (try) || (sleep 2 && try) || (sleep 4 && try) || return 1; }
+            run_block(){ local prefix="$1" outdir="$2"
+              shopt -s nullglob
+              for f in "${OUTDIR}/${prefix}__"*.channels.xml; do
+                [ -s "$f" ] || continue
+                grep -q '<channel' "$f" || continue
+                local site="$(basename "$f")"; site="${site#${prefix}__}"; site="${site%.channels.xml}"
+                read MAXC TOUT < <(tune_params "$site")
+                local out="${outdir}/${prefix}__${site}.xml"
+                throttle; (
+                  echo "> ${prefix#_} $site : $(grep -o '<channel[ >]' "$f" | wc -l) channels"
+                  if retry_grab "$f" "$site" "$out" "$MAXC" "$TOUT"; then
+                    echo "OK ${prefix#_} $site -> $out"
+                  else
+                    echo "FAIL ${prefix#_} $site"; : > "$out"
+                  fi
+                ) &
+              done
+              wait || true
+            }
+            BASH
+
+            echo "::group::Grab"
+            pushd epg >/dev/null
+            source "${RUNNER_TEMP}/helpers.sh"
+            mkdir -p "${OUTDIR}/out-main" "${OUTDIR}/out-d"
+            ( run_block "_main" "${OUTDIR}/out-main" ) & pid_main=$!
+            ( run_block "_d"    "${OUTDIR}/out-d"    ) & pid_d=$!
+            wait "$pid_main" || true; wait "$pid_d" || true
+            popd >/dev/null
+            echo "::endgroup::"
+
+            echo "::group::Merge"
+            python - << 'PY'
+            import os, glob, xml.etree.ElementTree as ET
+            gw, temp = os.environ["GITHUB_WORKSPACE"], os.environ["OUTDIR"]
+            def merge(mask, outp):
+                files = sorted(f for f in glob.glob(mask) if os.path.isfile(f) and os.path.getsize(f) > 0)
+                if not files:
+                    open(outp, "w", encoding="utf-8").write('<?xml version="1.0" encoding="UTF-8"?>\n<tv></tv>')
+                    return
+                t0 = ET.parse(files[0]); r0 = t0.getroot()
+                chs = set(c.get('id','') for c in r0.findall('channel'))
+                progs = set((p.get('channel',''), p.get('start','')) for p in r0.findall('programme'))
+                for pth in files[1:]:
+                    try:
+                        r = ET.parse(pth).getroot()
+                    except:
+                        continue
+                    for c in r.findall('channel'):
+                        cid = c.get('id','')
+                        if cid and cid not in chs:
+                            r0.append(c)
+                            chs.add(cid)
+                    for pr in r.findall('programme'):
+                        k = (pr.get('channel',''), pr.get('start',''))
+                        if k not in progs:
+                            r0.append(pr)
+                            progs.add(k)
+                try:
+                    ET.indent(t0, space="  ", level=0)
+                except:
+                    pass
+                t0.write(outp, encoding="utf-8", xml_declaration=True)
+            merge(os.path.join(temp,"out-main","_main__*.xml"), os.path.join(gw,"m_epg.xml"))
+            merge(os.path.join(temp,"out-d","_d__*.xml"),      os.path.join(gw,"d_epg.xml"))
+            PY
+            echo "::endgroup::"
+
+            echo "m_epg.xml ->  $(grep -c '<channel' "${GITHUB_WORKSPACE}/m_epg.xml") channels"
+            echo "d_epg.xml ->  $(grep -c '<channel' "${GITHUB_WORKSPACE}/d_epg.xml") channels"
+
+            SITE="${OUTDIR}/site"
+            mkdir -p "$SITE"
+            cp "${GITHUB_WORKSPACE}/m_epg.xml" "${SITE}/"
+            cp "${GITHUB_WORKSPACE}/d_epg.xml" "${SITE}/"
+            [ -f "${GITHUB_WORKSPACE}/m_playlist.m3u8" ] && cp "${GITHUB_WORKSPACE}/m_playlist.m3u8" "${SITE}/"
+            [ -f "${GITHUB_WORKSPACE}/d_playlist.m3u8" ] && cp "${GITHUB_WORKSPACE}/d_playlist.m3u8" "${SITE}/"
+            echo "SITE=${SITE}" >> "$GITHUB_ENV"
+        run: |
+          set -euo pipefail
+          echo "job_id=${{ github.job_id }}" >> "$GITHUB_OUTPUT"
+          printf '%s\n' "$PIPELINE" > "$RUNNER_TEMP/pipeline.sh"
+          chmod +x "$RUNNER_TEMP/pipeline.sh"
+          bash "$RUNNER_TEMP/pipeline.sh" 2>&1 | tee "$GITHUB_WORKSPACE/tv_epg.log"
+
+      - name: Upload log artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tv-logs
+          path: tv_epg.log
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Upload artifact to Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.SITE }}
+
+  deploy_epg:
+    if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+    needs: build_epg
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  update_readme:
     if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && (github.event.inputs.no_dashboard != 'true')) }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 35
-    env:
-      PER_SITE_JOBS: "10"
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    needs:
+      - build_epg
+      - deploy_epg
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      RUN_EVENT: ${{ github.event_name }}
+      RUN_ID: ${{ github.run_id }}
+      GITHUB_REPOSITORY: ${{ github.repository }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      DASH_COMMIT_MSG: 'EPG Updated! 📺'
+      TV_LOG: tv_epg.log
+      TV_JOB_ID: ${{ needs.build_epg.outputs.job_id }}
+      TV_STEP_IDX: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Clone iptv-org/epg
-        run: git clone --depth 1 https://github.com/iptv-org/epg.git
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-          cache: "npm"
-          cache-dependency-path: epg/package-lock.json
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
 
-      - name: Build EPG
-        shell: bash
-        env:
-          PIPELINE: |
-            #!/usr/bin/env bash
-            set -euo pipefail
-            OUTDIR="${OUTDIR:-$RUNNER_TEMP}"; export OUTDIR
+      - name: Download log artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: tv-logs
+          path: .
 
-            echo "::group::Install"
-            pushd epg >/dev/null
-            npm ci --no-audit --no-fund --silent
-            popd >/dev/null
-            echo "::endgroup::"
+      - name: Update README via dashboard.py (tv section only)
+        run: |
+          python dashboard.py tv --log "$TV_LOG"
 
-            echo "::group::Prepare"
-            test -s "${GITHUB_WORKSPACE}/m_channels.xml"
-            test -s "${GITHUB_WORKSPACE}/d_channels.xml"
-            python - << 'PY'
-            import os, xml.etree.ElementTree as ET
-            gw, outdir = os.environ["GITHUB_WORKSPACE"], os.environ["OUTDIR"]
-            def split_by_site(src, prefix):
-                r = ET.parse(src).getroot()
-                groups = {}
-                for ch in r.findall('channel'):
-                    s = (ch.get('site') or '').strip().lower()
-                    if s:
-                        groups.setdefault(s, []).append(ch)
-                for site, items in groups.items():
-                    root = ET.Element('channels')
-                    for ch in items:
-                        root.append(ch)
-                    try:
-                        ET.indent(root, space="  ", level=0)
-                    except:
-                        pass
-                    ET.ElementTree(root).write(os.path.join(outdir, f"{prefix}__{site}.channels.xml"),
-                                               encoding='utf-8', xml_declaration=True)
-            split_by_site(os.path.join(gw, 'm_channels.xml'), '_main')
-            split_by_site(os.path.join(gw, 'd_channels.xml'), '_d')
-            PY
-            echo "::endgroup::"
+  publish_assets:
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Prepare site (reuse existing EPG from Pages)
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUTDIR="${RUNNER_TEMP}/site"
+          mkdir -p "$OUTDIR"
+          curl -fsSL "https://dtvabrand.github.io/entertainment/m_epg.xml" -o "$OUTDIR/m_epg.xml" || true
+          curl -fsSL "https://dtvabrand.github.io/entertainment/d_epg.xml" -o "$OUTDIR/d_epg.xml" || true
+          [ -f "m_playlist.m3u8" ] && cp "m_playlist.m3u8" "$OUTDIR/"
+          [ -f "d_playlist.m3u8" ] && cp "d_playlist.m3u8" "$OUTDIR/"
+          echo "SITE=$OUTDIR" >> "$GITHUB_ENV"
 
-            cat > "${RUNNER_TEMP}/helpers.sh" <<'BASH'
-            set -euo pipefail
-            tune_params(){ local s="$1" maxc=6 tout=45000; case "$s" in
-              raiplay.it) maxc=8; tout=45000;;
-              mediasetinfinity.mediaset.it) maxc=10; tout=40000;;
-              guidatv.sky.it) maxc=6; tout=45000;;
-              tvpassport.com) maxc=6; tout=45000;;
-              tivu.tv|guida.tv) maxc=3; tout=70000;;
-            esac; echo "$maxc $tout"; }
-            filter_log(){ awk '/^\s*info\s+\[[0-9]+\/[0-9]+\].*\([0-9]+ programs\)/||/saving to/||/^\s*success\s+done/'; }
-            throttle(){ local lim="${PER_SITE_JOBS:-10}"; while [ "$(jobs -rp | wc -l)" -ge "$lim" ]; do wait -n || true; done; }
-            retry_grab(){ local ch="$1" site="$2" out="$3" maxc="$4" tout="$5"
-              echo "Grab $site -> $out (maxc=$maxc timeout=${tout}ms)"
-              try(){ npm run grab -- --channels="$ch" --days=7 --maxConnections="$maxc" --timeout="$tout" --output="$out" | filter_log; }
-              (try) || (sleep 2 && try) || (sleep 4 && try) || return 1; }
-            run_block(){ local prefix="$1" outdir="$2"
-              shopt -s nullglob
-              for f in "${OUTDIR}/${prefix}__"*.channels.xml; do
-                [ -s "$f" ] || continue
-                grep -q '<channel' "$f" || continue
-                local site="$(basename "$f")"; site="${site#${prefix}__}"; site="${site%.channels.xml}"
-                read MAXC TOUT < <(tune_params "$site")
-                local out="${outdir}/${prefix}__${site}.xml"
-                throttle; (
-                  echo "> ${prefix#_} $site : $(grep -o '<channel[ >]' "$f" | wc -l) channels"
-                  if retry_grab "$f" "$site" "$out" "$MAXC" "$TOUT"; then
-                    echo "OK ${prefix#_} $site -> $out"
-                  else
-                    echo "FAIL ${prefix#_} $site"; : > "$out"
-                  fi
-                ) &
-              done
-              wait || true
-            }
-            BASH
+      - name: Upload artifact to Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.SITE }}
 
-            echo "::group::Grab"
-            pushd epg >/dev/null
-            source "${RUNNER_TEMP}/helpers.sh"
-            mkdir -p "${OUTDIR}/out-main" "${OUTDIR}/out-d"
-            ( run_block "_main" "${OUTDIR}/out-main" ) & pid_main=$!
-            ( run_block "_d"    "${OUTDIR}/out-d"    ) & pid_d=$!
-            wait "$pid_main" || true; wait "$pid_d" || true
-            popd >/dev/null
-            echo "::endgroup::"
-
-            echo "::group::Merge"
-            python - << 'PY'
-            import os, glob, xml.etree.ElementTree as ET
-            gw, temp = os.environ["GITHUB_WORKSPACE"], os.environ["OUTDIR"]
-            def merge(mask, outp):
-                files = sorted(f for f in glob.glob(mask) if os.path.isfile(f) and os.path.getsize(f) > 0)
-                if not files:
-                    open(outp, "w", encoding="utf-8").write('<?xml version="1.0" encoding="UTF-8"?>\n<tv></tv>')
-                    return
-                t0 = ET.parse(files[0]); r0 = t0.getroot()
-                chs = set(c.get('id','') for c in r0.findall('channel'))
-                progs = set((p.get('channel',''), p.get('start','')) for p in r0.findall('programme'))
-                for pth in files[1:]:
-                    try:
-                        r = ET.parse(pth).getroot()
-                    except:
-                        continue
-                    for c in r.findall('channel'):
-                        cid = c.get('id','')
-                        if cid and cid not in chs:
-                            r0.append(c)
-                            chs.add(cid)
-                    for pr in r.findall('programme'):
-                        k = (pr.get('channel',''), pr.get('start',''))
-                        if k not in progs:
-                            r0.append(pr)
-                            progs.add(k)
-                try:
-                    ET.indent(t0, space="  ", level=0)
-                except:
-                    pass
-                t0.write(outp, encoding="utf-8", xml_declaration=True)
-            merge(os.path.join(temp,"out-main","_main__*.xml"), os.path.join(gw,"m_epg.xml"))
-            merge(os.path.join(temp,"out-d","_d__*.xml"),      os.path.join(gw,"d_epg.xml"))
-            PY
-            echo "::endgroup::"
-
-            echo "m_epg.xml ->  $(grep -c '<channel' "${GITHUB_WORKSPACE}/m_epg.xml") channels"
-            echo "d_epg.xml ->  $(grep -c '<channel' "${GITHUB_WORKSPACE}/d_epg.xml") channels"
-
-            SITE="${OUTDIR}/site"
-            mkdir -p "$SITE"
-            cp "${GITHUB_WORKSPACE}/m_epg.xml" "${SITE}/"
-            cp "${GITHUB_WORKSPACE}/d_epg.xml" "${SITE}/"
-            [ -f "${GITHUB_WORKSPACE}/m_playlist.m3u8" ] && cp "${GITHUB_WORKSPACE}/m_playlist.m3u8" "${SITE}/"
-            [ -f "${GITHUB_WORKSPACE}/d_playlist.m3u8" ] && cp "${GITHUB_WORKSPACE}/d_playlist.m3u8" "${SITE}/"
-            echo "SITE=${SITE}" >> "$GITHUB_ENV"
-        run: |
-          set -euo pipefail
-          printf '%s\n' "$PIPELINE" > "$RUNNER_TEMP/pipeline.sh"
-          chmod +x "$RUNNER_TEMP/pipeline.sh"
-          bash "$RUNNER_TEMP/pipeline.sh" 2>&1 | tee "$GITHUB_WORKSPACE/tv_epg.log"
-
-      - name: Upload log artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: tv-logs
-          path: tv_epg.log
-          if-no-files-found: warn
-          retention-days: 7
-
-      - name: Upload artifact to Pages
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ${{ env.SITE }}
-
-  deploy_epg:
-    if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
-    needs: build_epg
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
-  update_readme:
-      if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
-      needs: deploy_epg
-      runs-on: ubuntu-latest
-      permissions:
-        contents: write
-  
-      env:
-        RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        RUN_EVENT: ${{ github.event_name }}
-        RUN_ID: ${{ github.run_id }}
-        GITHUB_TOKEN: ${{ github.token }}
-        DASH_COMMIT_MSG: 'EPG Updated! 📺'
-        TV_LOG: tv_epg.log
-        
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v4
-  
-        - name: Setup Python
-          uses: actions/setup-python@v5
-          with:
-            python-version: '3.x'
-  
-        - name: Install deps
-          run: |
-            pip install requests
-            
-        - name: Download log artifact
-          uses: actions/download-artifact@v4
-          with:
-            name: tv-logs
-            path: .
-  
-        - name: Update README via dashboard.py (tv section only)
-          run: |
-            python dashboard.py tv --log "$TV_LOG"
-
-  publish_assets:
-    if: ${{ github.event_name == 'push' }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Prepare site (reuse existing EPG from Pages)
-        shell: bash
-        run: |
-          set -euo pipefail
-          OUTDIR="${RUNNER_TEMP}/site"
-          mkdir -p "$OUTDIR"
-          curl -fsSL "https://dtvabrand.github.io/entertainment/m_epg.xml" -o "$OUTDIR/m_epg.xml" || true
-          curl -fsSL "https://dtvabrand.github.io/entertainment/d_epg.xml" -o "$OUTDIR/d_epg.xml" || true
-          [ -f "m_playlist.m3u8" ] && cp "m_playlist.m3u8" "$OUTDIR/"
-          [ -f "d_playlist.m3u8" ] && cp "d_playlist.m3u8" "$OUTDIR/"
-          echo "SITE=$OUTDIR" >> "$GITHUB_ENV"
-
-      - name: Upload artifact to Pages
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ${{ env.SITE }}
-
-  deploy_assets:
-    if: ${{ github.event_name == 'push' }}
-    needs: publish_assets
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+  deploy_assets:
+    if: ${{ github.event_name == 'push' }}
+    needs: publish_assets
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
