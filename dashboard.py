@@ -102,18 +102,28 @@ def group_starts(raw): return [i for i,l in enumerate(clean_lines(raw),1) if "##
 def nearest_group_start_before(raw,idx):
     s=[g for g in group_starts(raw) if g<=idx]
     return max(s) if s else None
+
 def first_line(raw,needles):
     if not raw: return None
     for i,ln in enumerate(clean_lines(raw),1):
         for n in needles:
             if n in ln: return i
     return None
+
 def first_line_re(raw,pat):
     if not raw: return None
     rg=re.compile(pat)
     for i,ln in enumerate(clean_lines(raw),1):
         if rg.search(ln): return i
     return None
+
+def last_line_re_excluding(raw,pat,exclude_subs=()):
+    if not raw: return None
+    rg=re.compile(pat)
+    idx=None
+    for i,ln in enumerate(clean_lines(raw),1):
+        if rg.search(ln) and not any(x in ln for x in exclude_subs): idx=i
+    return idx
 
 def parse_titles(txt):
     titles=[]
@@ -166,7 +176,7 @@ def overall_badges(update_service,status):
             elif s in cur:
                 msgs[s],cols[s],hrefs[s]=cur[s]
     msgs[update_service]=f"{evt}, {stamp}"
-    cols[update_service]=COL["ok"] if status=="success" else (COL["err"] if status=="failure" else COL["date"])
+    cols[update_service]=COL["ok"] if status=="success" else (COL["err"] if status=="failure" else "95a5a6")
     hrefs[update_service]=base or hrefs.get(update_service,"")
     def img(s): return f"https://img.shields.io/static/v1?label={quote(s,safe='')}&message={quote(msgs[s],safe='')}&color={quote(cols[s],safe='')}&cacheSeconds=300"
     row=" ".join((f"[![{s}]({img(s)})]({hrefs.get(s,'')})" if hrefs.get(s) else f"![{s}]({img(s)})") for s in SERV)
@@ -250,6 +260,12 @@ def parse_tv_table_and_badges(log_path):
     hb=f"{shield('M',M,COL['a'])} {shield('D',D,COL['a'])} {badgen_run(ts_now_it(),COL['run'])}"
     return {"M":M,"D":D,"table":table,"notes":"\n\n".join(extra),"hist_badges":hb,"raw":raw}
 
+def _best_epg_line(raw,label):
+    pat=rf'\b{label}_epg\.xml\s*->\s*\d+\s+channels\b'
+    i=last_line_re_excluding(raw,pat,exclude_subs=('echo','$(','"'))
+    if i: return i
+    return last_line_re_excluding(raw,pat,exclude_subs=())
+
 def update_tv(log_path,status="success"):
     md=read(RD); tv=parse_tv_table_and_badges(log_path)
     owner_repo=(os.getenv("GITHUB_REPOSITORY") or "").split("/",1); owner=owner_repo[0] if owner_repo else ""; repo=owner_repo[1] if len(owner_repo)==2 else ""; run_id=os.getenv("RUN_ID","").strip()
@@ -262,7 +278,7 @@ def update_tv(log_path,status="success"):
     if owner and repo and run_id and job_id:
         raw=fetch_job_log(owner,repo,job_id)
         if raw:
-            im=first_line_re(raw,r'^m_epg\.xml\s*->\s*\d+\s+channels\s*$'); idl=first_line_re(raw,r'^d_epg\.xml\s*->\s*\d+\s+channels\s*$')
+            im=_best_epg_line(raw,'m'); idl=_best_epg_line(raw,'d')
             gs_m=nearest_group_start_before(raw,im) if im else None; gs_d=nearest_group_start_before(raw,idl) if idl else None
             ln_m=(im-gs_m+1) if (im and gs_m) else None; ln_d=(idl-gs_d+1) if (idl and gs_d) else None
             if ln_m is not None and ln_m<1: ln_m=1
