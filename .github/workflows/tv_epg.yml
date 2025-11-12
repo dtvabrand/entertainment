@@ -25,7 +25,7 @@ concurrency:
 
 jobs:
   build_epg:
-    if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+    if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && (github.event.inputs.no_dashboard != 'true')) }}
     runs-on: ubuntu-latest
     timeout-minutes: 35
     outputs:
