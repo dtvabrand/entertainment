@@ -93,11 +93,15 @@ jobs:
   update_readme:
     if: ${{ always() && (github.event_name != 'workflow_dispatch' || github.event.inputs.dry_run != 'true') }}
     needs: trakt_lists
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest    
     env:
       RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      RUN_EVENT: ${{ github.event_name }}
+      RUN_ID: ${{ github.run_id }}
+      GITHUB_TOKEN: ${{ github.token }}
       DASH_COMMIT_MSG: 'New films available! 🛸'
       TRAKT_LOG: trakt_run.log
+      
     steps:
       - uses: actions/checkout@v4
 
