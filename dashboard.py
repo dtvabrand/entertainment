@@ -34,7 +34,7 @@ def clean_lines(t): return ANSI.sub("",(t or "").replace("\r","")).splitlines() 
 
 IT_MONTH=["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic"]
 def ts_now_it():
-    z=datetime.now(ZoneInfo("Europe/Rome")); d=f"{z.day:02d} {IT_MONTH[z.month-1]} {z.year}"; h=z.hour%12 or 12; m=f"{z.minute:02d}"; ap="am" if z.hour<12 else "pm"; return f"{d} {h}:{m} {ap}"
+    z=datetime.now(ZoneInfo("Europe/Rome")); d=f"{z.day:02d} {IT_MONTH[z.month-1]}"; h=z.hour%12 or 12; m=f"{z.minute:02d}"; ap="am" if z.hour<12 else "pm"; return f"{d} {z.year} {h}:{m} {ap}"
 
 def shield(label,val,color): return f"https://img.shields.io/badge/{quote(label,safe='')}-{quote(str(val),safe='')}-{quote(color,safe='')}?cacheSeconds=300"
 def badgen_run(ts,color): return f"https://badgen.net/badge/Run/{quote(ts,safe='')}/{quote(color,safe='')}"
@@ -113,33 +113,53 @@ def parse_titles(txt):
             if t and t not in titles: titles.append(t)
     return titles
 
+def _extract_badge_from_line(line,svc):
+    m=re.search(r'\[!\['+re.escape(svc)+r'\]\((https://img\.shields\.io/[^)]+)\)\]\(([^)]*)\)',line)
+    if not m: return None
+    u,href=m.group(1),m.group(2)
+    q=dict(x.split("=",1) for x in (u.split("?",1)[1] if "?" in u else "").split("&") if "=" in x)
+    msg=unquote((q.get("message") or "").replace("+"," ")); col=unquote(q.get("color") or "")
+    return {"message":msg,"color":col,"href":href}
+
+def _latest_for_service(hist,svc,prefer_non_pending=True):
+    if not hist: return None
+    lines=[l.strip() for l in hist.split("<br>") if l.strip()]
+    for idx,l in enumerate(lines):
+        b=_extract_badge_from_line(l,svc)
+        if not b: continue
+        if (not prefer_non_pending) or (b["message"] and not b["message"].lower().startswith("pending")): return b
+    for l in lines:
+        b=_extract_badge_from_line(l,svc)
+        if b: return b
+    return None
+
 def overall_badges(update_service,status):
     md=read(RD); badges=read_block(md,"OVERALL:BADGES"); hist=read_block(md,"OVERALL:HISTORY")
     def parse_imgs(b):
-        msgs,cols={},{}
-        if not b: return msgs,cols
+        msgs,cols,hrefs={},{},{}
+        if not b: return msgs,cols,hrefs
         for s in SERV:
-            m=re.search(rf'\[!\[{re.escape(s)}\]\((https://img\.shields\.io/[^)]+label={re.escape(s)}[^)]*)\)\]\(([^)]*)\)',b)
+            m=re.search(r'\[!\['+re.escape(s)+r'\]\((https://img\.shields\.io/[^)]+)\)\]\(([^)]*)\)',b)
             if m:
-                u=m.group(1); q=dict(x.split("=",1) for x in (u.split("?",1)[1] if "?" in u else "").split("&") if "=" in x)
-                message=unquote((q.get("message") or "").replace("+"," ")); color=unquote(q.get("color") or "")
-                msgs[s]=message; cols[s]=color
-        return msgs,cols
-    msgs,cols=parse_imgs(badges); m2,c2=parse_imgs(hist)
+                u,href=m.group(1),m.group(2); q=dict(x.split("=",1) for x in (u.split("?",1)[1] if "?" in u else "").split("&") if "=" in x)
+                msgs[s]=unquote((q.get("message") or "").replace("+"," ")); cols[s]=unquote(q.get("color") or ""); hrefs[s]=href
+        return msgs,cols,hrefs
+    msgs,cols,hrefs=parse_imgs(badges); m2,c2,h2=parse_imgs(hist)
     for s in SERV:
-        msgs[s]=msgs.get(s) or m2.get(s) or "pending, —"
-        cols[s]=cols.get(s) or c2.get(s) or COL["date"]
+        if s!=update_service:
+            best=_latest_for_service(hist,s,prefer_non_pending=True) or _latest_for_service(hist,s,prefer_non_pending=False)
+            if best:
+                msgs[s]=best["message"]; cols[s]=best["color"] or COL["date"]; hrefs[s]=best["href"]
+            else:
+                msgs[s]=msgs.get(s) or m2.get(s) or "pending, —"; cols[s]=cols.get(s) or c2.get(s) or COL["date"]; hrefs[s]=hrefs.get(s) or h2.get(s) or ""
     evt=os.getenv("RUN_EVENT","").strip(); evt="cron" if evt=="schedule" else (evt or "event"); stamp=ts_now_it()
     msgs[update_service]=f"{evt}, {stamp}"
     cols[update_service]=COL["ok"] if status=="success" else (COL["err"] if status=="failure" else COL["date"])
     owner_repo=(os.getenv("GITHUB_REPOSITORY") or "").split("/",1); owner=owner_repo[0] if owner_repo else ""; repo=owner_repo[1] if len(owner_repo)==2 else ""; run_id=(os.getenv("RUN_ID") or "").strip()
     def img(s): return f"https://img.shields.io/static/v1?label={quote(s,safe='')}&message={quote(msgs[s],safe='')}&color={quote(cols[s],safe='')}&cacheSeconds=300"
     base=f"https://github.com/{owner}/{repo}/actions/runs/{run_id}" if (owner and repo and run_id) else ""
-    def last_href(hist,svc):
-        m=re.search(r'\[!\['+re.escape(svc)+r'\]\([^)]+\)\]\(([^)]+)\)',hist)
-        return m.group(1) if m else ""
-    hrefs={s:(base if s==update_service else (last_href(hist,s) or "")) for s in SERV}
-    row=" ".join(f"[![{s}]({img(s)})]({hrefs[s]})" if hrefs[s] else f"![{s}]({img(s)})" for s in SERV)
+    if update_service not in hrefs or not hrefs[update_service]: hrefs[update_service]=base
+    row=" ".join((f"[![{s}]({img(s)})]({hrefs.get(s,'')})" if hrefs.get(s) else f"![{s}]({img(s)})") for s in SERV)
     md=repl_block(md,"OVERALL:BADGES",row)
     today=datetime.now(ZoneInfo("Europe/Rome")).strftime("%Y-%m-%d"); key=f"dispatch:{run_id}" if (evt=="workflow_dispatch" and run_id) else (f"cron:{today}" if evt=="cron" else f"event:{today}")
     tag=f"<!-- SESSION:{key} -->"
@@ -148,8 +168,7 @@ def overall_badges(update_service,status):
     for i,l in enumerate(hist_lines):
         if l.endswith(tag):
             hist_lines[i]=(row+" "+tag).strip(); updated=True; break
-    if not updated:
-        hist_lines=[(row+" "+tag).strip()]+hist_lines
+    if not updated: hist_lines=[(row+" "+tag).strip()]+hist_lines
     hist_lines=hist_lines[:30]
     md=repl_block(md,"OVERALL:HISTORY","<br>\n".join(hist_lines).strip()); write(RD,md)
 
@@ -188,14 +207,14 @@ def update_trakt(log_path,status="success"):
     overall_badges("Trakt","failure" if err else ("success" if (refreshed or valid) else "neutral"))
 
 def parse_tv_table_and_badges(log_path):
-    raw=read(log_path,""); M=D="0"; rows=[]; notes=[]; fails=[]; ln_m=ln_d=None
-    if raw:
-        lines=clean_lines(raw)
-        for i,l in enumerate(lines,1):
-            if "m_epg.xml ->" in l: M=m=re.search(r"m_epg\.xml\s*->\s*(\d+)\s+channels",l); M=m.group(1) if m else "0"; ln_m=i
-            if "d_epg.xml ->" in l: D=m=re.search(r"d_epg\.xml\s*->\s*(\d+)\s+channels",l); D=m.group(1) if m else "0"; ln_d=i
-        for g,site,n in re.findall(r">\s*(main|d)\s+([a-z0-9\.\-]+)\s*:\s*(\d+)\s+channels",raw):
-            rows.append((g,site,int(n)))
+    raw=read(log_path,""); M=D="0"; rows=[]; notes=[]; fails=[]
+    if not raw:
+        hb=f"{enc_badge(shield('M','0',COL['a']), '')} {enc_badge(shield('D','0',COL['a']), '')} {enc_badge(badgen_run(ts_now_it(),COL['run']), '')}"
+        head="| Site | M | D | Status |\n|---|---:|---:|---|\n"
+        return {"M":"0","D":"0","table":head,"notes":"","hist_badges":hb,"raw":raw}
+    m=re.search(r"m_epg\.xml\s*->\s*(\d+)\s+channels",raw); M=m.group(1) if m else "0"
+    d=re.search(r"d_epg\.xml\s*->\s*(\d+)\s+channels",raw); D=d.group(1) if d else "0"
+    for g,site,n in re.findall(r">\s*(main|d)\s+([a-z0-9\.\-]+)\s*:\s*(\d+)\s+channels",raw): rows.append((g,site,int(n)))
     site_counts={}
     for g,site,n in rows:
         s=site_counts.setdefault(site,{"M":0,"D":0,"warn":set(),"fail":False})
@@ -203,7 +222,7 @@ def parse_tv_table_and_badges(log_path):
         else: s["D"]+=n
     for site in list(site_counts.keys()):
         if re.search(rf"FAIL\s+(main|d)\s+{re.escape(site)}",raw): s=site_counts[site]; s["fail"]=True
-    for site,chan,progs in re.findall(r"([a-z0-9\.\-]+).*?-\s*([a-z0-9\-\s]+)\s*-\s*[A-Z][a-z]{2}\s+\d{1,2},\s*\d{4}\s*\((\d+)\s+programs\)",raw,re.I):
+    for site,chan,progs in re.findall(r"([a-z0-9\.\-]+).*?-\s*([a-z0-9\-\s]+)\s*-\s*[A-Z][a-z]{{2}}\s+\d{{1,2}},\s*\d{{4}}\s*\((\d+)\s+programs\)",raw,re.I):
         if site in site_counts and int(progs)==0: site_counts[site]["warn"].add(re.sub(r"\s+"," ",chan.strip()))
     lines=[]
     for site in sorted(site_counts.keys()):
@@ -218,24 +237,51 @@ def parse_tv_table_and_badges(log_path):
     if notes:
         uniq=[]; [uniq.append(x) for x in notes if x not in uniq]; extra.append(f"⚠️ Notes\n{len(uniq)} channels without EPG: {', '.join(uniq)}")
     if fails: extra.append(f"❌ Failures\n{len(set(fails))} site(s) error: {', '.join(sorted(set(fails)))}")
-    hb=f"{shield('M',M,COL['a'])} {shield('D',D,COL['a'])}"
-    return table,"\n".join(extra),hb,ln_m,ln_d
+    hb=f"{shield('M',M,COL['a'])} {shield('D',D,COL['a'])} {badgen_run(ts_now_it(),COL['run'])}"
+    return {"M":M,"D":D,"table":table,"notes":"\n\n".join(extra),"hist_badges":hb,"raw":raw}
 
-def update_tv(log_path,st="success"):
-    md=read(RD); table,extra,hb,ln_m,ln_d=parse_tv_table_and_badges(log_path)
+def update_tv(log_path,status="success"):
+    md=read(RD); tv=parse_tv_table_and_badges(log_path)
     owner_repo=(os.getenv("GITHUB_REPOSITORY") or "").split("/",1); owner=owner_repo[0] if owner_repo else ""; repo=owner_repo[1] if len(owner_repo)==2 else ""; run_id=os.getenv("RUN_ID","").strip()
+    job_id=os.getenv("TV_JOB_ID","").strip(); step_idx=os.getenv("TV_STEP_IDX","5").strip()
+    ln_m=ln_d=None
+    if owner and repo and run_id and job_id:
+        raw=fetch_job_log(owner,repo,job_id)
+        if raw:
+            im=first_line(raw,("m_epg.xml ->",)); idl=first_line(raw,("d_epg.xml ->",))
+            gs_m=nearest_group_start_before(raw,im) if im else None; gs_d=nearest_group_start_before(raw,idl) if idl else None
+            ln_m=(im-gs_m+1) if (im and gs_m) else None; ln_d=(idl-gs_d+1) if (idl and gs_d) else None
+            if ln_m is not None and ln_m<1: ln_m=1
+            if ln_d is not None and ln_d<1: ln_d=1
     base=f"https://github.com/{owner}/{repo}/actions/runs/{run_id}" if (owner and repo and run_id) else ""
-    href_m=(f"{base}#step:1:{ln_m}" if ln_m else base); href_d=(f"{base}#step:1:{ln_d}" if ln_d else base)
-    badges=f"{enc_badge(shield('M','M',COL['a']),href_m)} {enc_badge(shield('D','D',COL['a']),href_d)}"
-    md=repl_block(md,"TV:HISTORY",table+"\n"+extra)
-    md=repl_block(md,"DASH:TV",badges)
-    write(RD,md)
-    overall_badges("Live TV",st)
+    href_m=(f"{base}/job/{job_id}#step:{step_idx}:{ln_m}" if (base and job_id and step_idx and ln_m) else base)
+    href_d=(f"{base}/job/{job_id}#step:{step_idx}:{ln_d}" if (base and job_id and step_idx and ln_d) else base)
+    href_run=(base or "")
+    s_m=shield('M',tv['M'],COL['a']); s_d=shield('D',tv['D'],COL['a']); s_run=badgen_run(ts_now_it(),COL['run'])
+    dash=" ".join([enc_badge(s_m,href_m),enc_badge(s_d,href_d),enc_badge(s_run,href_run)])
+    md=repl_block(md,"DASH:TV",dash)
+    md=repl_block(md,"TV:OUTPUT",tv["table"]+("\n\n"+tv["notes"] if tv["notes"] else ""))
+    hist_badges=f"{enc_badge(s_m, href_m)} {enc_badge(s_d, href_d)} {enc_badge(s_run, href_run)}"
+    prev=read_block(md,"TV:HISTORY"); chunk=hist_badges + (("<br>\n"+tv["notes"]) if tv["notes"] else ""); parts=[x for x in (prev or "").split("\n\n") if x.strip()]
+    new_hist=(chunk+("\n\n"+("\n\n".join(parts[:29])) if parts else "")).strip()
+    md=repl_block(md,"TV:HISTORY",new_hist)
+    write(RD,md); overall_badges("Live TV","success" if status=="success" else "failure")
 
 def main():
-    import argparse; p=argparse.ArgumentParser(); p.add_argument("mode"); p.add_argument("--log"); args=p.parse_args()
-    if args.mode=="tv" and args.log: update_tv(args.log)
-    if args.mode=="trakt" and args.log: update_trakt(args.log)
+    if len(sys.argv)<2: print("Usage:\n  dashboard.py trakt --log trakt_run.log [--status success|failure]\n  dashboard.py tv --log tv_epg.log [--status success|failure]"); sys.exit(1)
+    mode=sys.argv[1].lower(); arg=lambda f,d=None: sys.argv[sys.argv.index(f)+1] if f in sys.argv else d
+    if mode=="trakt":
+        lp=arg("--log","trakt_run.log"); st=arg("--status","success");
+        try: update_trakt(lp,st)
+        except Exception as e: _dbg("fatal trakt",e); overall_badges("Trakt","failure")
+    elif mode=="tv":
+        lp=arg("--log","tv_epg.log"); st=arg("--status","success");
+        try: update_tv(lp,st)
+        except Exception as e: _dbg("fatal tv",e); overall_badges("Live TV","failure")
+    else: sys.exit(2)
+    msg=os.getenv("DASH_COMMIT_MSG","").strip()
+    if msg:
+        os.system('git config user.name "github-actions"'); os.system('git config user.email "github-actions@github.com"')
+        os.system('git add README.md'); os.system(f'git commit -m "{msg}" || true'); os.system('git push || true')
 
-if __name__=="__main__":
-    main()
+if __name__=="__main__": main()
