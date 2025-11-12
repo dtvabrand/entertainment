@@ -105,6 +105,10 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Install deps (runner 2)
+        run: |
+          pip install requests
+          
       - name: Download trakt log artifact
         uses: actions/download-artifact@v4
         with:
