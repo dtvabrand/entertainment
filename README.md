@@ -1,10 +1,12 @@
 ### 📊 Dashboard
 <!-- OVERALL:BADGES -->
+![Trakt](https://img.shields.io/static/v1?label=Trakt&message=pending%2C%20%E2%80%94&color=95a5a6&cacheSeconds=300) [![Live TV](https://img.shields.io/static/v1?label=Live%20TV&message=workflow_dispatch%2C%2012%20nov%202025%206%3A04%20pm&color=2ecc71&cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19305452403)
 <!-- /OVERALL:BADGES -->
 
 <details><summary>Previous days</summary>
 
 <!-- OVERALL:HISTORY -->
+![Trakt](https://img.shields.io/static/v1?label=Trakt&message=pending%2C%20%E2%80%94&color=95a5a6&cacheSeconds=300) [![Live TV](https://img.shields.io/static/v1?label=Live%20TV&message=workflow_dispatch%2C%2012%20nov%202025%206%3A04%20pm&color=2ecc71&cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19305452403) <!-- SESSION:dispatch:19305452403 -->
 <!-- /OVERALL:HISTORY -->
 </details>
 
@@ -67,14 +69,23 @@
 
 ### 📺 Live TV
 <!-- DASH:TV -->
+[![X](https://img.shields.io/badge/M-21-27ae60?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19305452403/job/55211583734#step:5:131) [![X](https://img.shields.io/badge/D-31-27ae60?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19305452403/job/55211583734#step:5:132) [![X](https://badgen.net/badge/Run/12%20nov%202025%206%3A04%20pm/f1c40f)](https://github.com/dtvabrand/entertainment/actions/runs/19305452403)
 <!-- /DASH:TV -->
 
 <!-- TV:OUTPUT -->
+| Site | M | D | Status |
+|---|---:|---:|---|
+| guida.tv | 0 | 3 | ✅ |
+| guidatv.sky.it | 1 | 6 | ✅ |
+| mediasetinfinity.mediaset.it | 3 | 11 | ✅ |
+| raiplay.it | 3 | 11 | ✅ |
+| tvpassport.com | 14 | 0 | ✅ |
 <!-- /TV:OUTPUT -->
 
 <details><summary>Previous days</summary>
 
 <!-- TV:HISTORY -->
+[![X](https://img.shields.io/badge/M-21-27ae60?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19305452403/job/55211583734#step:5:131) [![X](https://img.shields.io/badge/D-31-27ae60?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19305452403/job/55211583734#step:5:132) [![X](https://badgen.net/badge/Run/12%20nov%202025%206%3A04%20pm/f1c40f)](https://github.com/dtvabrand/entertainment/actions/runs/19305452403)
 <!-- /TV:HISTORY -->
 </details>
 
