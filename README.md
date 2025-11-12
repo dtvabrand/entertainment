@@ -7,8 +7,6 @@
 
 <!-- OVERALL:HISTORY -->
 [![Trakt](https://img.shields.io/static/v1?label=Trakt&message=workflow_dispatch%2C%2012%20nov%202025%206%3A20%20pm&color=2ecc71&cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19305932038) [![Live TV](https://img.shields.io/static/v1?label=Live%20TV&message=workflow_dispatch%2C%2012%20nov%202025%206%3A27%20pm&color=2ecc71&cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19306121942) <!-- SESSION:dispatch:19306121942 --><br>
-[![Trakt](https://img.shields.io/static/v1?label=Trakt&message=workflow_dispatch%2C%2012%20nov%202025%206%3A20%20pm&color=2ecc71&cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19305932038) [![Live TV](https://img.shields.io/static/v1?label=Live%20TV&message=workflow_dispatch%2C%2012%20nov%202025%206%3A22%20pm&color=2ecc71&cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19305972284) <!-- SESSION:dispatch:19305972284 --><br>
-[![Trakt](https://img.shields.io/static/v1?label=Trakt&message=workflow_dispatch%2C%2012%20nov%202025%206%3A20%20pm&color=2ecc71&cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19305932038) ![Live TV](https://img.shields.io/static/v1?label=Live%20TV&message=pending%2C%20%E2%80%94&color=95a5a6&cacheSeconds=300) <!-- SESSION:dispatch:19305932038 -->
 <!-- /OVERALL:HISTORY -->
 </details>
 
@@ -90,8 +88,6 @@
 
 <!-- TV:HISTORY -->
 [![X](https://img.shields.io/badge/M-21-27ae60?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19306121942/job/55213992384#step:5:555) [![X](https://img.shields.io/badge/D-31-27ae60?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19306121942/job/55213992384#step:5:556) [![X](https://badgen.net/badge/Run/12%20nov%202025%206%3A27%20pm/f1c40f)](https://github.com/dtvabrand/entertainment/actions/runs/19306121942)
-
-[![X](https://img.shields.io/badge/M-21-27ae60?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19305972284) [![X](https://img.shields.io/badge/D-31-27ae60?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19305972284) [![X](https://badgen.net/badge/Run/12%20nov%202025%206%3A22%20pm/f1c40f)](https://github.com/dtvabrand/entertainment/actions/runs/19305972284)
 <!-- /TV:HISTORY -->
 </details>
 
