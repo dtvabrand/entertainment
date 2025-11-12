@@ -211,42 +211,42 @@ jobs:
         uses: actions/deploy-pages@v4
 
   update_readme:
-    if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
-    needs: build_epg
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
-    env:
-      RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-      RUN_EVENT: ${{ github.event_name }}
-      RUN_ID: ${{ github.run_id }}
-      GITHUB_TOKEN: ${{ github.token }}
-      DASH_COMMIT_MSG: 'EPG Updated! 📺'
-      TV_LOG: tv_epg.log
-      
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-
-      - name: Install deps
-        run: |
-          pip install requests
-          
-      - name: Download log artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: tv-logs
-          path: .
-
-      - name: Update README via dashboard.py (tv section only)
-        run: |
-          python dashboard.py tv --log "$TV_LOG"
+      if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+      needs: deploy_epg
+      runs-on: ubuntu-latest
+      permissions:
+        contents: write
+  
+      env:
+        RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        RUN_EVENT: ${{ github.event_name }}
+        RUN_ID: ${{ github.run_id }}
+        GITHUB_TOKEN: ${{ github.token }}
+        DASH_COMMIT_MSG: 'EPG Updated! 📺'
+        TV_LOG: tv_epg.log
+        
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+  
+        - name: Setup Python
+          uses: actions/setup-python@v5
+          with:
+            python-version: '3.x'
+  
+        - name: Install deps
+          run: |
+            pip install requests
+            
+        - name: Download log artifact
+          uses: actions/download-artifact@v4
+          with:
+            name: tv-logs
+            path: .
+  
+        - name: Update README via dashboard.py (tv section only)
+          run: |
+            python dashboard.py tv --log "$TV_LOG"
 
   publish_assets:
     if: ${{ github.event_name == 'push' }}
