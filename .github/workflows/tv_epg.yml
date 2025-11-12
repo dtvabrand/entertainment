@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 35
     outputs:
-      job_id: ${{ steps.build_step.outputs.job_id }}
+      job_id: ${{ steps.build_step.outputs.job_id }} # <-- AGGIUNTO OUTPUT
     env:
       PER_SITE_JOBS: "10"
     steps:
@@ -47,7 +47,7 @@ jobs:
           cache-dependency-path: epg/package-lock.json
 
       - name: Build EPG
-        id: build_step
+        id: build_step # <-- AGGIUNTO ID
         shell: bash
         env:
           PIPELINE: |
@@ -184,7 +184,7 @@ jobs:
             echo "SITE=${SITE}" >> "$GITHUB_ENV"
         run: |
           set -euo pipefail
-          echo "job_id=${{ github.job_id }}" >> "$GITHUB_OUTPUT"
+          echo "job_id=${{ github.job_id }}" >> "$GITHUB_OUTPUT" # <-- IMPOSTA L'ID JOB QUI
           printf '%s\n' "$PIPELINE" > "$RUNNER_TEMP/pipeline.sh"
           chmod +x "$RUNNER_TEMP/pipeline.sh"
           bash "$RUNNER_TEMP/pipeline.sh" 2>&1 | tee "$GITHUB_WORKSPACE/tv_epg.log"
@@ -230,8 +230,8 @@ jobs:
       GITHUB_TOKEN: ${{ github.token }}
       DASH_COMMIT_MSG: 'EPG Updated! 📺'
       TV_LOG: tv_epg.log
-      TV_JOB_ID: ${{ needs.build_epg.outputs.job_id }}
-      TV_STEP_IDX: 5
+      TV_JOB_ID: ${{ needs.build_epg.outputs.job_id }} # <-- PASSA L'ID JOB
+      TV_STEP_IDX: 5 # <-- PASSA L'INDICE DELLO STEP (5 è la posizione corretta)
       
     steps:
       - name: Checkout
@@ -269,7 +269,7 @@ jobs:
           OUTDIR="${RUNNER_TEMP}/site"
           mkdir -p "$OUTDIR"
           curl -fsSL "https.dtvabrand.github.io/entertainment/m_epg.xml" -o "$OUTDIR/m_epg.xml" || true
-          curl -fsSL "https.dtvabrand.github.io/entertainment/d_epg.xml" -o "$OUTDIR/d_epg.xml" || true
+          curl -fsSL "https://dtvabrand.github.io/entertainment/d_epg.xml" -o "$OUTDIR/d_epg.xml" || true
           [ -f "m_playlist.m3u8" ] && cp "m_playlist.m3u8" "$OUTDIR/"
           [ -f "d_playlist.m3u8" ] && cp "d_playlist.m3u8" "$OUTDIR/"
           echo "SITE=$OUTDIR" >> "$GITHUB_ENV"
