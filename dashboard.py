@@ -36,7 +36,8 @@ IT_MONTH=["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic
 def ts_now_it():
     z=datetime.now(ZoneInfo("Europe/Rome")); d=f"{z.day} {IT_MONTH[z.month-1]} {z.year}"; h=z.hour%12 or 12; m=f"{z.minute:02d}"; ap="am" if z.hour<12 else "pm"; return f"{d} {h}:{m} {ap}"
 
-def shield(label,val,color): return f"https://img.shields.io/badge/{quote(label,safe='')}-{quote(str(val),safe='')}-{quote(color,safe='')}?style=flat&labelColor=2e2e2e&cacheSeconds=300"
+def shield(label,val,color): return f"https://img.shields.io/badge/{quote(label,safe='')}-{quote(str(val),safe='')}-{quote(color,safe='')}?cacheSeconds=300"
+def badgen_run(ts,color): return f"https://badgen.net/badge/Run/{quote(ts,safe='')}/{quote(color,safe='')}"
 def enc_badge(u,href): return f"[![X]({u})]({href})" if href else f"![X]({u})"
 
 def gh_headers(extra=None):
@@ -207,7 +208,7 @@ def update_trakt(log_path,status="success"):
             gt=first_line(raw,t_needles) if t_needles else None; st=nearest_group_start_before(raw,gt) if gt else None; ln_token=(gt-st+1) if (gt and st) else None
             if ln_movies is not None and ln_movies<1: ln_movies=1
             if ln_token is not None and ln_token<1: ln_token=1
-    nm=shield("New Movie",new_count,COL["a"]); tk=shield("Token",token_state,token_color); runb=shield("Run",ts_now_it(),COL["run"])
+    nm=shield("New Movie",new_count,COL["a"]); tk=shield("Token",token_state,token_color); runb=badgen_run(ts_now_it(),COL["run"])
     base=f"https://github.com/{owner}/{repo}/actions/runs/{run_id}" if (owner and repo and run_id) else ""
     href_movies=(f"{base}/job/{job_id}#step:{step_idx}:{ln_movies}" if (base and job_id and step_idx and ln_movies) else base)
     href_token=(f"{base}/job/{job_id}#step:{step_idx}:{ln_token}" if (base and job_id and step_idx and ln_token) else base)
@@ -228,7 +229,7 @@ def update_trakt(log_path,status="success"):
 def parse_tv_table_and_badges(log_path):
     raw=read(log_path,""); M=D="0"; rows=[]; notes=[]; fails=[]
     if not raw:
-        hb=f"{enc_badge(shield('M','0',COL['a']), '')} {enc_badge(shield('D','0',COL['a']), '')} {enc_badge(shield('Run',ts_now_it(),COL['run']), '')}"
+        hb=f"{enc_badge(shield('M','0',COL['a']), '')} {enc_badge(shield('D','0',COL['a']), '')} {enc_badge(badgen_run(ts_now_it(),COL['run']), '')}"
         head="| Site | M | D | Status |\n|---|---:|---:|---|\n"
         return {"M":"0","D":"0","table":head,"notes":"","hist_badges":hb,"raw":raw}
     m=re.search(r"m_epg\.xml\s*->\s*(\d+)\s+channels",raw); M=m.group(1) if m else "0"
@@ -256,7 +257,7 @@ def parse_tv_table_and_badges(log_path):
     if notes:
         uniq=[]; [uniq.append(x) for x in notes if x not in uniq]; extra.append(f"⚠️ Notes\n{len(uniq)} channels without EPG: {', '.join(uniq)}")
     if fails: extra.append(f"❌ Failures\n{len(set(fails))} site(s) error: {', '.join(sorted(set(fails)))}")
-    hb=f"{shield('M',M,COL['a'])} {shield('D',D,COL['a'])} {shield('Run',ts_now_it(),COL['run'])}"
+    hb=f"{shield('M',M,COL['a'])} {shield('D',D,COL['a'])} {badgen_run(ts_now_it(),COL['run'])}"
     return {"M":M,"D":D,"table":table,"notes":"\n\n".join(extra),"hist_badges":hb,"raw":raw}
 
 def _best_epg_line(raw,label):
@@ -286,7 +287,7 @@ def update_tv(log_path,status="success"):
     href_m=(f"{base}/job/{job_id}#step:{step_idx}:{ln_m}" if (base and job_id and step_idx and ln_m) else base)
     href_d=(f"{base}/job/{job_id}#step:{step_idx}:{ln_d}" if (base and job_id and step_idx and ln_d) else base)
     href_run=(base or "")
-    s_m=shield('M',tv['M'],COL['a']); s_d=shield('D',tv['D'],COL['a']); s_run=shield('Run',ts_now_it(),COL['run'])
+    s_m=shield('M',tv['M'],COL['a']); s_d=shield('D',tv['D'],COL['a']); s_run=badgen_run(ts_now_it(),COL['run'])
     dash=" ".join([enc_badge(s_m,href_m),enc_badge(s_d,href_d),enc_badge(s_run,href_run)])
     md=repl_block(md,"DASH:TV",dash)
     md=repl_block(md,"TV:OUTPUT",tv["table"]+("\n\n"+tv["notes"] if tv["notes"] else ""))
