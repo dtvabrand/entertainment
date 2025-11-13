@@ -4,7 +4,7 @@
 
 ### 🛸 Trakt lists
 <!-- DASH:TRAKT -->
-[![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19321330319) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19321330319/job/55263251198#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2013%20nov%202025%206%3A15%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19321330319)
+[![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19335153294) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19335153294/job/55307945170#step:7:18) [![X](https://img.shields.io/badge/Run-workflow_dispatch%2C%2013%20nov%202025%203%3A35%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19335153294)
 <!-- /DASH:TRAKT -->
 
 <h4>🍿 New movies!</h4>
@@ -16,6 +16,8 @@
 <details><summary>Previous days</summary>
   
 <!-- TRAKT:HISTORY -->
+[![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19335153294) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19335153294/job/55307945170#step:7:18) [![X](https://img.shields.io/badge/Run-workflow_dispatch%2C%2013%20nov%202025%203%3A35%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19335153294) <!-- TRAKT_RUN:19335153294 -->
+
 [![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19321330319) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19321330319/job/55263251198#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2013%20nov%202025%206%3A15%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19321330319) <!-- TRAKT_RUN:19321330319 -->
 
 [![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19305932038) [![X](https://img.shields.io/badge/Token-valid-34a6db)](https://github.com/dtvabrand/entertainment/actions/runs/19305932038/job/55213318282#step:7:18) [![X](https://img.shields.io/badge/Run-workflow_dispatch%2C%2012%20nov%202025%206%3A20%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19305932038) <!-- TRAKT_RUN:19305932038 -->
