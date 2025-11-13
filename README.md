@@ -82,8 +82,7 @@
 
 ---
 
-### ℹ️ Info & Credits
-- **User Agent**: `Mozilla/5.0 (iPhone; CPU iPhone OS 17_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1`
-- **USA streams**: <a href="https://github.com/iptv-org/iptv/tree/master/streams"><img src="https://github.com/iptv-org.png?s=35" width="25" align="absmiddle"></a> <a href="https://github.com/KeyStrokeVII/DrewLive/tree/main"><img src="https://github.com/KeyStrokeVII.png?s=35" width="25" align="absmiddle"></a> <a href="https://github.com/gtvservices5/IPTV-LIVE/blob/a692fc90fa49dfefb4b33c0e1d8340b6b7dc806d/PrimeVision/us.m3u"><img src="https://github.com/gtvservices5.png?s=35" width="25" align="absmiddle"></a> <a href="https://github.com/spliff123/tv"><img src="https://github.com/spliff123.png?s=35" width="25" align="absmiddle"></a>
-- **Italy streams**: <a href="https://github.com/bbb0six/tvitava/blob/9472f16675ac983779453e216794787e703e5077/TVITA2507.m3u8"><img src="https://github.com/bbb0six.png?s=35" width="25" align="absmiddle"></a>
-- **EPG**: <a href="https://github.com/iptv-org/epg/tree/master/sites"><img src="https://github.com/iptv-org.png?s=35" width="25" align="absmiddle"></a>
+### 📡 Credits
+- **USA streams**&nbsp; <a href="https://github.com/iptv-org/iptv/tree/master/streams"><img src="https://github.com/iptv-org.png?s=35" width="25" align="absmiddle"></a> <a href="https://github.com/KeyStrokeVII/DrewLive/tree/main"><img src="https://github.com/KeyStrokeVII.png?s=35" width="25" align="absmiddle"></a> <a href="https://github.com/gtvservices5/IPTV-LIVE/blob/a692fc90fa49dfefb4b33c0e1d8340b6b7dc806d/PrimeVision/us.m3u"><img src="https://github.com/gtvservices5.png?s=35" width="25" align="absmiddle"></a> <a href="https://github.com/spliff123/tv"><img src="https://github.com/spliff123.png?s=35" width="25" align="absmiddle"></a>
+- **Italy streams**&nbsp; <a href="https://github.com/bbb0six/tvitava/blob/9472f16675ac983779453e216794787e703e5077/TVITA2507.m3u8"><img src="https://github.com/bbb0six.png?s=35" width="25" align="absmiddle"></a>
+- **EPG**&nbsp; <a href="https://github.com/iptv-org/epg/tree/master/sites"><img src="https://github.com/iptv-org.png?s=35" width="25" align="absmiddle"></a>
