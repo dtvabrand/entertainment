@@ -36,7 +36,7 @@ IT_MONTH=["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic
 def ts_now_it():
     z=datetime.now(ZoneInfo("Europe/Rome")); d=f"{z.day} {IT_MONTH[z.month-1]} {z.year}"; h=z.hour%12 or 12; m=f"{z.minute:02d}"; ap="am" if z.hour<12 else "pm"; return f"{d} {h}:{m} {ap}"
 
-def shield(label,val,color): return f"https://img.shields.io/badge/{quote(label,safe='')}-{quote(str(val),safe='')}-{quote(color,safe='')}?cacheSeconds=300"
+def shield(label,val,color): return f"https://img.shields.io/badge/{quote(label,safe='')}-{quote(str(val),safe='')}-{quote(color,safe='')}?style=flat&labelColor=2e2e2e&cacheSeconds=300"
 def enc_badge(u,href): return f"[![X]({u})]({href})" if href else f"![X]({u})"
 
 def gh_headers(extra=None):
