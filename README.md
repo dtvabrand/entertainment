@@ -4,7 +4,7 @@
 
 ### 🛸 Trakt lists
 <!-- DASH:TRAKT -->
-[![X](https://img.shields.io/badge/New%20Movie-3-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19360992533/job/55392664362#step:7:37) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19360992533/job/55392664362#step:7:18) [![X](https://img.shields.io/badge/Run-workflow_dispatch%2C%2014%20nov%202025%2011%3A00%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19360992533)
+[![X](https://img.shields.io/badge/New%20Movie-3-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19355079911/job/55374715687#step:7:37) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19355079911/job/55374715687#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2014%20nov%202025%206%3A15%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19355079911)
 <!-- /DASH:TRAKT -->
 
 <!-- TRAKT:OUTPUT -->
@@ -15,9 +15,6 @@
 <details><summary>Previous days</summary>
   
 <!-- TRAKT:HISTORY -->
-[![X](https://img.shields.io/badge/New%20Movie-3-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19360992533/job/55392664362#step:7:37) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19360992533/job/55392664362#step:7:18) [![X](https://img.shields.io/badge/Run-workflow_dispatch%2C%2014%20nov%202025%2011%3A00%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19360992533) <!-- TRAKT_RUN:19360992533 --><br>
-🍿 Trap House, Bull Run, Bunny
-
 [![X](https://img.shields.io/badge/New%20Movie-3-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19355079911/job/55374715687#step:7:37) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19355079911/job/55374715687#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2014%20nov%202025%206%3A15%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19355079911) <!-- TRAKT_RUN:19355079911 --><br>
 🍿 Trap House, Bull Run, Bunny
 
