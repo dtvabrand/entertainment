@@ -46,7 +46,7 @@ SITES=[
 
 QIDS = [
     ("Trap House", "Q125388230"),
-    ("Bull Run", ""),
+    ("Bull Run", "Q133849169"),
     ("Bunny", "Q136773157"),
     ("A Breed Apart", "Q133845943"),
     ("A Christmas Mystery", "Q135236473"),
