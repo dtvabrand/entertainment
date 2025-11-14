@@ -2,7 +2,7 @@ name: Trakt lists
 
 on:
   schedule:
-    - cron: '0 5 * * *'    # 6 am CET / 7 am CEST
+    - cron: '0 5 * * *'   # 6 am CET / 7 am CEST
   workflow_dispatch:
     inputs:
       dry_run:
@@ -89,6 +89,14 @@ jobs:
           if-no-files-found: warn
           retention-days: 7
 
+      - name: Upload updated trakt_lists.py
+        uses: actions/upload-artifact@v4
+        with:
+          name: trakt-lists-script
+          path: trakt_lists.py
+          if-no-files-found: warn
+          retention-days: 7
+
   update_readme:
     if: ${{ always() && (github.event_name != 'workflow_dispatch' || github.event.inputs.dry_run != 'true') }}
     needs: trakt_lists
@@ -103,7 +111,7 @@ jobs:
       
     steps:
       - uses: actions/checkout@v4
-
+      
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
@@ -118,6 +126,23 @@ jobs:
           name: trakt-log
           path: .
 
+      - name: Download updated trakt_lists.py artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: trakt-lists-script
+          path: .
+
       - name: Update README (trakt section only)
         run: |
           python dashboard.py trakt --log "$TRAKT_LOG"
+
+      - name: Commit README and trakt_lists.py
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          MSG: ${{ env.DASH_COMMIT_MSG }}
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add README.md trakt_lists.py
+          git commit -m "$MSG" || echo "No changes"
+          git push || true
