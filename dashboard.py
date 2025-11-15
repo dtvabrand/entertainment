@@ -1,4 +1,4 @@
-import os,re,io,sys,zipfile,gzip,requests
+import os,re,io,sys,zipfile,gzip,requests,xml.etree.ElementTree as ET
 from urllib.parse import quote,unquote
 from datetime import datetime
 from zoneinfo import ZoneInfo
@@ -174,8 +174,28 @@ def update_trakt(log_path,status="success"):
     new_hist=(chunk+("\n\n"+("\n\n".join(parts[:29])) if parts else "")).strip()
     md=repl_block(md,"TRAKT:HISTORY",new_hist); write(RD,md)
 
+def load_pretty_names():
+    gw=os.getenv("GITHUB_WORKSPACE","."); mp={}
+    for fn in ("m_channels.xml","d_channels.xml"):
+        p=os.path.join(gw,fn)
+        if not os.path.exists(p): continue
+        try: root=ET.parse(p).getroot()
+        except: continue
+        for ch in root.findall("channel"):
+            site=(ch.get("site") or "").strip().lower()
+            sid=(ch.get("site_id") or "").strip()
+            if not site or not sid: continue
+            disp=None
+            for dn in ch.findall("display-name"):
+                t=(dn.text or "").strip()
+                if t: disp=t; break
+            if not disp: continue
+            k=(site,sid)
+            if k not in mp: mp[k]=disp
+    return mp
+
 def parse_tv_table_and_badges(log_path):
-    raw=read(log_path,""); M=D="0"; rows=[]; notes=[]; fails=[]; sc={}; chs={}
+    raw=read(log_path,""); M=D="0"; rows=[]; notes=[]; fails=[]; sc={}; chs={}; pretty=load_pretty_names()
     if not raw:
         ts=ts_now_it(); evt=os.getenv("RUN_EVENT","").strip(); evt="cron" if evt=="schedule" else (evt or "event")
         msg=f"{evt}, {ts}"; hb=f"{enc_badge(shield('M','0',COL['warn']), '')} {enc_badge(shield('D','0',COL['warn']), '')} {enc_badge(shield('Run',msg,COL['run']), '')}"
@@ -189,18 +209,25 @@ def parse_tv_table_and_badges(log_path):
         if g=="main": s["M"]+=n
         else: s["D"]+=n
     for site,chan,progs in re.findall(r"\]\s+([a-z0-9\.\-]+)\s*\([^)]+\)\s*-\s*(.*?)\s*-\s*[A-Z][a-z]{2}\s+\d{1,2},\s*\d{4}\s*\((\d+)\s+programs\)",raw,re.I):
-        cname=re.sub(r"\s+"," ",chan.strip()); lst=chs.setdefault(site,[]); cname not in lst and lst.append(cname)
-        if site in sc and int(progs)==0: sc[site]["warn"].add(cname)
+        site_key=site.strip().lower()
+        sid=re.sub(r"\s+"," ",chan.strip())
+        disp=pretty.get((site_key,sid),sid)
+        lst=chs.setdefault(site,[])
+        if disp not in lst: lst.append(disp)
+        if site in sc and int(progs)==0: sc[site]["warn"].add(disp)
     for site in sc:
         if re.search(rf"FAIL\s+(main|d)\s+{re.escape(site)}",raw): sc[site]["fail"]=True
     rows_html=[]
     for site in sorted(sc):
-        s=sc[site]; st="❌" if s["fail"] else ("⚠️" if s["warn"] else "✅")
-        cell=(f"<details><summary>{site}</summary>\n"+ "<br>".join(chs.get(site,[])) +"\n</details>") if site in chs else site
+        s=sc[site]
+        st="❌" if s["fail"] else ("⚠️" if s["warn"] else "✅")
+        cell=f"<details><summary>{site}</summary>\n"+ "<br>".join(chs.get(site,[])) +"\n</details>" if site in chs else site
         rows_html.append(f"<tr><td>{cell}</td><td align=\"right\">{s['M']}</td><td align=\"right\">{s['D']}</td><td>{st}</td></tr>")
-        notes.extend(sorted(s["warn"])); s["fail"] and fails.append(site)
+        notes.extend(sorted(s["warn"]))
+        if s["fail"]: fails.append(site)
     table="<table><thead><tr><th>Site</th><th>M</th><th>D</th><th>Status</th></tr></thead><tbody>"+"\n".join(rows_html)+"</tbody></table>"
-    extra=[]; uniq=[]; [uniq.append(x) for x in notes if x not in uniq]
+    extra=[]; uniq=[]
+    [uniq.append(x) for x in notes if x not in uniq]
     if uniq: extra.append(f"⚠️ Notes<br>{len(uniq)} channels without EPG: {', '.join(uniq)}")
     if fails: extra.append(f"❌ Failures<br>{len(set(fails))} site(s): {', '.join(sorted(set(fails)))}")
     ts=ts_now_it(); evt=os.getenv("RUN_EVENT","").strip(); evt="cron" if evt=="schedule" else (evt or "event")
