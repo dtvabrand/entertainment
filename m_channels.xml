@@ -2,13 +2,13 @@
 <channels>
 
   <!-- ================== ITALY ================== -->
-  <channel site="raiplay.it"                       lang="it" xmltv_id="Rai1.it"         site_id="rai-1">Rai 1</channel>
-  <channel site="raiplay.it"                       lang="it" xmltv_id="Rai2.it"         site_id="rai-2">Rai 2</channel>
-  <channel site="raiplay.it"                       lang="it" xmltv_id="Rai3.it"         site_id="rai-3">Rai 3</channel>
-  <channel site="mediasetinfinity.mediaset.it"     lang="it" xmltv_id="Rete4.it"        site_id="R4">Rete 4</channel>
-  <channel site="mediasetinfinity.mediaset.it"     lang="it" xmltv_id="Canale5.it"      site_id="C5">Canale 5</channel>
-  <channel site="mediasetinfinity.mediaset.it"     lang="it" xmltv_id="Italia1.it"      site_id="I1">Italia 1</channel>
-  <channel site="guidatv.sky.it"                   lang="it" xmltv_id="TV2000.it"       site_id="DTH#7588">TV 2000</channel>
+  <channel site="raiplay.it"                       lang="it" xmltv_id="rai-1"         site_id="rai-1">Rai 1</channel>
+  <channel site="raiplay.it"                       lang="it" xmltv_id="rai-2"         site_id="rai-2">Rai 2</channel>
+  <channel site="raiplay.it"                       lang="it" xmltv_id="rai-3"         site_id="rai-3">Rai 3</channel>
+  <channel site="mediasetinfinity.mediaset.it"     lang="it" xmltv_id="rete-4"        site_id="R4">Rete 4</channel>
+  <channel site="mediasetinfinity.mediaset.it"     lang="it" xmltv_id="canale-5"      site_id="C5">Canale 5</channel>
+  <channel site="mediasetinfinity.mediaset.it"     lang="it" xmltv_id="italia-1"      site_id="I1">Italia 1</channel>
+  <channel site="guidatv.sky.it"                   lang="it" xmltv_id="tv2000"       site_id="DTH#7588">TV 2000</channel>
 
   <!-- ================== USA ================== -->
   <channel site="tvpassport.com"   lang="en" xmltv_id="abc-news-live"      site_id="abc-news-live/36224">ABC News Live</channel>
