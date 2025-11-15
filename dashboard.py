@@ -213,7 +213,7 @@ def parse_tv_table_and_badges(log_path):
         rows.append((g,site,int(n)))
     for g,site,n in rows:
         s=sc.setdefault(site,{"M":0,"D":0,"warn":set(),"fail":False})
-        if g=="main": s["M"]+=n
+        if g=="m": s["M"]+=n
         else: s["D"]+=n
     for site,sid,progs in re.findall(r"\]\s+([a-z0-9\.\-]+)\s*\([^)]+\)\s*-\s*([a-z0-9\-\._]+)\s*-\s*[A-Z][a-z]{2}\s+\d{1,2},\s*\d{4}\s*\((\d+)\s+programs\)",raw,re.I):
         sk=site.strip().lower(); key=(sk,sid.strip())
