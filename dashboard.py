@@ -174,10 +174,10 @@ def update_trakt(log_path,status="success"):
     new_hist=(chunk+("\n\n"+("\n\n".join(parts[:29])) if parts else "")).strip()
     md=repl_block(md,"TRAKT:HISTORY",new_hist); write(RD,md)
 
-def load_pretty_names():
-    gw=os.getenv("GITHUB_WORKSPACE","."); mp={}
+def load_site_channels():
+    base=os.path.dirname(os.path.abspath(__file__)); sites={}; pretty={}
     for fn in ("m_channels.xml","d_channels.xml"):
-        p=os.path.join(gw,fn)
+        p=os.path.join(base,fn)
         if not os.path.exists(p): continue
         try: root=ET.parse(p).getroot()
         except: continue
@@ -189,16 +189,14 @@ def load_pretty_names():
             for dn in ch.findall("display-name"):
                 t=(dn.text or "").strip()
                 if t: disp=t; break
-            if not disp: continue
+            if not disp:
+                t=(ch.text or "").strip()
+                if t: disp=t
+            if not disp: disp=sid
             k=(site,sid)
-            if k not in mp: mp[k]=disp
-    return mp
-
-def load_site_channels():
-    pretty=load_pretty_names(); sites={}
-    for (site,sid),disp in pretty.items():
-        lst=sites.setdefault(site,[])
-        if disp not in lst: lst.append(disp)
+            if k not in pretty: pretty[k]=disp
+            lst=sites.setdefault(site,[])
+            if disp not in lst: lst.append(disp)
     for s in sites: sites[s]=sorted(sites[s])
     return sites,pretty
 
