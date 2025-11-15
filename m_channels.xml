@@ -8,7 +8,7 @@
   <channel site="mediasetinfinity.mediaset.it"     lang="it" xmltv_id="rete-4"        site_id="R4">Rete 4</channel>
   <channel site="mediasetinfinity.mediaset.it"     lang="it" xmltv_id="canale-5"      site_id="C5">Canale 5</channel>
   <channel site="mediasetinfinity.mediaset.it"     lang="it" xmltv_id="italia-1"      site_id="I1">Italia 1</channel>
-  <channel site="guidatv.sky.it"                   lang="it" xmltv_id="tv2000"       site_id="DTH#7588">TV 2000</channel>
+  <channel site="guidatv.sky.it"                   lang="it" xmltv_id="tv2000"       site_id="DTH#7588">TV2000</channel>
 
   <!-- ================== USA ================== -->
   <channel site="tvpassport.com"   lang="en" xmltv_id="abc-news-live"      site_id="abc-news-live/36224">ABC News Live</channel>
