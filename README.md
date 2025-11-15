@@ -64,7 +64,7 @@
 
 ### 📺 Live TV
 <!-- DASH:TV -->
-[![X](https://img.shields.io/badge/M-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19395384831/job/55494657233#step:5:573) [![X](https://img.shields.io/badge/D-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19395384831/job/55494657233#step:5:574) [![X](https://img.shields.io/badge/Run-workflow_dispatch%2C%2015%20nov%202025%209%3A50%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19395384831)
+[![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19395552227/job/55495070449#step:5:557) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19395552227/job/55495070449#step:5:558) [![X](https://img.shields.io/badge/Run-workflow_dispatch%2C%2015%20nov%202025%2010%3A06%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19395552227)
 <!-- /DASH:TV -->
 
 <!-- TV:OUTPUT -->
@@ -73,21 +73,23 @@ Nove<br>Real Time<br>Sportitalia
 </details></td><td align="right">0</td><td align="right">3</td><td>✅</td></tr>
 <tr><td><details><summary>guidatv.sky.it</summary>
 Cielo<br>La7<br>La7 Cinema<br>SkyTG24<br>TV2000<br>TV8
-</details></td><td align="right">1</td><td align="right">6</td><td>✅</td></tr>
+</details></td><td align="right">0</td><td align="right">7</td><td>✅</td></tr>
 <tr><td><details><summary>mediasetinfinity.mediaset.it</summary>
 20 Mediaset<br>27 Twentyseven<br>Canale 5<br>Cine34<br>Iris<br>Italia 1<br>La5<br>Mediaset Extra<br>Rete 4<br>TGCOM 24<br>Top Crime
-</details></td><td align="right">3</td><td align="right">11</td><td>✅</td></tr>
+</details></td><td align="right">0</td><td align="right">14</td><td>✅</td></tr>
 <tr><td><details><summary>raiplay.it</summary>
 Rai 1<br>Rai 2<br>Rai 3<br>Rai 4<br>Rai 5<br>Rai Movie<br>Rai News 24<br>Rai Premium<br>Rai Scuola<br>Rai Sport<br>Rai Storia
-</details></td><td align="right">3</td><td align="right">11</td><td>✅</td></tr>
+</details></td><td align="right">0</td><td align="right">14</td><td>✅</td></tr>
 <tr><td><details><summary>tvpassport.com</summary>
 ABC<br>ABC News Live<br>ACC Network<br>Boomerang<br>Bravo<br>CBS<br>E!<br>ESPN<br>ESPN2<br>ESPNU<br>FOX<br>LiveNOW from FOX<br>NBC<br>SEC Network
-</details></td><td align="right">14</td><td align="right">0</td><td>✅</td></tr></tbody></table>
+</details></td><td align="right">0</td><td align="right">14</td><td>✅</td></tr></tbody></table>
 <!-- /TV:OUTPUT -->
 
 <details><summary>Previous days</summary>
 
 <!-- TV:HISTORY -->
+[![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19395552227/job/55495070449#step:5:557) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19395552227/job/55495070449#step:5:558) [![X](https://img.shields.io/badge/Run-workflow_dispatch%2C%2015%20nov%202025%2010%3A06%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19395552227)
+
 [![X](https://img.shields.io/badge/M-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19395384831/job/55494657233#step:5:573) [![X](https://img.shields.io/badge/D-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19395384831/job/55494657233#step:5:574) [![X](https://img.shields.io/badge/Run-workflow_dispatch%2C%2015%20nov%202025%209%3A50%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19395384831)
 
 [![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19395120678/job/55494061011#step:5:555) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19395120678/job/55494061011#step:5:556) [![X](https://img.shields.io/badge/Run-workflow_dispatch%2C%2015%20nov%202025%209%3A26%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19395120678)
