@@ -1,18 +1,18 @@
 #EXTM3U url-tvg="https://dtvabrand.github.io/entertainment/m_epg.xml"
 
-#EXTINF:-1 group-title="Italy" tvg-id="Rai1.it" tvg-logo="http://odmsto.com/uploads/tv_image/sm/rai-1-prtwes3x26ld.png" tvg-name="Rai 1",Rai 1
+#EXTINF:-1 group-title="Italy" tvg-id="rai-1" tvg-logo="http://odmsto.com/uploads/tv_image/sm/rai-1-prtwes3x26ld.png" tvg-name="Rai 1",Rai 1
 https://raiuno3-live.akamaized.net/hls/live/2017910/raiuno3/raiuno3/playlist.m3u8
-#EXTINF:-1 group-title="Italy" tvg-id="Rai2.it" tvg-logo="http://odmsto.com/uploads/tv_image/sm/rai-2-bobi5do2jjqa.png" tvg-name="Rai 2",Rai 2
+#EXTINF:-1 group-title="Italy" tvg-id="rai-2" tvg-logo="http://odmsto.com/uploads/tv_image/sm/rai-2-bobi5do2jjqa.png" tvg-name="Rai 2",Rai 2
 https://raidue3-live.akamaized.net/hls/live/2017983/raidue3/raidue3/playlist.m3u8
-#EXTINF:-1 group-title="Italy" tvg-id="Rai3.it" tvg-logo="http://odmsto.com/uploads/tv_image/sm/rai-3-kwvj7ve82k1u.png" tvg-name="Rai 3",Rai 3
+#EXTINF:-1 group-title="Italy" tvg-id="rai-3" tvg-logo="http://odmsto.com/uploads/tv_image/sm/rai-3-kwvj7ve82k1u.png" tvg-name="Rai 3",Rai 3
 https://raitre3-live.akamaized.net/hls/live/2018002/raitre3/raitre3/playlist.m3u8
-#EXTINF:-1 group-title="Italy" tvg-id="Rete4.it" tvg-logo="https://static2.mediasetplay.mediaset.it/mam/2021/02/11/144338957-20212311-a45d-4002-a783-e9cde2ded4c0@2.png" tvg-name="Rete 4",Rete 4
+#EXTINF:-1 group-title="Italy" tvg-id="rete-4" tvg-logo="https://static2.mediasetplay.mediaset.it/mam/2021/02/11/144338957-20212311-a45d-4002-a783-e9cde2ded4c0@2.png" tvg-name="Rete 4",Rete 4
 https://live02-seg.msf.cdn.mediaset.net/live/ch-r4/r4-clr.isml/index.m3u8
-#EXTINF:-1 group-title="Italy" tvg-id="Canale5.it" tvg-logo="https://static2.mediasetplay.mediaset.it/mam/2021/01/20/132645331-a3b3b56f-d240-4fcc-b4a0-2fd1f5b9124f@2.png" tvg-name="Canale 5",Canale 5
+#EXTINF:-1 group-title="Italy" tvg-id="canale-5" tvg-logo="https://static2.mediasetplay.mediaset.it/mam/2021/01/20/132645331-a3b3b56f-d240-4fcc-b4a0-2fd1f5b9124f@2.png" tvg-name="Canale 5",Canale 5
 https://live02-seg.msf.cdn.mediaset.net/live/ch-c5/c5-clr.isml/index.m3u8
-#EXTINF:-1 group-title="Italy" tvg-id="Italia1.it" tvg-logo="https://static2.mediasetplay.mediaset.it/mam/2021/02/11/110049715-66fb66f3-bbf6-43fc-9c22-f0e3e01be65d@2.png" tvg-name="Italia 1",Italia 1
+#EXTINF:-1 group-title="Italy" tvg-id="italia-1" tvg-logo="https://static2.mediasetplay.mediaset.it/mam/2021/02/11/110049715-66fb66f3-bbf6-43fc-9c22-f0e3e01be65d@2.png" tvg-name="Italia 1",Italia 1
 https://live02-seg.msf.cdn.mediaset.net/live/ch-i1/i1-clr.isml/index.m3u8
-#EXTINF:-1 group-title="Italy" tvg-id="TV2000.it" tvg-logo="https://i.imgur.com/x7RaK3a.png" tvg-name="TV 2000",TV 2000
+#EXTINF:-1 group-title="Italy" tvg-id="tv2000" tvg-logo="https://i.imgur.com/x7RaK3a.png" tvg-name="TV 2000",TV 2000
 https://hls.live2.meride.tv/hls/live/2028947/pu934tjb/hls_1_3000/chunklist.m3u8
 
 
