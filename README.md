@@ -64,22 +64,22 @@
 
 ### 📺 Live TV
 <!-- DASH:TV -->
-[![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19389004351/job/55479836495#step:5:555) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19389004351/job/55479836495#step:5:556) [![X](https://img.shields.io/badge/Run-cron%2C%2015%20nov%202025%2012%3A12%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19389004351)
+[![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19391256883/job/55485028697#step:5:555) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19391256883/job/55485028697#step:5:556) [![X](https://img.shields.io/badge/Run-workflow_dispatch%2C%2015%20nov%202025%203%3A35%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19391256883)
 <!-- /DASH:TV -->
 
 <!-- TV:OUTPUT -->
-| Site | M | D | Status |
-|---|---:|---:|---|
-| guida.tv | 0 | 3 | ✅ |
-| guidatv.sky.it | 1 | 6 | ✅ |
-| mediasetinfinity.mediaset.it | 3 | 11 | ✅ |
-| raiplay.it | 3 | 11 | ✅ |
-| tvpassport.com | 14 | 0 | ✅ |
+<table><thead><tr><th>Site</th><th>M</th><th>D</th><th>Status</th></tr></thead><tbody><tr><td>guida.tv</td><td align="right">0</td><td align="right">3</td><td>✅</td></tr>
+<tr><td>guidatv.sky.it</td><td align="right">1</td><td align="right">6</td><td>✅</td></tr>
+<tr><td>mediasetinfinity.mediaset.it</td><td align="right">3</td><td align="right">11</td><td>✅</td></tr>
+<tr><td>raiplay.it</td><td align="right">3</td><td align="right">11</td><td>✅</td></tr>
+<tr><td>tvpassport.com</td><td align="right">14</td><td align="right">0</td><td>✅</td></tr></tbody></table>
 <!-- /TV:OUTPUT -->
 
 <details><summary>Previous days</summary>
 
 <!-- TV:HISTORY -->
+[![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19391256883/job/55485028697#step:5:555) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19391256883/job/55485028697#step:5:556) [![X](https://img.shields.io/badge/Run-workflow_dispatch%2C%2015%20nov%202025%203%3A35%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19391256883)
+
 [![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19389004351/job/55479836495#step:5:555) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19389004351/job/55479836495#step:5:556) [![X](https://img.shields.io/badge/Run-cron%2C%2015%20nov%202025%2012%3A12%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19389004351)
 
 [![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19362848051/job/55398737731#step:5:555) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19362848051/job/55398737731#step:5:556) [![X](https://img.shields.io/badge/Run-cron%2C%2014%20nov%202025%2012%3A14%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19362848051)
