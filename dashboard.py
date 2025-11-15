@@ -209,7 +209,7 @@ def parse_tv_table_and_badges(log_path):
         return {"M":"0","D":"0","table":"<table></table>","notes":"","hist_badges":hb,"raw":raw}
     m=re.search(r"m_epg\.xml\s*->\s*(\d+)\s+channels",raw); M=m.group(1) if m else "0"
     d=re.search(r"d_epg\.xml\s*->\s*(\d+)\s+channels",raw); D=d.group(1) if d else "0"
-    for g,site,n in re.findall(r">\s*(main|d)\s+([a-z0-9\.\-]+)\s*:\s*(\d+)\s+channels",raw):
+    for g,site,n in re.findall(r">\s*(m|d)\s+([a-z0-9\.\-]+)\s*:\s*(\d+)\s+channels",raw):
         rows.append((g,site,int(n)))
     for g,site,n in rows:
         s=sc.setdefault(site,{"M":0,"D":0,"warn":set(),"fail":False})
@@ -220,7 +220,7 @@ def parse_tv_table_and_badges(log_path):
         disp=pretty.get(key,sid.strip())
         if sk in sc and int(progs)==0: sc[sk]["warn"].add(disp)
     for site in list(sc.keys()):
-        if re.search(rf"FAIL\s+(main|d)\s+{re.escape(site)}",raw): sc[site]["fail"]=True
+        if re.search(rf"FAIL\s+\S+\s+{re.escape(site)}",raw): sc[site]["fail"]=True
     rows_html=[]
     for site in sorted(sc.keys()):
         s=sc[site]
