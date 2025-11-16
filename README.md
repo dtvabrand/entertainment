@@ -66,85 +66,32 @@
 
 ### 📺 Live TV
 <!-- DASH:TV -->
-[![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19410718592/job/55531667369#step:5:421) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19410718592/job/55531667369#step:5:422) [![X](https://img.shields.io/badge/Build%20EPG-22s-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19410718592/job/55531667369#step:5:185) [![X](https://img.shields.io/badge/Run-workflow_dispatch%2C%2016%20nov%202025%208%3A16%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19410718592)
+[![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19410866539/job/55531999151#step:5:421) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19410866539/job/55531999151#step:5:422) [![X](https://img.shields.io/badge/Build%20EPG-15s-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19410866539/job/55531999151#step:5:185) [![X](https://img.shields.io/badge/Run-workflow_dispatch%2C%2016%20nov%202025%208%3A28%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19410866539)
 <!-- /DASH:TV -->
 
 <!-- TV:OUTPUT -->
 <table><thead><tr><th>Site</th><th>M</th><th>D</th><th>Time</th><th>Status</th></tr></thead><tbody><tr><td><details><summary>guida.tv</summary>
-<table style="width:100%;border-collapse:collapse;margin-top:6px">
-<tr><th align="left">Channel</th><th align="center">м</th><th align="center">ᴅ</th></tr>
-<tr><td>🔵 Nove</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L27" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🔵 Real Time</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L93" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🔵 Sportitalia</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L57" style="text-decoration:none">ᴅ</a></td></tr>
-</table>
-</details></td><td align="center">0</td><td align="center">3</td><td align="center">7s</td><td align="center">✅</td></tr>
+🔵 Nove<br>🔵 Real Time<br>🔵 Sportitalia
+</details></td><td align="center">0</td><td align="center">3</td><td align="center">6s</td><td align="center">✅</td></tr>
 <tr><td><details><summary>guidatv.sky.it</summary>
-<table style="width:100%;border-collapse:collapse;margin-top:6px">
-<tr><th align="left">Channel</th><th align="center">м</th><th align="center">ᴅ</th></tr>
-<tr><td>🔵 Cielo</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L78" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🔵 La7</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L21" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🔵 La7 Cinema</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L87" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🔵 SkyTG24</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L30" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🟡 TV2000</td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/m_playlist.m3u8#L15" style="text-decoration:none">м</a></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L84" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🔵 TV8</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L24" style="text-decoration:none">ᴅ</a></td></tr>
-</table>
-</details></td><td align="center">1</td><td align="center">6</td><td align="center">7s</td><td align="center">✅</td></tr>
+🔵 La7<br>🔵 La7 Cinema<br>🟡 TV2000<br>🔵 Cielo<br>🔵 TV8<br>🔵 SkyTG24
+</details></td><td align="center">1</td><td align="center">6</td><td align="center">6s</td><td align="center">✅</td></tr>
 <tr><td><details><summary>mediasetinfinity.mediaset.it</summary>
-<table style="width:100%;border-collapse:collapse;margin-top:6px">
-<tr><th align="left">Channel</th><th align="center">м</th><th align="center">ᴅ</th></tr>
-<tr><td>🔵 20 Mediaset</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L60" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🔵 27 Twentyseven</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L81" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🟡 Canale 5</td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/m_playlist.m3u8#L11" style="text-decoration:none">м</a></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L15" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🔵 Cine34</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L102" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🔵 Iris</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L66" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🟡 Italia 1</td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/m_playlist.m3u8#L13" style="text-decoration:none">м</a></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L18" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🔵 La5</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L90" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🔵 Mediaset Extra</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L108" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🟡 Rete 4</td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/m_playlist.m3u8#L9" style="text-decoration:none">м</a></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L12" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🔵 TGCOM 24</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L36" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🔵 Top Crime</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L105" style="text-decoration:none">ᴅ</a></td></tr>
-</table>
-</details></td><td align="center">3</td><td align="center">11</td><td align="center">7s</td><td align="center">✅</td></tr>
-<tr><td><details><summary>raiplay.it</summary>
-<table style="width:100%;border-collapse:collapse;margin-top:6px">
-<tr><th align="left">Channel</th><th align="center">м</th><th align="center">ᴅ</th></tr>
-<tr><td>🟡 Rai 1</td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/m_playlist.m3u8#L3" style="text-decoration:none">м</a></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L3" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🟡 Rai 2</td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/m_playlist.m3u8#L5" style="text-decoration:none">м</a></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L6" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🟡 Rai 3</td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/m_playlist.m3u8#L7" style="text-decoration:none">м</a></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L9" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🔵 Rai 4</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L63" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🔵 Rai 5</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L69" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🔵 Rai Movie</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L72" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🔵 Rai News 24</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L33" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🔵 Rai Premium</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L75" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🔵 Rai Scuola</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L48" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🔵 Rai Sport</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L51" style="text-decoration:none">ᴅ</a></td></tr>
-<tr><td>🔵 Rai Storia</td><td align="center"></td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/d_playlist.m3u8#L45" style="text-decoration:none">ᴅ</a></td></tr>
-</table>
+🔵 Cine34<br>🟡 Canale 5<br>🟡 Italia 1<br>🔵 TGCOM 24<br>🔵 Iris<br>🔵 Mediaset Extra<br>🔵 La5<br>🔵 20 Mediaset<br>🔵 Top Crime<br>🟡 Rete 4<br>🔵 27 Twentyseven
 </details></td><td align="center">3</td><td align="center">11</td><td align="center">8s</td><td align="center">✅</td></tr>
+<tr><td><details><summary>raiplay.it</summary>
+🟡 Rai 1<br>🟡 Rai 2<br>🟡 Rai 3<br>🔵 Rai 4<br>🔵 Rai 5<br>🔵 Rai Movie<br>🔵 Rai News 24<br>🔵 Rai Premium<br>🔵 Rai Scuola<br>🔵 Rai Sport<br>🔵 Rai Storia
+</details></td><td align="center">3</td><td align="center">11</td><td align="center">7s</td><td align="center">✅</td></tr>
 <tr><td><details><summary>tvpassport.com</summary>
-<table style="width:100%;border-collapse:collapse;margin-top:6px">
-<tr><th align="left">Channel</th><th align="center">м</th><th align="center">ᴅ</th></tr>
-<tr><td>🔴 ABC News Live</td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/m_playlist.m3u8#L19" style="text-decoration:none">м</a></td><td align="center"></td></tr>
-<tr><td>🔴 ACC Network</td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/m_playlist.m3u8#L55" style="text-decoration:none">м</a></td><td align="center"></td></tr>
-<tr><td>🔴 Boomerang</td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/m_playlist.m3u8#L43" style="text-decoration:none">м</a></td><td align="center"></td></tr>
-<tr><td>🔴 Bravo</td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/m_playlist.m3u8#L37" style="text-decoration:none">м</a></td><td align="center"></td></tr>
-<tr><td>🔴 E!</td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/m_playlist.m3u8#L40" style="text-decoration:none">м</a></td><td align="center"></td></tr>
-<tr><td>🔴 ESPN</td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/m_playlist.m3u8#L46" style="text-decoration:none">м</a></td><td align="center"></td></tr>
-<tr><td>🔴 ESPN2</td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/m_playlist.m3u8#L49" style="text-decoration:none">м</a></td><td align="center"></td></tr>
-<tr><td>🔴 ESPNU</td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/m_playlist.m3u8#L52" style="text-decoration:none">м</a></td><td align="center"></td></tr>
-<tr><td>🔴 LiveNOW from FOX</td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/m_playlist.m3u8#L22" style="text-decoration:none">м</a></td><td align="center"></td></tr>
-<tr><td>🔴 SEC Network</td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/m_playlist.m3u8#L58" style="text-decoration:none">м</a></td><td align="center"></td></tr>
-<tr><td>🔴 ABC</td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/m_playlist.m3u8#L25" style="text-decoration:none">м</a></td><td align="center"></td></tr>
-<tr><td>🔴 CBS</td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/m_playlist.m3u8#L31" style="text-decoration:none">м</a></td><td align="center"></td></tr>
-<tr><td>🔴 NBC</td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/m_playlist.m3u8#L28" style="text-decoration:none">м</a></td><td align="center"></td></tr>
-<tr><td>🔴 FOX</td><td align="center"><a href="https://github.com/dtvabrand/entertainment/blob/main/m_playlist.m3u8#L34" style="text-decoration:none">м</a></td><td align="center"></td></tr>
-</table>
-</details></td><td align="center">14</td><td align="center">0</td><td align="center">10s</td><td align="center">✅</td></tr></tbody></table>
+🔴 ABC News Live<br>🔴 ABC<br>🔴 ACC Network<br>🔴 Boomerang<br>🔴 Bravo<br>🔴 CBS<br>🔴 E!<br>🔴 ESPNU<br>🔴 ESPN<br>🔴 ESPN2<br>🔴 FOX<br>🔴 LiveNOW from FOX<br>🔴 NBC<br>🔴 SEC Network
+</details></td><td align="center">14</td><td align="center">0</td><td align="center">8s</td><td align="center">✅</td></tr></tbody></table>
 <!-- /TV:OUTPUT -->
 
 <details><summary>Previous days</summary>
 
 <!-- TV:HISTORY -->
+[![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19410866539/job/55531999151#step:5:421) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19410866539/job/55531999151#step:5:422) [![X](https://img.shields.io/badge/Build%20EPG-15s-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19410866539/job/55531999151#step:5:185) [![X](https://img.shields.io/badge/Run-workflow_dispatch%2C%2016%20nov%202025%208%3A28%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19410866539)
+
 [![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19410718592/job/55531667369#step:5:421) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19410718592/job/55531667369#step:5:422) [![X](https://img.shields.io/badge/Build%20EPG-22s-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19410718592/job/55531667369#step:5:185) [![X](https://img.shields.io/badge/Run-workflow_dispatch%2C%2016%20nov%202025%208%3A16%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19410718592)
 
 [![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19408005294/job/55525489471#step:5:421) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19408005294/job/55525489471#step:5:422) [![X](https://img.shields.io/badge/Build%20EPG-16s-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19408005294/job/55525489471#step:5:185) [![X](https://img.shields.io/badge/Run-workflow_dispatch%2C%2016%20nov%202025%204%3A40%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19408005294)
