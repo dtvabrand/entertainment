@@ -291,27 +291,30 @@ def update_tv(log_path,status="success"):
         j,s=find_tv_job_and_step(owner,repo,run_id)
         if j: job_id=str(j)
         if s: step_idx=str(s)
-    ln_m=ln_d=ln_g=None
-    raw_for_epg=None
+    ln_m=ln_d=ln_build=None; rawlog=None
     if owner and repo and run_id and job_id:
-        raw_for_epg=fetch_job_log(owner,repo,job_id)
-        if raw_for_epg:
-            im=_best_epg_line(raw_for_epg,'m'); idl=_best_epg_line(raw_for_epg,'d')
-            gs_m=nearest_group_start_before(raw_for_epg,im) if im else None
-            gs_d=nearest_group_start_before(raw_for_epg,idl) if idl else None
+        rawlog=fetch_job_log(owner,repo,job_id)
+        if rawlog:
+            im=_best_epg_line(rawlog,'m'); idl=_best_epg_line(rawlog,'d')
+            gs_m=nearest_group_start_before(rawlog,im) if im else None
+            gs_d=nearest_group_start_before(rawlog,idl) if idl else None
             ln_m=(im-gs_m+1) if (im and gs_m) else None
             ln_d=(idl-gs_d+1) if (idl and gs_d) else None
             if ln_m is not None and ln_m<1: ln_m=1
             if ln_d is not None and ln_d<1: ln_d=1
-            ig=first_line(raw_for_epg,["##[group]Grab","::group::Grab","Grab"])
-            gs_g=nearest_group_start_before(raw_for_epg,ig) if ig else None
-            ln_g=(ig-gs_g+1) if (ig and gs_g) else None
-            if ln_g is not None and ln_g<1: ln_g=1
+            gb=None
+            for i,ln in enumerate(clean_lines(rawlog),1):
+                if "##[group]Grab" in ln:
+                    gb=i; break
+            if gb:
+                gs_step=nearest_group_start_before(rawlog,gb)
+                ln_build=(gb-gs_step+1) if gs_step else None
+                if ln_build is not None and ln_build<1: ln_build=1
     base=f"https://github.com/{owner}/{repo}/actions/runs/{run_id}" if (owner and repo and run_id) else ""
     href_m=(f"{base}/job/{job_id}#step:{step_idx}:{ln_m}" if (base and job_id and step_idx and ln_m) else base)
     href_d=(f"{base}/job/{job_id}#step:{step_idx}:{ln_d}" if (base and job_id and step_idx and ln_d) else base)
-    href_build=(f"{base}/job/{job_id}#step:{step_idx}:{ln_g}" if (base and job_id and step_idx and ln_g) else base)
     href_run=(base or "")
+    href_build=(f"{base}/job/{job_id}#step:{step_idx}:{ln_build}" if (base and job_id and step_idx and ln_build) else href_run)
     s_m=shield('M',tv['M'],COL['warn']); s_d=shield('D',tv['D'],COL['warn'])
     secs=_build_epg_seconds(owner,repo,run_id) if (owner and repo and run_id) else None
     be_val=f"{secs}s" if isinstance(secs,int) and secs>=0 else "-"
