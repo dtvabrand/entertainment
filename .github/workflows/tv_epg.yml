@@ -115,7 +115,12 @@ jobs:
             retry_grab(){ local ch="$1" site="$2" out="$3" maxc="$4" tout="$5"
               echo "Grab $site -> $out (maxc=$maxc timeout=${tout}ms)"
               try(){ npm run grab -- --channels="$ch" --days=4 --maxConnections="$maxc" --timeout="$tout" --output="$out" | filter_log; }
-              (try) || (sleep 2 && try) || (sleep 4 && try) || return 1; }
+              local start end rc
+              start=$(date +%s)
+              (try) || (sleep 2 && try) || (sleep 4 && try); rc=$?
+              end=$(date +%s)
+              echo "TIME $site $((end-start))s"
+              return $rc; }
             run_block(){ local prefix="$1" outdir="$2"
               shopt -s nullglob
               for f in "${OUTDIR}/${prefix}__"*.channels.xml; do
