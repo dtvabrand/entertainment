@@ -214,9 +214,11 @@ jobs:
 
             echo "::group::Check streams"
             python - << 'PY'
-            import os,socket,urllib.request,re
-            socket.setdefaulttimeout(3)
+            import os,socket,urllib.request,urllib.error,re
+            socket.setdefaulttimeout(6)
+
             gw=os.environ.get("GITHUB_WORKSPACE","/github/workspace")
+
             def iter_entries(path,tag):
                 p=os.path.join(gw,path)
                 if not os.path.exists(p): return
@@ -237,9 +239,19 @@ jobs:
                             last=None
             def ok(url):
                 try:
-                    req=urllib.request.Request(url,method="HEAD",headers={"User-Agent":"stream-check"})
+                    req=urllib.request.Request(
+                        url,
+                        headers={"User-Agent":"Mozilla/5.0"}
+                    )
                     with urllib.request.urlopen(req) as r:
-                        return 200<=getattr(r,"status",200)<400
+                        status=getattr(r,"status",200)
+                        # OK vero
+                        if 200 <= status < 300: return True
+                        # redirect accettati
+                        if status in (301,302,303,307,308): return True
+                        # 401/403: bloccato (geo/auth), ma stream non per forza morto
+                        if status in (401,403): return True
+                        return False
                 except Exception:
                     return False
             dead={}
