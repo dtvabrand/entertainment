@@ -212,61 +212,6 @@ jobs:
             [ -f "${GITHUB_WORKSPACE}/d_playlist.m3u8" ] && cp "${GITHUB_WORKSPACE}/d_playlist.m3u8" "${SITE}/"
             echo "SITE=${SITE}" >> "$GITHUB_ENV"
 
-            echo "::group::Check streams"
-            python - << 'PY'
-            import os,socket,urllib.request,urllib.error,re
-            socket.setdefaulttimeout(6)
-
-            gw=os.environ.get("GITHUB_WORKSPACE","/github/workspace")
-
-            def iter_entries(path,tag):
-                p=os.path.join(gw,path)
-                if not os.path.exists(p): return
-                with open(p,encoding="utf-8",errors="replace") as f:
-                    last=None
-                    for line in f:
-                        line=line.strip()
-                        if line.startswith("#EXTINF"):
-                            name=None
-                            if "," in line: name=line.split(",",1)[1].strip()
-                            if not name:
-                                m=re.search(r'tvg-name="([^"]+)"',line)
-                                if m: name=m.group(1).strip()
-                            last=name or "Unknown"
-                        elif line and not line.startswith("#") and last:
-                            url=line.strip()
-                            yield last,url,tag
-                            last=None
-            def ok(url):
-                try:
-                    req=urllib.request.Request(
-                        url,
-                        headers={"User-Agent":"Mozilla/5.0"}
-                    )
-                    with urllib.request.urlopen(req) as r:
-                        status=getattr(r,"status",200)
-                        # OK vero
-                        if 200 <= status < 300: return True
-                        # redirect accettati
-                        if status in (301,302,303,307,308): return True
-                        # 401/403: bloccato (geo/auth), ma stream non per forza morto
-                        if status in (401,403): return True
-                        return False
-                except Exception:
-                    return False
-            dead={}
-            for path,tag in (("m_playlist.m3u8","M"),("d_playlist.m3u8","D")):
-                for name,url,t in iter_entries(path,tag):
-                    if not ok(url):
-                        dead.setdefault(name,set()).add(t)
-            if dead:
-                print("DEAD STREAMS SUMMARY")
-                for name,tags in sorted(dead.items()):
-                    lab="".join(sorted(tags))
-                    print(f"DEAD_STREAM {name} ({lab})")
-            PY
-            echo "::endgroup::"
-
         run: |
           set -euo pipefail
           echo "job_id=${{ github.job_id }}" >> "$GITHUB_OUTPUT"
