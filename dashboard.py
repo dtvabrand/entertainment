@@ -234,86 +234,59 @@ def parse_tv_table_and_badges(log_path):
     raw=read(log_path,""); M=D="0"; rows=[]; notes=[]; fails=[]; sc={}
     site_ch,pretty=load_site_channels()
     mp_m,mp_d,blob_base=_playlist_maps()
-
     if not raw:
-        ts=ts_now_it(); evt=os.getenv("RUN_EVENT","").strip(); evt="cron" if evt=="schedule" else (evt or "event")
-        msg=f"{evt}, {ts}"
+        ts=ts_now_it(); evt=os.getenv("RUN_EVENT","").strip(); evt="cron" if evt=="schedule" else (evt or "event"); msg=f"{evt}, {ts}"
         hb=f"{enc_badge(shield('M','0',COL['warn']), '')} {enc_badge(shield('D','0',COL['warn']), '')} {enc_badge(shield('Run',msg,COL['run']), '')}"
         return {"M":"0","D":"0","table":"<table></table>","notes":"","raw":raw,"times":{},"hist_badges":hb}
-
     m=re.search(r"m_epg\.xml\s*->\s*(\d+)\s+channels",raw); M=m.group(1) if m else "0"
     d=re.search(r"d_epg\.xml\s*->\s*(\d+)\s+channels",raw); D=d.group(1) if d else "0"
-
     for g,site,n in re.findall(r">\s*(m|d)\s+([a-z0-9\.\-]+)\s*:\s*(\d+)\s+channels",raw):
         rows.append((g,site,int(n)))
     for g,site,n in rows:
         s=sc.setdefault(site,{"M":0,"D":0,"warn":set(),"fail":False})
         if g=="m": s["M"]+=n
         else: s["D"]+=n
-
     times={}
     for site,val in re.findall(r"TIME\s+([a-z0-9\.\-]+)\s+(\d+)s",raw,re.I):
         try: times[site]=int(val)
         except: continue
-
-    for site,sid,progs in re.findall(
-        r"\]\s+([a-z0-9\.\-]+)\s*\([^)]+\)\s*-\s*([a-z0-9\-\._]+)\s*-\s*[A-Z][a-z]{2}\s+\d{1,2},\s*\d{4}\s*\((\d+)\s+programs\)",
-        raw,re.I
-    ):
-        sk=site.strip().lower(); key=(sk,sid.strip().lower())
-        disp=pretty.get(key,sid.strip())
-        if sk in sc and int(progs)==0 and disp:
-            sc[sk]["warn"].add(disp)
-
+    for site,sid,progs in re.findall(r"\]\s+([a-z0-9\.\-]+)\s*\([^)]+\)\s*-\s*([a-z0-9\-\._]+)\s*-\s*[A-Z][a-z]{2}\s+\d{1,2},\s*\d{4}\s*\((\d+)\s+programs\)",raw,re.I):
+        sk=site.strip().lower(); key=(sk,sid.strip().lower()); disp=pretty.get(key,sid.strip())
+        if sk in sc and int(progs)==0: sc[sk]["warn"].add(disp)
     for site in list(sc.keys()):
-        if re.search(rf"FAIL\s+\S+\s+{re.escape(site)}",raw):
-            sc[site]["fail"]=True
-
+        if re.search(rf"FAIL\s+\S+\s+{re.escape(site)}",raw): sc[site]["fail"]=True
     rows_html=[]
     for site in sorted(sc.keys()):
-        s=sc[site]; M_tot=s["M"]; D_tot=s["D"]; tval=times.get(site,"")
+        s=sc[site]; st="❌" if s["fail"] else ("⚠️" if s["warn"] else "✅")
         entries=site_ch.get(site.lower(),[])
         if entries:
-            lines=[]
+            inner=["<table style=\"width:100%;border-collapse:collapse;margin-top:6px\">",
+                   "<tr><th align=\"left\">Channel</th><th align=\"center\">м</th><th align=\"center\">ᴅ</th></tr>"]
             for disp,tag,xml in entries:
                 dot="🟡" if tag=="B" else ("🔴" if tag=="M" else "🔵")
-                label=f"{dot} {disp}"
+                ch_txt=f"{dot} {disp}"
                 xml_key=(xml or "").lower()
                 lm=mp_m.get(xml_key); ld=mp_d.get(xml_key)
-                links=[]
-                if blob_base:
-                    if lm: links.append(f'<a href="{blob_base}/m_playlist.m3u8#L{lm}" style="text-decoration:none">ᴍ</a>')
-                    if ld: links.append(f'<a href="{blob_base}/d_playlist.m3u8#L{ld}" style="text-decoration:none">ᴅ</a>')
-                suffix=("  "+" ".join(links)) if links else ""
-                lines.append(f"{label}{suffix}")
-            cell=f"<details><summary>{site}</summary>\n"+ "<br>".join(lines) +"\n</details>"
+                if blob_base and lm: m_link=f'<a href="{blob_base}/m_playlist.m3u8#L{lm}" style="text-decoration:none">м</a>'
+                else: m_link=""
+                if blob_base and ld: d_link=f'<a href="{blob_base}/d_playlist.m3u8#L{ld}" style="text-decoration:none">ᴅ</a>'
+                else: d_link=""
+                inner.append(f"<tr><td>{ch_txt}</td><td align=\"center\">{m_link}</td><td align=\"center\">{d_link}</td></tr>")
+            inner.append("</table>")
+            cell=f"<details><summary>{site}</summary>\n"+ "\n".join(inner) +"\n</details>"
         else:
             cell=site
-
-        st="❌" if s["fail"] else ("⚠️" if s["warn"] else "✅")
-        rows_html.append(
-            f"<tr>"
-            f"<td>{cell}</td>"
-            f"<td align=\"center\">{M_tot}</td>"
-            f"<td align=\"center\">{D_tot}</td>"
-            f"<td align=\"center\">{(str(tval)+'s') if tval!='' else ''}</td>"
-            f"<td align=\"center\">{st}</td>"
-            f"</tr>"
-        )
-
-        notes.extend(sorted(s["warn"]))
+        tval=times.get(site,"")
+        rows_html.append(f"<tr><td>{cell}</td><td align=\"center\">{s['M']}</td><td align=\"center\">{s['D']}</td><td align=\"center\">{(str(tval)+'s') if tval!='' else ''}</td><td align=\"center\">{st}</td></tr>")
+        notes.extend(sorted(sc[site]["warn"]))
         if s["fail"]: fails.append(site)
-
     table="<table><thead><tr><th>Site</th><th>M</th><th>D</th><th>Time</th><th>Status</th></tr></thead><tbody>"+"\n".join(rows_html)+"</tbody></table>"
-
     extra=[]; uniq=[]
     [uniq.append(x) for x in notes if x not in uniq]
     if uniq: extra.append(f"⚠️ Notes<br>{len(uniq)} channels without EPG: {', '.join(uniq)}")
     if fails: extra.append(f"❌ Failures<br>{len(set(fails))} site(s): {', '.join(sorted(set(fails)))}")
-
     ts=ts_now_it(); evt=os.getenv("RUN_EVENT","").strip(); evt="cron" if evt=="schedule" else (evt or "event"); msg=f"{evt}, {ts}"
     hb=f"{shield('M',M,COL['warn'])} {shield('D',D,COL['warn'])} {shield('Run',msg,COL['run'])}"
-
     return {"M":M,"D":D,"table":table,"notes":"\n\n".join(extra),"raw":raw,"times":times,"hist_badges":hb}
 
 def _best_epg_line(raw,label):
