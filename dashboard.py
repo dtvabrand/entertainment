@@ -268,13 +268,10 @@ def parse_tv_table_and_badges(log_path):
                 lm=mp_m.get(xml_key); ld=mp_d.get(xml_key)
                 links=[]
                 if blob_base:
-                    if lm: links.append(f'<sub>[<a href="{blob_base}/m_playlist.m3u8#L{lm}">M</a>]</sub>')
-                    if ld: links.append(f'<sub>[<a href="{blob_base}/d_playlist.m3u8#L{ld}">D</a>]</sub>')
-                if links:
-                    line=f"{dot} {disp}  "+ "".join(links)
-                else:
-                    line=f"{dot} {disp}"
-                lines.append(line)
+                    if lm: links.append(f'[<a href="{blob_base}/m_playlist.m3u8#L{lm}">M</a>]')
+                    if ld: links.append(f'[<a href="{blob_base}/d_playlist.m3u8#L{ld}">D</a>]')
+                suffix=("  "+"".join(links)) if links else ""
+                lines.append(f"{dot} {disp}{suffix}")
             cell=f"<details><summary>{site}</summary>\n"+ "<br>".join(lines) +"\n</details>"
         else:
             cell=site
@@ -316,9 +313,6 @@ def _build_epg_seconds(owner,repo,run_id):
     sec=int((de-ds).total_seconds())
     return sec if sec>=0 else None
 
-def _grab_line(raw):
-    return first_line(raw,["::group::Grab"])
-
 def update_tv(log_path,status="success"):
     md=read(RD); tv=parse_tv_table_and_badges(log_path)
     owner_repo=(os.getenv("GITHUB_REPOSITORY") or "").split("/",1); owner=owner_repo[0] if owner_repo else ""; repo=owner_repo[1] if len(owner_repo)==2 else ""; run_id=os.getenv("RUN_ID","").strip()
@@ -328,19 +322,21 @@ def update_tv(log_path,status="success"):
         if j: job_id=str(j)
         if s: step_idx=str(s)
     ln_m=ln_d=ln_build=None
-    raw_job=None
     if owner and repo and run_id and job_id:
         raw_job=fetch_job_log(owner,repo,job_id)
         if raw_job:
             im=_best_epg_line(raw_job,'m'); idl=_best_epg_line(raw_job,'d')
-            gs_m=nearest_group_start_before(raw_job,im) if im else None; gs_d=nearest_group_start_before(raw_job,idl) if idl else None
-            ln_m=(im-gs_m+1) if (im and gs_m) else None; ln_d=(idl-gs_d+1) if (idl and gs_d) else None
+            gs_m=nearest_group_start_before(raw_job,im) if im else None
+            gs_d=nearest_group_start_before(raw_job,idl) if idl else None
+            ln_m=(im-gs_m+1) if (im and gs_m) else None
+            ln_d=(idl-gs_d+1) if (idl and gs_d) else None
             if ln_m is not None and ln_m<1: ln_m=1
             if ln_d is not None and ln_d<1: ln_d=1
-            ig=_grab_line(raw_job)
-            gs_g=nearest_group_start_before(raw_job,ig) if ig else None
-            ln_build=(ig-gs_g+1) if (ig and gs_g) else None
-            if ln_build is not None and ln_build<1: ln_build=1
+            ig=first_line_re(raw_job,r"##\[group\].*Grab") or first_line_re(raw_job,r"::group::Grab")
+            if ig:
+                gs_g=nearest_group_start_before(raw_job,ig)
+                ln_build=(ig-gs_g+1) if gs_g else None
+                if ln_build is not None and ln_build<1: ln_build=1
     base=f"https://github.com/{owner}/{repo}/actions/runs/{run_id}" if (owner and repo and run_id) else ""
     href_m=(f"{base}/job/{job_id}#step:{step_idx}:{ln_m}" if (base and job_id and step_idx and ln_m) else base)
     href_d=(f"{base}/job/{job_id}#step:{step_idx}:{ln_d}" if (base and job_id and step_idx and ln_d) else base)
