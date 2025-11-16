@@ -268,10 +268,13 @@ def parse_tv_table_and_badges(log_path):
                 lm=mp_m.get(xml_key); ld=mp_d.get(xml_key)
                 links=[]
                 if blob_base:
-                    if lm: links.append(f'<span style="font-size:60%">[<a href="{blob_base}/m_playlist.m3u8#L{lm}">M</a>]</span>')
-                    if ld: links.append(f'<span style="font-size:60%">[<a href="{blob_base}/d_playlist.m3u8#L{ld}">D</a>]</span>')
-                suffix=("  "+"".join(links)) if links else ""
-                lines.append(f"{dot} {disp}{suffix}")
+                    if lm: links.append(f'<a href="{blob_base}/m_playlist.m3u8#L{lm}" style="text-decoration:none">ᴹ</a>')
+                    if ld: links.append(f'<a href="{blob_base}/d_playlist.m3u8#L{ld}" style="text-decoration:none">ᴰ</a>')
+                if links:
+                    line=f"{dot} {disp} " + " ".join(links)
+                else:
+                    line=f"{dot} {disp}"
+                lines.append(line)
             cell=f"<details><summary>{site}</summary>\n"+ "<br>".join(lines) +"\n</details>"
         else:
             cell=site
