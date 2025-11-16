@@ -291,18 +291,26 @@ def update_tv(log_path,status="success"):
         j,s=find_tv_job_and_step(owner,repo,run_id)
         if j: job_id=str(j)
         if s: step_idx=str(s)
-    ln_m=ln_d=None
+    ln_m=ln_d=ln_g=None
+    raw_for_epg=None
     if owner and repo and run_id and job_id:
-        raw=fetch_job_log(owner,repo,job_id)
-        if raw:
-            im=_best_epg_line(raw,'m'); idl=_best_epg_line(raw,'d')
-            gs_m=nearest_group_start_before(raw,im) if im else None; gs_d=nearest_group_start_before(raw,idl) if idl else None
-            ln_m=(im-gs_m+1) if (im and gs_m) else None; ln_d=(idl-gs_d+1) if (idl and gs_d) else None
+        raw_for_epg=fetch_job_log(owner,repo,job_id)
+        if raw_for_epg:
+            im=_best_epg_line(raw_for_epg,'m'); idl=_best_epg_line(raw_for_epg,'d')
+            gs_m=nearest_group_start_before(raw_for_epg,im) if im else None
+            gs_d=nearest_group_start_before(raw_for_epg,idl) if idl else None
+            ln_m=(im-gs_m+1) if (im and gs_m) else None
+            ln_d=(idl-gs_d+1) if (idl and gs_d) else None
             if ln_m is not None and ln_m<1: ln_m=1
             if ln_d is not None and ln_d<1: ln_d=1
+            ig=first_line(raw_for_epg,["##[group]Grab","::group::Grab","Grab"])
+            gs_g=nearest_group_start_before(raw_for_epg,ig) if ig else None
+            ln_g=(ig-gs_g+1) if (ig and gs_g) else None
+            if ln_g is not None and ln_g<1: ln_g=1
     base=f"https://github.com/{owner}/{repo}/actions/runs/{run_id}" if (owner and repo and run_id) else ""
     href_m=(f"{base}/job/{job_id}#step:{step_idx}:{ln_m}" if (base and job_id and step_idx and ln_m) else base)
     href_d=(f"{base}/job/{job_id}#step:{step_idx}:{ln_d}" if (base and job_id and step_idx and ln_d) else base)
+    href_build=(f"{base}/job/{job_id}#step:{step_idx}:{ln_g}" if (base and job_id and step_idx and ln_g) else base)
     href_run=(base or "")
     s_m=shield('M',tv['M'],COL['warn']); s_d=shield('D',tv['D'],COL['warn'])
     secs=_build_epg_seconds(owner,repo,run_id) if (owner and repo and run_id) else None
@@ -310,10 +318,10 @@ def update_tv(log_path,status="success"):
     s_build=shield('Build EPG',be_val,COL["run"])
     ts=ts_now_it(); evt=os.getenv("RUN_EVENT","").strip(); evt="cron" if evt=="schedule" else (evt or "event"); msg=f"{evt}, {ts}"
     run_color=COL["ok"] if status=="success" else COL["err"]; s_run=shield('Run',msg,run_color)
-    dash=" ".join([enc_badge(s_m,href_m),enc_badge(s_d,href_d),enc_badge(s_build,href_run),enc_badge(s_run,href_run)])
+    dash=" ".join([enc_badge(s_m,href_m),enc_badge(s_d,href_d),enc_badge(s_build,href_build),enc_badge(s_run,href_run)])
     md=repl_block(md,"DASH:TV",dash)
     md=repl_block(md,"TV:OUTPUT",tv["table"]+("\n\n"+tv["notes"] if tv["notes"] else ""))
-    hist_badges=f"{enc_badge(s_m, href_m)} {enc_badge(s_d, href_d)} {enc_badge(s_build, href_run)} {enc_badge(s_run, href_run)}"
+    hist_badges=f"{enc_badge(s_m, href_m)} {enc_badge(s_d, href_d)} {enc_badge(s_build, href_build)} {enc_badge(s_run, href_run)}"
     prev=read_block(md,"TV:HISTORY"); chunk=hist_badges + (("<br>\n"+tv["notes"]) if tv["notes"] else ""); parts=[x for x in (prev or "").split("\n\n") if x.strip()]
     new_hist=(chunk+("\n\n"+("\n\n".join(parts[:29])) if parts else "")).strip()
     md=repl_block(md,"TV:HISTORY",new_hist); write(RD,md)
