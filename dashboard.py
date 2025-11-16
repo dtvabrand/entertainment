@@ -182,10 +182,8 @@ def load_site_channels():
         except: continue
         for ch in root.findall("channel"):
             site=(ch.get("site") or "").strip().lower()
-            if not site: continue
-            xml=(ch.get("xmltv_id") or "").strip().lower()
-            if not xml: xml=(ch.get("site_id") or "").strip().lower()
-            if not xml: continue
+            sid=(ch.get("site_id") or "").strip()
+            if not site or not sid: continue
             disp=None
             for dn in ch.findall("display-name"):
                 t=(dn.text or "").strip()
@@ -193,47 +191,24 @@ def load_site_channels():
             if not disp:
                 t=(ch.text or "").strip()
                 if t: disp=t
-            if not disp: disp=xml
-            if (site,xml) not in pretty: pretty[(site,xml)]=disp
-            store.setdefault(site,set()).add(xml)
+            if not disp: disp=sid
+            if (site,sid) not in pretty: pretty[(site,sid)]=disp
+            store.setdefault(site,set()).add(sid)
     sites={}
     for site in sorted(set(m_sites.keys())|set(d_sites.keys())):
         m_ids=m_sites.get(site,set()); d_ids=d_sites.get(site,set()); all_ids=sorted(m_ids|d_ids)
         rows=[]
-        for xml in all_ids:
-            disp=pretty.get((site,xml),xml)
-            in_m=xml in m_ids; in_d=xml in d_ids
+        for sid in all_ids:
+            disp=pretty.get((site,sid),sid)
+            in_m=sid in m_ids; in_d=sid in d_ids
             tag="B" if (in_m and in_d) else ("M" if in_m else "D")
-            rows.append((disp,tag,xml))
+            rows.append((disp,tag))
         sites[site]=rows
     return sites,pretty
-
-def _playlist_maps():
-    base=os.path.dirname(os.path.abspath(__file__))
-    def idx(path):
-        mp={}
-        if not os.path.exists(path): return mp
-        try:
-            with io.open(path,"r",encoding="utf-8",errors="replace") as f:
-                for i,line in enumerate(f,1):
-                    if "#EXTINF" not in line: continue
-                    m=re.search(r'tvg-id="([^"]+)"',line)
-                    if not m: continue
-                    xml=m.group(1).strip().lower()
-                    if xml and xml not in mp: mp[xml]=i
-        except: pass
-        return mp
-    mp_m=idx(os.path.join(base,"m_playlist.m3u8"))
-    mp_d=idx(os.path.join(base,"d_playlist.m3u8"))
-    repo=os.getenv("GITHUB_REPOSITORY",""); blob_base=""
-    if "/" in repo:
-        o,r=repo.split("/",1); blob_base=f"https://github.com/{o}/{r}/blob/main"
-    return mp_m,mp_d,blob_base
 
 def parse_tv_table_and_badges(log_path):
     raw=read(log_path,""); M=D="0"; rows=[]; notes=[]; fails=[]; sc={}
     site_ch,pretty=load_site_channels()
-    mp_m,mp_d,blob_base=_playlist_maps()
     if not raw:
         ts=ts_now_it(); evt=os.getenv("RUN_EVENT","").strip(); evt="cron" if evt=="schedule" else (evt or "event"); msg=f"{evt}, {ts}"
         hb=f"{enc_badge(shield('M','0',COL['warn']), '')} {enc_badge(shield('D','0',COL['warn']), '')} {enc_badge(shield('Run',msg,COL['run']), '')}"
@@ -251,7 +226,8 @@ def parse_tv_table_and_badges(log_path):
         try: times[site]=int(val)
         except: continue
     for site,sid,progs in re.findall(r"\]\s+([a-z0-9\.\-]+)\s*\([^)]+\)\s*-\s*([a-z0-9\-\._]+)\s*-\s*[A-Z][a-z]{2}\s+\d{1,2},\s*\d{4}\s*\((\d+)\s+programs\)",raw,re.I):
-        sk=site.strip().lower(); key=(sk,sid.strip().lower()); disp=pretty.get(key,sid.strip())
+        sk=site.strip().lower(); key=(sk,sid.strip())
+        disp=pretty.get(key,sid.strip())
         if sk in sc and int(progs)==0: sc[sk]["warn"].add(disp)
     for site in list(sc.keys()):
         if re.search(rf"FAIL\s+\S+\s+{re.escape(site)}",raw): sc[site]["fail"]=True
@@ -260,25 +236,16 @@ def parse_tv_table_and_badges(log_path):
         s=sc[site]; st="❌" if s["fail"] else ("⚠️" if s["warn"] else "✅")
         entries=site_ch.get(site.lower(),[])
         if entries:
-            inner=["<table style=\"width:100%;border-collapse:collapse;margin-top:6px\">",
-                   "<tr><th align=\"left\">Channel</th><th align=\"center\">м</th><th align=\"center\">ᴅ</th></tr>"]
-            for disp,tag,xml in entries:
+            lines=[]
+            for disp,tag in entries:
                 dot="🟡" if tag=="B" else ("🔴" if tag=="M" else "🔵")
-                ch_txt=f"{dot} {disp}"
-                xml_key=(xml or "").lower()
-                lm=mp_m.get(xml_key); ld=mp_d.get(xml_key)
-                if blob_base and lm: m_link=f'<a href="{blob_base}/m_playlist.m3u8#L{lm}" style="text-decoration:none">м</a>'
-                else: m_link=""
-                if blob_base and ld: d_link=f'<a href="{blob_base}/d_playlist.m3u8#L{ld}" style="text-decoration:none">ᴅ</a>'
-                else: d_link=""
-                inner.append(f"<tr><td>{ch_txt}</td><td align=\"center\">{m_link}</td><td align=\"center\">{d_link}</td></tr>")
-            inner.append("</table>")
-            cell=f"<details><summary>{site}</summary>\n"+ "\n".join(inner) +"\n</details>"
+                lines.append(f"{dot} {disp}")
+            cell=f"<details><summary>{site}</summary>\n"+ "<br>".join(lines) +"\n</details>"
         else:
             cell=site
         tval=times.get(site,"")
         rows_html.append(f"<tr><td>{cell}</td><td align=\"center\">{s['M']}</td><td align=\"center\">{s['D']}</td><td align=\"center\">{(str(tval)+'s') if tval!='' else ''}</td><td align=\"center\">{st}</td></tr>")
-        notes.extend(sorted(sc[site]["warn"]))
+        notes.extend(sorted(s["warn"]))
         if s["fail"]: fails.append(site)
     table="<table><thead><tr><th>Site</th><th>M</th><th>D</th><th>Time</th><th>Status</th></tr></thead><tbody>"+"\n".join(rows_html)+"</tbody></table>"
     extra=[]; uniq=[]
@@ -299,15 +266,11 @@ def _build_epg_seconds(owner,repo,run_id):
     jobs=list_jobs(owner,repo,run_id)
     if not jobs: return None
     job=next((j for j in jobs if "build epg" in (j.get("name") or "").lower()),None) or jobs[0]
-    steps=job.get("steps") or []
-    step=None
+    steps=job.get("steps") or []; step=None
     for s in steps:
         if (s.get("name") or "").strip()=="Build EPG":
             step=s; break
     if not step: return None
-    dur=step.get("duration_ms")
-    if isinstance(dur,int) and dur>=0:
-        return int(dur/1000)
     st=step.get("started_at"); et=step.get("completed_at")
     if not (st and et): return None
     def _p(x):
@@ -328,21 +291,24 @@ def update_tv(log_path,status="success"):
         j,s=find_tv_job_and_step(owner,repo,run_id)
         if j: job_id=str(j)
         if s: step_idx=str(s)
-    ln_m=ln_d=ln_build=None
+    ln_m=ln_d=ln_build=None; rawlog=None
     if owner and repo and run_id and job_id:
-        raw_job=fetch_job_log(owner,repo,job_id)
-        if raw_job:
-            im=_best_epg_line(raw_job,'m'); idl=_best_epg_line(raw_job,'d')
-            gs_m=nearest_group_start_before(raw_job,im) if im else None
-            gs_d=nearest_group_start_before(raw_job,idl) if idl else None
+        rawlog=fetch_job_log(owner,repo,job_id)
+        if rawlog:
+            im=_best_epg_line(rawlog,'m'); idl=_best_epg_line(rawlog,'d')
+            gs_m=nearest_group_start_before(rawlog,im) if im else None
+            gs_d=nearest_group_start_before(rawlog,idl) if idl else None
             ln_m=(im-gs_m+1) if (im and gs_m) else None
             ln_d=(idl-gs_d+1) if (idl and gs_d) else None
             if ln_m is not None and ln_m<1: ln_m=1
             if ln_d is not None and ln_d<1: ln_d=1
-            ig=first_line_re(raw_job,r"##\[group\].*Grab") or first_line_re(raw_job,r"::group::Grab")
-            if ig:
-                gs_g=nearest_group_start_before(raw_job,ig)
-                ln_build=(ig-gs_g+1) if gs_g else None
+            gb=None
+            for i,ln in enumerate(clean_lines(rawlog),1):
+                if "##[group]Grab" in ln:
+                    gb=i; break
+            if gb:
+                gs_step=nearest_group_start_before(rawlog,gb)
+                ln_build=(gb-gs_step+1) if gs_step else None
                 if ln_build is not None and ln_build<1: ln_build=1
     base=f"https://github.com/{owner}/{repo}/actions/runs/{run_id}" if (owner and repo and run_id) else ""
     href_m=(f"{base}/job/{job_id}#step:{step_idx}:{ln_m}" if (base and job_id and step_idx and ln_m) else base)
