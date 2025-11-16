@@ -262,22 +262,27 @@ def parse_tv_table_and_badges(log_path):
         entries=site_ch.get(site.lower(),[])
         if entries:
             inner_lines=[]
+            # lunghezza target per allineare approssimativamente i link
+            TARGET=28
             for disp,tag,xml in entries:
                 dot="🟡" if tag=="B" else ("🔴" if tag=="M" else "🔵")
+                label=f"{dot} {disp}"
                 xml_key=(xml or "").lower()
                 lm=mp_m.get(xml_key); ld=mp_d.get(xml_key)
-                link_bits=[]
+                links=[]
                 if blob_base:
-                    if lm: link_bits.append(f'<a href="{blob_base}/m_playlist.m3u8#L{lm}" style="text-decoration:none">м</a>')
-                    if ld: link_bits.append(f'<a href="{blob_base}/d_playlist.m3u8#L{ld}" style="text-decoration:none">ᴅ</a>')
-                link_html=" ".join(link_bits)
-                inner_lines.append(
-                    '<div style="display:flex;justify-content:space-between">'
-                    f'<span>{dot} {disp}</span>'
-                    f'<span>{link_html}</span>'
-                    '</div>'
-                )
-            cell=f"<details><summary>{site}</summary>\n"+ "\n".join(inner_lines) +"\n</details>"
+                    if lm: links.append(f'<a href="{blob_base}/m_playlist.m3u8#L{lm}" style="text-decoration:none">м</a>')
+                    if ld: links.append(f'<a href="{blob_base}/d_playlist.m3u8#L{ld}" style="text-decoration:none">ᴅ</a>')
+                link_html=" ".join(links)
+                # padding con &nbsp; per “spingere” i link verso destra
+                pad_len=max(2,TARGET-len(label))
+                padding="&nbsp;"*pad_len
+                if link_html:
+                    line=f"{label}{padding}{link_html}"
+                else:
+                    line=label
+                inner_lines.append(line)
+            cell=f"<details><summary>{site}</summary>\n"+ "<br>".join(inner_lines) +"\n</details>"
         else:
             cell=site
         st="❌" if s["fail"] else ("⚠️" if s["warn"] else "✅")
