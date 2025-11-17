@@ -1,7 +1,5 @@
 set -e
 
-pkg update -y
-DEBIAN_FRONTEND=noninteractive pkg upgrade -y
 pkg install -y git python cronie
 pip install yt-dlp
 
