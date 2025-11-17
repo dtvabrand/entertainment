@@ -88,7 +88,7 @@
 🔴 ABC News Live<br>🔴 ABC<br>🔴 ACC Network<br>🔴 Boomerang<br>🔴 Bravo<br>🔴 CBS<br>🔴 E!<br>🔴 ESPNU<br>🔴 ESPN<br>🔴 ESPN2<br>🔴 FOX<br>🔴 LiveNOW from FOX<br>🔴 NBC<br>🔴 SEC Network
 </details></td><td align="center">14</td><td align="center">0</td><td align="center">9s</td><td align="center">⚠️</td></tr></tbody></table>
 
-⚠️ No EPG<br>3 channel(s): abc-news-live, acc-network, livenowfromfox
+⚠️ No EPG<br>3 channel(s): ABC News Live, ACC Network, LiveNOW from FOX
 <!-- /TV:OUTPUT -->
 
 <details><summary>Previous days</summary>
