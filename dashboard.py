@@ -183,6 +183,7 @@ def load_site_channels():
         for ch in root.findall("channel"):
             site=(ch.get("site") or "").strip().lower()
             sid=(ch.get("site_id") or "").strip()
+            xid=(ch.get("xmltv_id") or "").strip()
             if not site or not sid: continue
             disp=None
             for dn in ch.findall("display-name"):
@@ -191,8 +192,9 @@ def load_site_channels():
             if not disp:
                 t=(ch.text or "").strip()
                 if t: disp=t
-            if not disp: disp=sid
+            if not disp: disp=sid or xid
             if (site,sid) not in pretty: pretty[(site,sid)]=disp
+            if xid and (site,xid) not in pretty: pretty[(site,xid)]=disp
             store.setdefault(site,set()).add(sid)
     sites={}
     for site in sorted(set(m_sites.keys())|set(d_sites.keys())):
