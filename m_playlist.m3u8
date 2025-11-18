@@ -41,7 +41,7 @@ https://fl61.moveonjoy.com/BRAVO/index.m3u8
 https://fl61.moveonjoy.com/E_ENTERTAINMENT_TELEVISION/index.m3u8
 
 #EXTINF:-1 group-title="Kids" tvg-id="boomerang" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/united-states/boomerang-us.png" tvg-name="Boomerang",Boomerang
-https://fl1.moveonjoy.com/BOOMERANG/index.m3u8
+http://fl7.moveonjoy.com/BOOMERANG/index.m3u8
 
 #EXTINF:-1 group-title="Sport" tvg-id="espn" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/espn-icon-us.png?raw=true" tvg-name="ESPN",ESPN
 https://fl2.moveonjoy.com/ESPN/index.m3u8
