@@ -45,7 +45,7 @@ SITES=[
 ]
 
 QIDS = [
-    ("Killer Rental", ""),
+    ("Killer Rental", "Q136822226"),
     ("A Breed Apart", "Q133845943"),
     ("A Christmas Mystery", "Q135236473"),
     ("A Hollywood Christmas", "Q125975842"),
