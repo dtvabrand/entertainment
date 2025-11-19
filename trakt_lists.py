@@ -45,7 +45,6 @@ SITES=[
 ]
 
 QIDS = [
-    ("Killer Rental", "Q136822226"),
     ("A Breed Apart", "Q133845943"),
     ("A Christmas Mystery", "Q135236473"),
     ("A Hollywood Christmas", "Q125975842"),
@@ -67,6 +66,7 @@ QIDS = [
     ("Jimmy and Stiggs", "Q136655063"),
     ("Joy to the World", "Q136682442"),
     ("Jungle Cubs: Born to Be Wild", "Q136513480"),
+    ("Killer Rental", "Q136822226"),
     ("Laws of Man", "Q131870359"),
     ("Long Shadows", "Q135975526"),
     ("Man with No Past", "Q131870380"),
