@@ -220,19 +220,22 @@ def parse_tv_table_and_badges(log_path):
     for g,site,n in re.findall(r">\s*(m|d)\s+([a-z0-9\.\-]+)\s*:\s*(\d+)\s+channels",raw):
         rows.append((g,site,int(n)))
     for g,site,n in rows:
-        s=sc.setdefault(site,{"M":0,"D":0,"warn":set(),"fail":False})
-        if g=="m": s["M"]+=n
-        else: s["D"]+=n
+        s=sc.setdefault(site,{"M":0,"D":0,"warn":set(),"fail":False,"chp":{}})
+        (s["M"]:=s["M"]+n) if g=="m" else (s["D"]:=s["D"]+n)
     times={}
     for site,val in re.findall(r"TIME\s+([a-z0-9\.\-]+)\s+(\d+)s",raw,re.I):
         try: times[site]=int(val)
         except: continue
     for site,sid,progs in re.findall(r"\]\s+([a-z0-9\.\-]+)\s*\([^)]+\)\s*-\s*([a-z0-9\-\._]+)\s*-\s*[A-Z][a-z]{2}\s+\d{1,2},\s*\d{4}\s*\((\d+)\s+programs\)",raw,re.I):
-        sk=site.strip().lower(); key=(sk,sid.strip())
-        disp=pretty.get(key,sid.strip())
-        if sk in sc and int(progs)==0: sc[sk]["warn"].add(disp)
+        sk=site.strip().lower(); key=(sk,sid.strip()); disp=pretty.get(key,sid.strip())
+        if sk in sc:
+            try: sc[sk]["chp"].setdefault(disp,[]).append(int(progs))
+            except: pass
     for site in list(sc.keys()):
         if re.search(rf"FAIL\s+\S+\s+{re.escape(site)}",raw): sc[site]["fail"]=True
+    for site in sc.values():
+        for disp,arr in (site.get("chp") or {}).items():
+            if arr and max(arr)==0: site["warn"].add(disp)
     rows_html=[]
     for site in sorted(sc.keys()):
         s=sc[site]; st="❌" if s["fail"] else ("⚠️" if s["warn"] else "✅")
@@ -242,9 +245,8 @@ def parse_tv_table_and_badges(log_path):
             for disp,tag in entries:
                 dot="🟡" if tag=="B" else ("🔴" if tag=="M" else "🔵")
                 lines.append(f"{dot} {disp}")
-            cell=f"<details><summary>{site}</summary>\n"+ "<br>".join(lines) +"\n</details>"
-        else:
-            cell=site
+            cell=f"<details><summary>{site}</summary>\n"+"<br>".join(lines)+"\n</details>"
+        else: cell=site
         tval=times.get(site,"")
         rows_html.append(f"<tr><td>{cell}</td><td align=\"center\">{s['M']}</td><td align=\"center\">{s['D']}</td><td align=\"center\">{(str(tval)+'s') if tval!='' else ''}</td><td align=\"center\">{st}</td></tr>")
         notes.extend(sorted(s["warn"]))
