@@ -81,7 +81,7 @@
 <!-- TV:OUTPUT -->
 <table><thead><tr><th>Site</th><th>M</th><th>D</th><th>Time</th><th>Status</th></tr></thead><tbody><tr><td><details><summary>guida.tv</summary>
 🔵 Nove<br>🔵 Real Time<br>🔵 Sportitalia
-</details></td><td align="center">0</td><td align="center">3</td><td align="center">7s</td><td align="center">⚠️</td></tr>
+</details></td><td align="center">0</td><td align="center">3</td><td align="center">7s</td><td align="center">✅</td></tr>
 <tr><td><details><summary>guidatv.sky.it</summary>
 🔵 La7<br>🔵 La7 Cinema<br>🟡 TV2000<br>🔵 Cielo<br>🔵 TV8<br>🔵 SkyTG24
 </details></td><td align="center">1</td><td align="center">6</td><td align="center">7s</td><td align="center">✅</td></tr>
@@ -94,8 +94,6 @@
 <tr><td><details><summary>tvpassport.com</summary>
 🔴 ABC News Live<br>🔴 ABC 7<br>🔴 ACC Network<br>🔴 Boomerang<br>🔴 Bravo<br>🔴 CBS 2<br>🔴 E!<br>🔴 ESPNU<br>🔴 ESPN<br>🔴 ESPN2<br>🔴 FOX 5<br>🔴 LiveNOW from FOX<br>🔴 NBC 4<br>🔴 SEC Network
 </details></td><td align="center">14</td><td align="center">0</td><td align="center">14s</td><td align="center">✅</td></tr></tbody></table>
-
-⚠️ No EPG<br>1 channel(s): Sportitalia
 <!-- /TV:OUTPUT -->
 
 <details><summary>Previous days</summary>
