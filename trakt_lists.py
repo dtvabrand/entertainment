@@ -45,6 +45,10 @@ SITES=[
 ]
 
 QIDS = [
+    ("KPop Demon Hunters", "Q130268157"),
+    ("Eye for an Eye", "Q134457172"),
+    ("Alma and the Wolf", "Q125029935"),
+    ("Reverence", ""),
     ("A Breed Apart", "Q133845943"),
     ("A Christmas Mystery", "Q135236473"),
     ("A Hollywood Christmas", "Q125975842"),
