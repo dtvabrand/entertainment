@@ -4,16 +4,20 @@
 
 ### 🛸 Trakt lists
 <!-- DASH:TRAKT -->
-[![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19526438757) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19526438757/job/55900165146#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2020%20nov%202025%206%3A15%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19526438757)
+[![X](https://img.shields.io/badge/New%20Movie-4-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19563589198/job/56020549368#step:7:38) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19563589198/job/56020549368#step:7:18) [![X](https://img.shields.io/badge/Run-workflow_dispatch%2C%2021%20nov%202025%208%3A43%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19563589198)
 <!-- /DASH:TRAKT -->
 
 <!-- TRAKT:OUTPUT -->
-
+#### ✨ _New movies!_
+🍿 KPop Demon Hunters, Eye for an Eye, Alma and the Wolf, Reverence
 <!-- /TRAKT:OUTPUT -->
 
 <details><summary>Previous days</summary>
   
 <!-- TRAKT:HISTORY -->
+[![X](https://img.shields.io/badge/New%20Movie-4-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19563589198/job/56020549368#step:7:38) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19563589198/job/56020549368#step:7:18) [![X](https://img.shields.io/badge/Run-workflow_dispatch%2C%2021%20nov%202025%208%3A43%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19563589198) <!-- TRAKT_RUN:19563589198 --><br>
+🍿 KPop Demon Hunters, Eye for an Eye, Alma and the Wolf, Reverence
+
 [![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19526438757) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19526438757/job/55900165146#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2020%20nov%202025%206%3A15%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19526438757) <!-- TRAKT_RUN:19526438757 -->
 
 [![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19490662082) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19490662082/job/55782084622#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2019%20nov%202025%206%3A16%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19490662082) <!-- TRAKT_RUN:19490662082 -->
