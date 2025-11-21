@@ -45,10 +45,9 @@ SITES=[
 ]
 
 QIDS = [
-    ("KPop Demon Hunters", "Q130268157"),
+    ("The Assessment", "Q126086644"),
     ("Eye for an Eye", "Q134457172"),
     ("Alma and the Wolf", "Q125029935"),
-    ("Reverence", "Q136891758"),
     ("A Breed Apart", "Q133845943"),
     ("A Christmas Mystery", "Q135236473"),
     ("A Hollywood Christmas", "Q125975842"),
@@ -71,6 +70,7 @@ QIDS = [
     ("Joy to the World", "Q136682442"),
     ("Jungle Cubs: Born to Be Wild", "Q136513480"),
     ("Killer Rental", "Q136822226"),
+    ("KPop Demon Hunters", "Q130268157"),
     ("Laws of Man", "Q131870359"),
     ("Long Shadows", "Q135975526"),
     ("Man with No Past", "Q131870380"),
@@ -84,6 +84,7 @@ QIDS = [
     ("Recess: All Growed Down", "Q7302373"),
     ("Recess: Taking the Fifth Grade", "Q5412173"),
     ("Regretting You", "Q135907051"),
+    ("Reverence", "Q136891758"),
     ("Self-Help", "Q136673337"),
     ("Snorkeling", "Q116244091"),
     ("Star People", "Q136655054"),
