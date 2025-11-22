@@ -45,13 +45,11 @@ SITES=[
 ]
 
 QIDS = [
-    ("The Assessment", "Q126086644"),
-    ("Eye for an Eye", "Q134457172"),
-    ("Alma and the Wolf", "Q125029935"),
     ("A Breed Apart", "Q133845943"),
     ("A Christmas Mystery", "Q135236473"),
     ("A Hollywood Christmas", "Q125975842"),
     ("A Spartan Dream", "Q136655065"),
+    ("Alma and the Wolf", "Q125029935"),
     ("Appalachian Dog", "Q135067975"),
     ("Around the World with Timon & Pumbaa", "Q18192535"),
     ("Bad Men Must Bleed", "Q136108816"),
@@ -63,6 +61,7 @@ QIDS = [
     ("Dreaming of You", "Q136654956"),
     ("Et Tu", "Q135484808"),
     ("Exit Protocol", "Q136722036"),
+    ("Eye for an Eye", "Q134457172"),
     ("Finding Joy", "Q136705825"),
     ("Good Bad Things", "Q127763750"),
     ("Holiday Harmony", "Q135236487"),
@@ -90,6 +89,7 @@ QIDS = [
     ("Star People", "Q136655054"),
     ("Stolen Girl", "Q136386270"),
     ("The A-Frame", "Q126184078"),
+    ("The Assessment", "Q126086644"),
     ("The Beatles: Get Back - The Rooftop Concert", "Q110787453"),
     ("The Big Bend", "Q136654951"),
     ("The Curse of The Necklace", "Q136513307"),
