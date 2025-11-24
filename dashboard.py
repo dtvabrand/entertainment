@@ -346,9 +346,5 @@ def main():
         try: update_tv(lp,st)
         except Exception as e: _dbg("fatal tv",e)
     else: sys.exit(2)
-    msg=os.getenv("DASH_COMMIT_MSG","").strip()
-    if msg:
-        os.system('git config user.name "github-actions"'); os.system('git config user.email "github-actions@github.com"')
-        os.system('git add README.md'); os.system(f'git commit -m "{msg}" || true'); os.system('git push || true')
-
+        
 if __name__=="__main__": main()
