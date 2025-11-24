@@ -85,7 +85,7 @@
 
 ### 📺 Live TV
 <!-- DASH:TV -->
-[![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19638797631/job/56236339639#step:5:421) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19638797631/job/56236339639#step:5:422) [![X](https://img.shields.io/badge/Build%20EPG-25s-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19638797631/job/56236339639#step:5:185) [![X](https://img.shields.io/badge/Run-workflow_dispatch%2C%2024%20nov%202025%204%3A02%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19638797631)
+[![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19632218205/job/56214457306#step:5:421) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19632218205/job/56214457306#step:5:422) [![X](https://img.shields.io/badge/Build%20EPG-18s-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19632218205/job/56214457306#step:5:185) [![X](https://img.shields.io/badge/Run-cron%2C%2024%20nov%202025%2012%3A10%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19632218205)
 <!-- /DASH:TV -->
 
 <!-- TV:OUTPUT -->
@@ -103,14 +103,12 @@
 </details></td><td align="center">3</td><td align="center">11</td><td align="center">6s</td><td align="center">✅</td></tr>
 <tr><td><details><summary>tvpassport.com</summary>
 🔴 ABC News Live<br>🔴 ABC 7<br>🔴 ACC Network<br>🔴 Boomerang<br>🔴 Bravo<br>🔴 CBS 2<br>🔴 E!<br>🔴 ESPNU<br>🔴 ESPN<br>🔴 ESPN2<br>🔴 FOX 5<br>🔴 LiveNOW from FOX<br>🔴 NBC 4<br>🔴 SEC Network
-</details></td><td align="center">14</td><td align="center">0</td><td align="center">16s</td><td align="center">✅</td></tr></tbody></table>
+</details></td><td align="center">14</td><td align="center">0</td><td align="center">10s</td><td align="center">✅</td></tr></tbody></table>
 <!-- /TV:OUTPUT -->
 
 <details><summary>Previous days</summary>
 
 <!-- TV:HISTORY -->
-[![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19638797631/job/56236339639#step:5:421) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19638797631/job/56236339639#step:5:422) [![X](https://img.shields.io/badge/Build%20EPG-25s-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19638797631/job/56236339639#step:5:185) [![X](https://img.shields.io/badge/Run-workflow_dispatch%2C%2024%20nov%202025%204%3A02%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19638797631)
-
 [![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19632218205/job/56214457306#step:5:421) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19632218205/job/56214457306#step:5:422) [![X](https://img.shields.io/badge/Build%20EPG-18s-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19632218205/job/56214457306#step:5:185) [![X](https://img.shields.io/badge/Run-cron%2C%2024%20nov%202025%2012%3A10%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19632218205)
 
 [![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19610232810/job/56154967079#step:5:421) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19610232810/job/56154967079#step:5:422) [![X](https://img.shields.io/badge/Build%20EPG-32s-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19610232810/job/56154967079#step:5:185) [![X](https://img.shields.io/badge/Run-cron%2C%2023%20nov%202025%2012%3A09%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19610232810)
