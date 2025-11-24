@@ -282,7 +282,7 @@ jobs:
           name: tv-logs
           path: .
 
-      - name: Update README via dashboard.py (tv section only)
+      - name: Update README (tv section only)
         run: |
           python dashboard.py tv --log "$TV_LOG"
 
