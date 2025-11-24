@@ -286,6 +286,14 @@ jobs:
         run: |
           python dashboard.py tv --log "$TV_LOG"
 
+      - name: Commit README (TV EPG)
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add README.md
+          git commit -m "$DASH_COMMIT_MSG" || echo "No changes"
+          git push || true
+
   publish_assets:
     if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
