@@ -50,10 +50,10 @@ https://fl2.moveonjoy.com/ESPN/index.m3u8
 http://fl2.moveonjoy.com/ESPN_2/index.m3u8
 
 #EXTINF:-1 group-title="Sport" tvg-id="espnu" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/espn-u-us.png?raw=true" tvg-name="ESPN U",ESPN U
-https://fl41.moveonjoy.com/ESPN_U/index.m3u8
+https://a1xs.vip/40000013
 
 #EXTINF:-1 group-title="Sport" tvg-id="acc-network" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/acc-network-us.png?raw=true" tvg-name="ACC Network",ACC Network
-https://fl1.moveonjoy.com/ACC_NETWORK/index.m3u8
+https://a1xs.vip/40000016
 
 #EXTINF:-1 group-title="Sport" tvg-id="sec-network" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/espn-sec-us.png?raw=true" tvg-name="SEC Network",SEC Network
 http://fl7.moveonjoy.com/SEC_NETWORK/index.m3u8
