@@ -45,8 +45,8 @@ SITES=[
 ]
 
 QIDS = [
-    ("Aftershock: The Nicole P Bell Story", ""),
-    ("Stone Creek Killer", ""),
+    ("Aftershock: The Nicole P Bell Story", "Q137103837"),
+    ("Stone Creek Killer", "Q137103841"),
     ("A Breed Apart", "Q133845943"),
     ("A Christmas Mystery", "Q135236473"),
     ("A Hollywood Christmas", "Q125975842"),
