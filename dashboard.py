@@ -326,7 +326,7 @@ def update_tv(log_path,status="success"):
     href_run=(base or "")
     href_build=(f"{base}/job/{job_id}#step:{step_idx}:{ln_build}" if (base and job_id and step_idx and ln_build) else href_run)
     s_m=shield('M',tv['M'],COL['warn']); s_d=shield('D',tv['D'],COL['warn'])
-    secs=_build_epg_seconds(owner,repo,run_id) if (owner and repo and run_id) else None
+    secs=_build_epg_seconds(owner,repo,run_id,job_id) if (owner and repo and run_id and job_id) else None
     be_val=f"{secs}s" if isinstance(secs,int) and secs>=0 else "-"
     s_build=shield('Build EPG',be_val,COL["run"])
     ts=ts_now_it(); evt=os.getenv("RUN_EVENT","").strip(); evt="cron" if evt=="schedule" else (evt or "event"); msg=f"{evt}, {ts}"
