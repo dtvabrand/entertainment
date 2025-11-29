@@ -267,10 +267,15 @@ def _best_epg_line(raw,label):
     if i: return i
     return last_line_re_excluding(raw,pat,exclude_subs=())
 
-def _build_epg_seconds(owner,repo,run_id):
-    jobs=list_jobs(owner,repo,run_id)
-    if not jobs: return None
-    job=next((j for j in jobs if "build epg" in (j.get("name") or "").lower()),None) or jobs[0]
+def _build_epg_seconds(owner,repo,run_id,job_id=None):
+    job=None
+    if job_id:
+        r=http_get(f"https://api.github.com/repos/{owner}/{repo}/actions/jobs/{job_id}",gh_headers({"Accept":"application/vnd.github+json"}))
+        if r and r.status_code==200: job=r.json()
+    if not job:
+        jobs=list_jobs(owner,repo,run_id)
+        if not jobs: return None
+        job=next((j for j in jobs if "build epg" in (j.get("name") or "").lower() or "build_epg" in (j.get("name") or "").lower()),None) or jobs[0]
     steps=job.get("steps") or []; step=None
     for s in steps:
         if (s.get("name") or "").strip()=="Build EPG":
