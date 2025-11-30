@@ -4,8 +4,12 @@ pkg install -y git python cronie; pip install yt-dlp
 
 mkdir -p ~/.termux/boot ~/.ssh ~/ue_refresh
 cat << 'EOF' > ~/.termux/boot/start-cron.sh
+#!/data/data/com.termux/files/usr/bin/sh
+LOG=/data/data/com.termux/files/home/cron_boot.log
+echo "$(date) - boot script start" >> "$LOG"
 termux-wake-lock
 crond
+echo "$(date) - crond started" >> "$LOG"
 EOF
 chmod +x ~/.termux/boot/start-cron.sh; crond
 
@@ -24,6 +28,9 @@ EOF
 chmod 600 ~/.ssh/config
 
 cat << 'EOF' > ~/ue_refresh/refresh_streams_d_playlist.sh
+LOG="/data/data/com.termux/files/home/ue_refresh/refresh.log"
+[ -f "$LOG" ] && [ "$(date -r "$LOG" +%s)" -lt "$(date -d '30 days ago' +%s)" ] && > "$LOG"
+echo "$(date) - job start" >> "$LOG"
 check_net(){ curl -s --max-time 5 http://clients3.google.com/generate_204 >/dev/null; }
 tries=0; until check_net || [ $tries -ge 18 ]; do sleep 10; tries=$((tries+1)); done; check_net || exit 0
 TEMP_DIR=$(mktemp -d); cd "$TEMP_DIR" || exit 0
@@ -58,7 +65,7 @@ EOF
 
 chmod +x ~/ue_refresh/refresh_streams_d_playlist.sh
 
-echo "0 14 * * * /data/data/com.termux/files/home/ue_refresh/refresh_streams_d_playlist.sh >/dev/null 2>&1" | crontab -
+echo "0 14 * * * /data/data/com.termux/files/home/ue_refresh/refresh_streams_d_playlist.sh >> /data/data/com.termux/files/home/ue_refresh/refresh.log 2>&1" | crontab -
 
 echo "To test manually:"
 echo "~/ue_refresh/refresh_streams_d_playlist.sh"
