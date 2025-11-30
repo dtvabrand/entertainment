@@ -259,7 +259,7 @@ jobs:
       GITHUB_REPOSITORY: ${{ github.repository }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GIT_BRANCH: ${{ github.ref_name }}
-      DASH_COMMIT_MSG: 'EPG Updated! 📺'
+      DASH_COMMIT_MSG: 'EPG updated! 📺'
       TV_LOG: tv_epg.log
       TV_JOB_ID: ${{ needs.build_epg.outputs.job_id }}
       TV_STEP_IDX: 5
