@@ -159,46 +159,87 @@ jobs:
             echo "::group::Merge"
             python - << 'PY'
             import os, glob, json, xml.etree.ElementTree as ET
-            gw=os.environ["GITHUB_WORKSPACE"]; temp=os.environ["OUTDIR"]
-            meta_path=os.path.join(temp,"site_meta.json")
+            import datetime as _dt
+      
+            gw = os.environ["GITHUB_WORKSPACE"]
+            temp = os.environ["OUTDIR"]
+      
+            def _shift_tvp(path, hours):
+                delta = _dt.timedelta(hours=hours)
+                tree = ET.parse(path)
+                root = tree.getroot()
+                for pr in root.findall("programme"):
+                    for attr in ("start", "stop"):
+                        v = pr.get(attr)
+                        if not v:
+                            continue
+                        try:
+                            dt_str, sep, tz = v.partition(' ')
+                            dt = _dt.datetime.strptime(dt_str, "%Y%m%d%H%M%S")
+                            dt = dt + delta
+                            pr.set(attr, dt.strftime("%Y%m%d%H%M%S") + (sep + tz if sep else ""))
+                        except Exception:
+                            continue
+                tree.write(path, encoding="utf-8", xml_declaration=True)
+      
+            tvp_path = os.path.join(temp, "out-all", "_all__tvpassport.com.xml")
+            if os.path.exists(tvp_path) and os.path.getsize(tvp_path) > 0:
+                _shift_tvp(tvp_path, 0)
+      
+            meta_path = os.path.join(temp, "site_meta.json")
             if os.path.exists(meta_path):
-                with open(meta_path,encoding="utf-8") as f: meta=json.load(f)
+                with open(meta_path, encoding="utf-8") as f:
+                    meta = json.load(f)
             else:
-                meta={}
-            m_ids=set(); d_ids=set()
-            for site,info in meta.items():
-                m_ids.update(info.get("M",[])); d_ids.update(info.get("D",[]))
-            files=sorted(
-                f for f in glob.glob(os.path.join(temp,"out-all","_all__*.xml"))
-                if os.path.isfile(f) and os.path.getsize(f)>0
+                meta = {}
+      
+            m_ids = set()
+            d_ids = set()
+            for site, info in meta.items():
+                m_ids.update(info.get("M", []))
+                d_ids.update(info.get("D", []))
+      
+            files = sorted(
+                f for f in glob.glob(os.path.join(temp, "out-all", "_all__*.xml"))
+                if os.path.isfile(f) and os.path.getsize(f) > 0
             )
+      
             def ensure_empty(outp):
-                with open(outp,"w",encoding="utf-8") as f:
+                with open(outp, "w", encoding="utf-8") as f:
                     f.write('<?xml version="1.0" encoding="UTF-8"?>\\n<tv></tv>')
+      
             if not files:
-                ensure_empty(os.path.join(gw,"m_epg.xml"))
-                ensure_empty(os.path.join(gw,"d_epg.xml"))
+                ensure_empty(os.path.join(gw, "m_epg.xml"))
+                ensure_empty(os.path.join(gw, "d_epg.xml"))
             else:
-                t0=ET.parse(files[0]); r0=t0.getroot()
-                chs=set(c.get("id","") for c in r0.findall("channel"))
-                progs=set((p.get("channel",""), p.get("start","")) for p in r0.findall("programme"))
+                t0 = ET.parse(files[0])
+                r0 = t0.getroot()
+                chs = set(c.get("id", "") for c in r0.findall("channel"))
+                progs = set((p.get("channel", ""), p.get("start", "")) for p in r0.findall("programme"))
                 for pth in files[1:]:
-                    try: r=ET.parse(pth).getroot()
-                    except: continue
+                    try:
+                        r = ET.parse(pth).getroot()
+                    except:
+                        continue
                     for c in r.findall("channel"):
-                        cid=c.get("id","")
+                        cid = c.get("id", "")
                         if cid and cid not in chs:
-                            r0.append(c); chs.add(cid)
+                            r0.append(c)
+                            chs.add(cid)
                     for pr in r.findall("programme"):
-                        k=(pr.get("channel",""), pr.get("start",""))
+                        k = (pr.get("channel", ""), pr.get("start", ""))
                         if k not in progs:
-                            r0.append(pr); progs.add(k)
-                try: ET.indent(t0,space="  ",level=0)
-                except: pass
-                out_m=os.path.join(gw,"m_epg.xml")
-                out_d=os.path.join(gw,"d_epg.xml")
-                t0.write(out_m,encoding="utf-8",xml_declaration=True)
-                t0.write(out_d,encoding="utf-8",xml_declaration=True)
+                            r0.append(pr)
+                            progs.add(k)
+                try:
+                    ET.indent(t0, space="  ", level=0)
+                except:
+                    pass
+                out_m = os.path.join(gw, "m_epg.xml")
+                out_d = os.path.join(gw, "d_epg.xml")
+                t0.write(out_m, encoding="utf-8", xml_declaration=True)
+                t0.write(out_d, encoding="utf-8", xml_declaration=True)
+      
             print(f"m_epg.xml ->  {len(m_ids)} channels")
             print(f"d_epg.xml ->  {len(d_ids)} channels")
             PY
