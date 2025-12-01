@@ -184,7 +184,7 @@ jobs:
       
             tvp_path = os.path.join(temp, "out-all", "_all__tvpassport.com.xml")
             if os.path.exists(tvp_path) and os.path.getsize(tvp_path) > 0:
-                _shift_tvp(tvp_path, 6)
+                _shift_tvp(tvp_path, 0)
       
             meta_path = os.path.join(temp, "site_meta.json")
             if os.path.exists(meta_path):
