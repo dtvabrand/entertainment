@@ -38,6 +38,10 @@ jobs:
       - name: Clone iptv-org/epg
         run: git clone --depth 1 https://github.com/iptv-org/epg.git
 
+      - name: Patch tvpassport timezone (+6h)
+        run: |
+          sed -i "s/return dayjs.tz(time, 'YYYY-MM-DD HH:mm:ss', 'America\/New_York')/return dayjs.tz(time, 'YYYY-MM-DD HH:mm:ss', 'America\/New_York').add(6, 'hour')/" epg/sites/tvpassport.com/tvpassport.com.config.js
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
