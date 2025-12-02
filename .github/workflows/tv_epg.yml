@@ -106,7 +106,7 @@ jobs:
 
             cat > "${RUNNER_TEMP}/helpers.sh" <<'BASH'
             set -euo pipefail
-            tune_params(){ local s="$1" maxc=14 tout=30000; case "$s" in
+            tune_params(){ local s="$1" maxc=16 tout=25000; case "$s" in
             esac; echo "$maxc $tout"; }
             filter_log(){ awk '/^\s*info\s+\[[0-9]+\/[0-9]+\].*\([0-9]+ programs\)/||/saving to/||/^\s*success\s+done/'; }
             throttle(){ local lim="${PER_SITE_JOBS:-10}"; while [ "$(jobs -rp | wc -l)" -ge "$lim" ]; do wait -n || true; done; }
