@@ -45,7 +45,7 @@ SITES=[
 ]
 
 QIDS = [
-    ("Savage Hunt", ""),
+    ("Savage Hunt", "Q137186379"),
     ("The Toy Talks Learning Movie", ""),
     ("A Breed Apart", "Q133845943"),
     ("A Christmas Mystery", "Q135236473"),
