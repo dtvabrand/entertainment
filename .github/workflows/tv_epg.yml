@@ -109,7 +109,7 @@ jobs:
               raiplay.it) maxc=8; tout=45000;;
               mediasetinfinity.mediaset.it) maxc=10; tout=40000;;
               guidatv.sky.it) maxc=6; tout=45000;;
-              tvtv.us) maxc=6; tout=45000;;
+              epgshare01.online) maxc=6; tout=45000;;
               tivu.tv|guida.tv) maxc=3; tout=70000;;
             esac; echo "$maxc $tout"; }
             filter_log(){ awk '/^\s*info\s+\[[0-9]+\/[0-9]+\].*\([0-9]+ programs\)/||/saving to/||/^\s*success\s+done/'; }
