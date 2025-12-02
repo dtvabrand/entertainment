@@ -14,7 +14,7 @@
   <channel site="epgshare01.online"   lang="en" xmltv_id="abc-news-live"      site_id="US1#ABC.NEWS.us">ABC News Live</channel>
   <channel site="epgshare01.online"   lang="en" xmltv_id="livenowfromfox"     site_id="PLEX1#plex.tv.LiveNOW.from.FOX.plex">LiveNOW from FOX</channel>
 
-  <channel site="epgshare01.online"   lang="en" xmltv_id="wabc"               site_id="US1#ABC.(WABC).New.York,.NY.us">ABC 7</channel>
+  <channel site="epgshare01.online"   lang="en" xmltv_id="wabc"               site_id="US2#ABC.(WABC).New.York,.NY.us2">ABC 7</channel>
   <channel site="epgshare01.online"   lang="en" xmltv_id="wnbc"               site_id="US1#NBC.(WNBC).New.York,.NY.us">NBC 4</channel>
   <channel site="epgshare01.online"   lang="en" xmltv_id="wcbs"               site_id="US1#CBS.(WCBS).New.York,.NY.us">CBS 2</channel>
   <channel site="epgshare01.online"   lang="en" xmltv_id="wnyw"               site_id="US1#FOX.(WNYW).New.York,.NY.us">FOX 5</channel>
