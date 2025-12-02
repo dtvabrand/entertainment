@@ -4,16 +4,20 @@
 
 ### 🛸 Trakt lists
 <!-- DASH:TRAKT -->
-[![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19812241404) [![X](https://img.shields.io/badge/Token-refreshed-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19812241404/job/56756813905#step:7:19) [![X](https://img.shields.io/badge/Run-cron%2C%201%20dic%202025%206%3A24%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19812241404)
+[![X](https://img.shields.io/badge/New%20Movie-2-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19848079047/job/56869272728#step:7:35) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19848079047/job/56869272728#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%202%20dic%202025%206%3A16%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19848079047)
 <!-- /DASH:TRAKT -->
 
 <!-- TRAKT:OUTPUT -->
-
+#### ✨ _New movies!_
+🍿 Savage Hunt, The Toy Talks Learning Movie
 <!-- /TRAKT:OUTPUT -->
 
 <details><summary>Previous days</summary>
   
 <!-- TRAKT:HISTORY -->
+[![X](https://img.shields.io/badge/New%20Movie-2-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19848079047/job/56869272728#step:7:35) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19848079047/job/56869272728#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%202%20dic%202025%206%3A16%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19848079047) <!-- TRAKT_RUN:19848079047 --><br>
+🍿 Savage Hunt, The Toy Talks Learning Movie
+
 [![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19812241404) [![X](https://img.shields.io/badge/Token-refreshed-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19812241404/job/56756813905#step:7:19) [![X](https://img.shields.io/badge/Run-cron%2C%201%20dic%202025%206%3A24%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19812241404) <!-- TRAKT_RUN:19812241404 -->
 
 [![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19794267883) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19794267883/job/56712306247#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2030%20nov%202025%206%3A15%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19794267883) <!-- TRAKT_RUN:19794267883 -->
@@ -80,9 +84,6 @@
 [![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/updates/actions/runs/19058744154/job/54434193626#step:5) [![X](https://img.shields.io/badge/Token-valid-34a6db)](https://github.com/dtvabrand/updates/actions/runs/19058744154/job/54434193626#step:5:20) [![X](https://img.shields.io/badge/Run-cron%2C%204%20nov%202025%206%3A24%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/updates/actions/runs/19058744154) <!-- TRAKT_RUN:19058744154 -->
 
 [![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/updates/actions/runs/19024811591/job/54326482342#step:5) [![X](https://img.shields.io/badge/Token-valid-34a6db)](https://github.com/dtvabrand/updates/actions/runs/19024811591/job/54326482342#step:5:20) [![X](https://img.shields.io/badge/Run-cron%2C%203%20nov%202025%206%3A25%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/updates/actions/runs/19024811591) <!-- TRAKT_RUN:19024811591 -->
-
-[![X](https://img.shields.io/badge/New%20Movie-1-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/updates/actions/runs/19009373076/job/54287976384#step:5:37) [![X](https://img.shields.io/badge/Token-refreshed-2cc36b)](https://github.com/dtvabrand/updates/actions/runs/19009373076/job/54287976384#step:5:20) [![X](https://img.shields.io/badge/Run-cron%2C%202%20nov%202025%209%3A00%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/updates/actions/runs/19009373076) <!-- TRAKT_RUN:19009373076 --><br>
-🍿 Regretting You
 <!-- /TRAKT:HISTORY -->
 
 </details>
