@@ -11,22 +11,22 @@
   <channel site="guidatv.sky.it"                  lang="it" xmltv_id="tv2000"      site_id="DTH#7588">TV2000</channel>
 
   <!-- ================== USA ================== -->
-  <channel site="tvtv.us"   lang="en" xmltv_id="abc-news-live"      site_id="113380">ABC News Live</channel>
-  <channel site="tvtv.us"   lang="en" xmltv_id="livenowfromfox"     site_id="119219">LiveNOW from FOX</channel>
+  <channel site="epgshare01.online"   lang="en" xmltv_id="abc-news-live"      site_id="US1#ABC.NEWS.us">ABC News Live</channel>
+  <channel site="epgshare01.online"   lang="en" xmltv_id="livenowfromfox"     site_id="PLEX1#plex.tv.LiveNOW.from.FOX.plex">LiveNOW from FOX</channel>
 
-  <channel site="tvtv.us"   lang="en" xmltv_id="wabc"               site_id="20453">ABC 7</channel>
-  <channel site="tvtv.us"   lang="en" xmltv_id="wnbc"               site_id="20459">NBC 4</channel>
-  <channel site="tvtv.us"   lang="en" xmltv_id="wcbs"               site_id="16689">CBS 2</channel>
-  <channel site="tvtv.us"   lang="en" xmltv_id="wnyw"               site_id="20360">FOX 5</channel>
+  <channel site="epgshare01.online"   lang="en" xmltv_id="wabc"               site_id="US1#ABC.(WABC).New.York,.NY.us">ABC 7</channel>
+  <channel site="epgshare01.online"   lang="en" xmltv_id="wnbc"               site_id="US1#NBC.(WNBC).New.York,.NY.us">NBC 4</channel>
+  <channel site="epgshare01.online"   lang="en" xmltv_id="wcbs"               site_id="US1#CBS.(WCBS).New.York,.NY.us">CBS 2</channel>
+  <channel site="epgshare01.online"   lang="en" xmltv_id="wnyw"               site_id="US1#FOX.(WNYW).New.York,.NY.us">FOX 5</channel>
 
-  <channel site="tvtv.us"    lang="en" xmltv_id="bravo"             site_id="10057">Bravo</channel>
-  <channel site="tvtv.us"    lang="en" xmltv_id="e-entertainment"   site_id="10989">E!</channel>
-  <channel site="tvtv.us"    lang="en" xmltv_id="boomerang"         site_id="21883">Boomerang</channel>
+  <channel site="epgshare01.online"    lang="en" xmltv_id="bravo"             site_id="US1#Bravo.USA.-.Eastern.Feed.us">Bravo</channel>
+  <channel site="epgshare01.online"    lang="en" xmltv_id="e-entertainment"   site_id="US1#E!.Entertainment.USA.-.Eastern.Feed.us">E!</channel>
+  <channel site="epgshare01.online"    lang="en" xmltv_id="boomerang"         site_id="US1#Boomerang.us">Boomerang</channel>
 
-  <channel site="tvtv.us"    lang="en" xmltv_id="espn"              site_id="10179">ESPN</channel>
-  <channel site="tvtv.us"    lang="en" xmltv_id="espn2"             site_id="45507">ESPN2</channel>
-  <channel site="tvtv.us"    lang="en" xmltv_id="espnu"             site_id="45654">ESPNU</channel>
-  <channel site="tvtv.us"    lang="en" xmltv_id="acc-network"       site_id="111871">ACC Network</channel>
-  <channel site="tvtv.us"    lang="en" xmltv_id="sec-network"       site_id="89535">SEC Network</channel>
+  <channel site="epgshare01.online"    lang="en" xmltv_id="espn"              site_id="US1#ESPN.us">ESPN</channel>
+  <channel site="epgshare01.online"    lang="en" xmltv_id="espn2"             site_id="US1#ESPN2.us">ESPN2</channel>
+  <channel site="epgshare01.online"    lang="en" xmltv_id="espnu"             site_id="US1#ESPN.U.us">ESPNU</channel>
+  <channel site="epgshare01.online"    lang="en" xmltv_id="acc-network"       site_id="US1#ACC.Network.us">ACC Network</channel>
+  <channel site="epgshare01.online"    lang="en" xmltv_id="sec-network"       site_id="US1#SEC.Network.us">SEC Network</channel>
 
 </channels>
