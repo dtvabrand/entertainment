@@ -19,14 +19,14 @@
   <channel site="tvpassport.com"    lang="en" xmltv_id="wcbs"    site_id="cbs-wcbs-new-york-ny-hd/4555">CBS 2</channel>
   <channel site="tvpassport.com"    lang="en" xmltv_id="wnyw"    site_id="fox-wnyw-new-york-ny-hd/4557">FOX 5</channel>
 
-  <channel site="epgshare01.online"    lang="en" xmltv_id="bravo"              site_id="US2#Bravo.HD.us2">Bravo</channel>
-  <channel site="epgshare01.online"    lang="en" xmltv_id="e-entertainment"    site_id="US2#E!.Entertainment.Television.HD.us2">E!</channel>
-  <channel site="epgshare01.online"    lang="en" xmltv_id="boomerang"          site_id="US2#Boomerang.us2">Boomerang</channel>
+  <channel site="tvinsider.com"    lang="en" xmltv_id="bravo"              site_id="bravo">Bravo</channel>
+  <channel site="tvinsider.com"    lang="en" xmltv_id="e-entertainment"    site_id="e">E!</channel>
+  <channel site="tvinsider.com"    lang="en" xmltv_id="boomerang"          site_id="boomerang">Boomerang</channel>
 
-  <channel site="epgshare01.online"    lang="en" xmltv_id="espn"               site_id="US2#ESPN.HD.us2">ESPN</channel>
-  <channel site="epgshare01.online"    lang="en" xmltv_id="espn2"              site_id="US2#ESPN2.HD.us2">ESPN2</channel>
-  <channel site="epgshare01.online"    lang="en" xmltv_id="espnu"              site_id="US2#ESPNU.HD.us2">ESPNU</channel>
-  <channel site="epgshare01.online"    lang="en" xmltv_id="acc-network"        site_id="US2#ACC.Network.us2">ACC Network</channel>
-  <channel site="epgshare01.online"    lang="en" xmltv_id="sec-network"        site_id="US2#SEC.Network.HD.us2">SEC Network</channel>
+  <channel site="tvinsider.com"    lang="en" xmltv_id="espn"               site_id="espn">ESPN</channel>
+  <channel site="tvinsider.com"    lang="en" xmltv_id="espn2"              site_id="espn2">ESPN2</channel>
+  <channel site="tvinsider.com"    lang="en" xmltv_id="espnu"              site_id="espnu">ESPNU</channel>
+  <channel site="tvinsider.com"    lang="en" xmltv_id="acc-network"        site_id="acc-network">ACC Network</channel>
+  <channel site="tvinsider.com"    lang="en" xmltv_id="sec-network"        site_id="sec-network">SEC Network</channel>
 
 </channels>
