@@ -2,13 +2,13 @@
 <channels>
 
   <!-- ================== ITALY ================== -->
-  <channel site="epgshare01.online"    lang="it" xmltv_id="rai-1"       site_id="IT1#Rai1.it">Rai 1</channel>
-  <channel site="epgshare01.online"    lang="it" xmltv_id="rai-2"       site_id="IT1#Rai2.it">Rai 2</channel>
-  <channel site="epgshare01.online"    lang="it" xmltv_id="rai-3"       site_id="IT1#Rai3.it">Rai 3</channel>
-  <channel site="epgshare01.online"    lang="it" xmltv_id="rete-4"      site_id="IT1#Rete.4.it">Rete 4</channel>
-  <channel site="epgshare01.online"    lang="it" xmltv_id="canale-5"    site_id="IT1#Canale.5.it">Canale 5</channel>
-  <channel site="epgshare01.online"    lang="it" xmltv_id="italia-1"    site_id="IT1#Italia.1.it">Italia 1</channel>
-  <channel site="epgshare01.online"    lang="it" xmltv_id="tv2000"      site_id="IT1#TV2000.it.it">TV2000</channel>
+  <channel site="raiplay.it"                      lang="it" xmltv_id="rai-1"       site_id="rai-1">Rai 1</channel>
+  <channel site="raiplay.it"                      lang="it" xmltv_id="rai-2"       site_id="rai-2">Rai 2</channel>
+  <channel site="raiplay.it"                      lang="it" xmltv_id="rai-3"       site_id="rai-3">Rai 3</channel>
+  <channel site="mediasetinfinity.mediaset.it"    lang="it" xmltv_id="rete-4"      site_id="R4">Rete 4</channel>
+  <channel site="mediasetinfinity.mediaset.it"    lang="it" xmltv_id="canale-5"    site_id="C5">Canale 5</channel>
+  <channel site="mediasetinfinity.mediaset.it"    lang="it" xmltv_id="italia-1"    site_id="I1">Italia 1</channel>
+  <channel site="guidatv.sky.it"                  lang="it" xmltv_id="tv2000"      site_id="DTH#7588">TV2000</channel>
 
   <!-- ================== USA ================== -->
   <channel site="epgshare01.online"    lang="en" xmltv_id="abc-news-live"     site_id="US2#ABC.News.Live.us2">ABC News Live</channel>
