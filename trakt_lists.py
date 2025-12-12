@@ -45,7 +45,7 @@ SITES=[
 ]
 
 QIDS = [
-    ("The Mother, the Menacer, and Me", "Q137352527"),
+    ("Turbulence", ""),
     ("A Breed Apart", "Q133845943"),
     ("A Spartan Dream", "Q136655065"),
     ("Aftershock: The Nicole P Bell Story", "Q137103837"),
@@ -106,6 +106,7 @@ QIDS = [
     ("The Harvest", "Q133814834"),
     ("The Long Game", "Q136654911"),
     ("The Mortimers", "Q135436742"),
+    ("The Mother, the Menacer, and Me", "Q137352527"),
     ("The Occupant", "Q135726724"),
     ("The Ruse", "Q136654993"),
     ("The Sound", "Q136655029"),
