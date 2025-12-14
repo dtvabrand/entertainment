@@ -91,7 +91,7 @@
 
 ### 📺 Live TV
 <!-- DASH:TV -->
-[![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20191195880/job/57968857252#step:5:429) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20191195880/job/57968857252#step:5:430) [![X](https://img.shields.io/badge/Build%20EPG-17s-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20191195880/job/57968857252#step:5:183) [![X](https://img.shields.io/badge/Run-cron%2C%2013%20dic%202025%2012%3A09%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20191195880)
+[![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20207057688/job/58007217225#step:5:429) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20207057688/job/58007217225#step:5:430) [![X](https://img.shields.io/badge/Build%20EPG-17s-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20207057688/job/58007217225#step:5:183) [![X](https://img.shields.io/badge/Run-cron%2C%2014%20dic%202025%2012%3A09%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20207057688)
 <!-- /DASH:TV -->
 
 <!-- TV:OUTPUT -->
@@ -103,7 +103,7 @@
 </details></td><td align="center">1</td><td align="center">6</td><td align="center">8s</td><td align="center">✅</td></tr>
 <tr><td><details><summary>mediasetinfinity.mediaset.it</summary>
 🔵 Cine34<br>🟡 Canale 5<br>🟡 Italia 1<br>🔵 TGCOM 24<br>🔵 Iris<br>🔵 Mediaset Extra<br>🔵 La5<br>🔵 20 Mediaset<br>🔵 Top Crime<br>🟡 Rete 4<br>🔵 27 Twentyseven
-</details></td><td align="center">3</td><td align="center">11</td><td align="center">9s</td><td align="center">✅</td></tr>
+</details></td><td align="center">3</td><td align="center">11</td><td align="center">8s</td><td align="center">✅</td></tr>
 <tr><td><details><summary>pluto.tv</summary>
 🔴 LiveNOW from FOX<br>🔴 ABC News Live
 </details></td><td align="center">2</td><td align="center">0</td><td align="center">7s</td><td align="center">✅</td></tr>
@@ -115,12 +115,14 @@
 </details></td><td align="center">8</td><td align="center">0</td><td align="center">9s</td><td align="center">✅</td></tr>
 <tr><td><details><summary>tvpassport.com</summary>
 🔴 ABC 7<br>🔴 CBS 2<br>🔴 FOX 5<br>🔴 NBC 4
-</details></td><td align="center">4</td><td align="center">0</td><td align="center">9s</td><td align="center">✅</td></tr></tbody></table>
+</details></td><td align="center">4</td><td align="center">0</td><td align="center">8s</td><td align="center">✅</td></tr></tbody></table>
 <!-- /TV:OUTPUT -->
 
 <details><summary>Previous days</summary>
 
 <!-- TV:HISTORY -->
+[![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20207057688/job/58007217225#step:5:429) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20207057688/job/58007217225#step:5:430) [![X](https://img.shields.io/badge/Build%20EPG-17s-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20207057688/job/58007217225#step:5:183) [![X](https://img.shields.io/badge/Run-cron%2C%2014%20dic%202025%2012%3A09%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20207057688)
+
 [![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20191195880/job/57968857252#step:5:429) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20191195880/job/57968857252#step:5:430) [![X](https://img.shields.io/badge/Build%20EPG-17s-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20191195880/job/57968857252#step:5:183) [![X](https://img.shields.io/badge/Run-cron%2C%2013%20dic%202025%2012%3A09%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20191195880)
 
 [![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20164937260/job/57885977017#step:5:429) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20164937260/job/57885977017#step:5:430) [![X](https://img.shields.io/badge/Build%20EPG-21s-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20164937260/job/57885977017#step:5:183) [![X](https://img.shields.io/badge/Run-cron%2C%2012%20dic%202025%2012%3A12%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20164937260)
@@ -182,8 +184,6 @@
 [![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19404664649/job/55517410296#step:5:421) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19404664649/job/55517410296#step:5:422) [![X](https://img.shields.io/badge/Build%20EPG-18s-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19404664649/job/55517410296#step:5:185) [![X](https://img.shields.io/badge/Run-cron%2C%2016%20nov%202025%2012%3A08%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19404664649)
 
 [![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19389004351/job/55479836495#step:5:555) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19389004351/job/55479836495#step:5:556) [![X](https://img.shields.io/badge/Run-cron%2C%2015%20nov%202025%2012%3A12%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19389004351)
-
-[![X](https://img.shields.io/badge/M-21-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19362848051/job/55398737731#step:5:555) [![X](https://img.shields.io/badge/D-31-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19362848051/job/55398737731#step:5:556) [![X](https://img.shields.io/badge/Run-cron%2C%2014%20nov%202025%2012%3A14%20pm-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19362848051)
 <!-- /TV:HISTORY -->
 </details>
 
