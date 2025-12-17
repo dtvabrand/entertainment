@@ -47,7 +47,6 @@ SITES=[
 QIDS = [
     ("Hunting Season", "Q137215321"),
     ("Turbulence", "Q137366793"),
-    ("Saving Buddy Charles", "Q137397643"),
     ("A Breed Apart", "Q133845943"),
     ("A Spartan Dream", "Q136655065"),
     ("Aftershock: The Nicole P Bell Story", "Q137103837"),
@@ -91,6 +90,7 @@ QIDS = [
     ("Regretting You", "Q135907051"),
     ("Reverence", "Q136891758"),
     ("Savage Hunt", "Q137186379"),
+    ("Saving Buddy Charles", "Q137397643"),
     ("Self-Help", "Q136673337"),
     ("Snorkeling", "Q116244091"),
     ("Speed Train", "Q137215349"),
