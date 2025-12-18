@@ -4,7 +4,7 @@
 
 ### 🛸 Trakt lists
 <!-- DASH:TRAKT -->
-[![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20292500978) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20292500978/job/58279614289#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2017%20dic%202025%206%3A18%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20292500978)
+[![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20326890471) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20326890471/job/58393930640#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2018%20dic%202025%206%3A18%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20326890471)
 <!-- /DASH:TRAKT -->
 
 <!-- TRAKT:OUTPUT -->
@@ -14,6 +14,8 @@
 <details><summary>Previous days</summary>
   
 <!-- TRAKT:HISTORY -->
+[![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20326890471) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20326890471/job/58393930640#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2018%20dic%202025%206%3A18%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20326890471) <!-- TRAKT_RUN:20326890471 -->
+
 [![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20292500978) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20292500978/job/58279614289#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2017%20dic%202025%206%3A18%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20292500978) <!-- TRAKT_RUN:20292500978 -->
 
 [![X](https://img.shields.io/badge/New%20Movie-1-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20257396811/job/58162229840#step:7:37) [![X](https://img.shields.io/badge/Token-refreshed-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20257396811/job/58162229840#step:7:19) [![X](https://img.shields.io/badge/Run-cron%2C%2016%20dic%202025%206%3A19%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20257396811) <!-- TRAKT_RUN:20257396811 --><br>
@@ -81,9 +83,6 @@
 [![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19526438757) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19526438757/job/55900165146#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2020%20nov%202025%206%3A15%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19526438757) <!-- TRAKT_RUN:19526438757 -->
 
 [![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19490662082) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19490662082/job/55782084622#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2019%20nov%202025%206%3A16%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19490662082) <!-- TRAKT_RUN:19490662082 -->
-
-[![X](https://img.shields.io/badge/New%20Movie-1-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19455011756/job/55667188948#step:7:34) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19455011756/job/55667188948#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2018%20nov%202025%206%3A15%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19455011756) <!-- TRAKT_RUN:19455011756 --><br>
-🍿 Killer Rental
 <!-- /TRAKT:HISTORY -->
 
 </details>
