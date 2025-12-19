@@ -36,7 +36,7 @@ jobs:
           PIP_DISABLE_PIP_VERSION_CHECK: '1'
           PIP_NO_PYTHON_VERSION_WARNING: '1'
         run: |
-          pip install requests lxml todoist-api-python
+          pip install requests lxml todoist-api-python "dataclass-wizard==0.35.0"
 
       - name: Setup SSH for updates repo
         env:
