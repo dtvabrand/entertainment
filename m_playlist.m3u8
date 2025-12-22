@@ -44,7 +44,7 @@ http://fl1.moveonjoy.com/E_ENTERTAINMENT_TELEVISION/index.m3u8
 http://fl7.moveonjoy.com/BOOMERANG/index.m3u8
 
 #EXTINF:-1 group-title="Sport" tvg-id="espn" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/espn-icon-us.png?raw=true" tvg-name="ESPN",ESPN
-https://fl2.moveonjoy.com/ESPN/index.m3u8
+http://origin.thetvapp.to/hls/ESPN/mono.m3u8
 
 #EXTINF:-1 group-title="Sport" tvg-id="espn2" tvg-logo="https://github.com/tv-logo/tv-logos/blob/main/countries/united-states/espn-2-us.png?raw=true" tvg-name="ESPN2",ESPN2
 http://fl2.moveonjoy.com/ESPN_2/index.m3u8
