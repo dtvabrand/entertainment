@@ -22,7 +22,7 @@ https://live02-seg.msf.cdn.mediaset.net/live/ch-i1/i1-clr.isml/index.m3u8
 https://cloudflare-api.zappr.stream/api?https://viamotionhsi.netplus.ch/live/eds/la7/browser-dash/la7.mpd
 
 #EXTINF:-1 group-title="Sky Italia" tvg-id="tv8" tvg-logo="https://i.imgur.com/xvoHVOU.png" tvg-name="TV8",TV8
-https://hlslive-web-gcdn-skycdn-it.akamaized.net/TACT/11223/tv8web/master.m3u8?hdnea=st=1701861650~exp=1765449000~acl=/*~hmac=84c9f3f71e57b13c3a67afa8b29a8591ea9ed84bf786524399545d94be1ec04d
+https://hlslive-web-gcdn-skycdn-it.akamaized.net/TACT/11223/tv8web/master.m3u8?hdnts=st=1766507509~exp=1766507809~acl=/*~hmac=f8df94778976c182e7c62b84b0b145cbabdd30b32e287c432188b5b6f4bb11e9&CMCD=cid%3D7%2Cmtp%3D500%2Cot%3Dm%2Csf%3Dh%2Csid%3D%22b37b11a3-ad9a-4bea-a774-54494062312b%22%2Csu
 
 #EXTINF:-1 group-title="Warner Bros. Discovery EMEA" tvg-id="nove" tvg-logo="https://i.imgur.com/Hp723RU.png" tvg-name="Nove",Nove
 https://d31mw7o1gs0dap.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-y5pbi2sq9r609/NOVE_IT.m3u8
