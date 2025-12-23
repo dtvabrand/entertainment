@@ -28,7 +28,7 @@ https://www.mytivu.it/Application/Channels/TV8.php
 https://d31mw7o1gs0dap.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-y5pbi2sq9r609/NOVE_IT.m3u8
 
 #EXTINF:-1 group-title="Sky Italia" tvg-id="skytg24" tvg-logo="https://i.imgur.com/q4d3Dah.png" tvg-name="SkyTG24",SkyTG24
-https://www.mytivu.it/Application/Channels/SkyTG24.php/index.m3u8
+https://www.mytivu.it/Application/Channels/SkyTG24.php
 
 #EXTINF:-1 group-title="Rai" tvg-id="rai-news-24" tvg-logo="https://i.imgur.com/gdzGwB6.png" tvg-name="Rai News 24",Rai News 24
 https://rainews2-live.akamaized.net/hls/live/598327/rainews2/rainews2/playlist.m3u8
