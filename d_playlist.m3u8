@@ -22,13 +22,13 @@ https://live02-seg.msf.cdn.mediaset.net/live/ch-i1/i1-clr.isml/index.m3u8
 https://cloudflare-api.zappr.stream/api?https://viamotionhsi.netplus.ch/live/eds/la7/browser-dash/la7.mpd
 
 #EXTINF:-1 group-title="Sky Italia" tvg-id="tv8" tvg-logo="https://i.imgur.com/xvoHVOU.png" tvg-name="TV8",TV8
-https://hlslive-web-gcdn-skycdn-it.akamaized.net/TACT/11223/tv8web/master.m3u8?hdnts=st=1766507509~exp=1766507809~acl=/*~hmac=f8df94778976c182e7c62b84b0b145cbabdd30b32e287c432188b5b6f4bb11e9&CMCD=cid%3D7%2Cmtp%3D500%2Cot%3Dm%2Csf%3Dh%2Csid%3D%22b37b11a3-ad9a-4bea-a774-54494062312b%22%2Csu
+https://www.mytivu.it/Application/Channels/TV8.php
 
 #EXTINF:-1 group-title="Warner Bros. Discovery EMEA" tvg-id="nove" tvg-logo="https://i.imgur.com/Hp723RU.png" tvg-name="Nove",Nove
 https://d31mw7o1gs0dap.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-y5pbi2sq9r609/NOVE_IT.m3u8
 
 #EXTINF:-1 group-title="Sky Italia" tvg-id="skytg24" tvg-logo="https://i.imgur.com/q4d3Dah.png" tvg-name="SkyTG24",SkyTG24
-https://hlslive-web-gcdn-skycdn-it.akamaized.net/TACT/12221/web/master.m3u8?hdnts=st=1701861650~exp=1765449000~acl=/*~hmac=84c9f3f71e57b13c3a67afa8b29a8591ea9ed84bf786524399545d94be1ec04d
+https://www.mytivu.it/Application/Channels/SkyTG24.php/index.m3u8
 
 #EXTINF:-1 group-title="Rai" tvg-id="rai-news-24" tvg-logo="https://i.imgur.com/gdzGwB6.png" tvg-name="Rai News 24",Rai News 24
 https://rainews2-live.akamaized.net/hls/live/598327/rainews2/rainews2/playlist.m3u8
@@ -46,7 +46,7 @@ https://proxy.media.convergenze.it/stiletv/streams/oQOFd7JglHjO1631525551097.m3u
 https://raistoria3-live.akamaized.net/hls/live/2018017/raistoria3/raistoria3/playlist.m3u8
 
 #EXTINF:-1 group-title="Rai" tvg-id="rai-scuola" tvg-logo="https://i.imgur.com/tmtJW6s.png" tvg-name="Rai Scuola",Rai Scuola
-https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=747011&output=7&forceUserAgent=raiplayappletv
+https://cloudflare-api.zappr.stream/api?https://viamotionhsi.netplus.ch/live/eds/raiscuola/browser-dash/raiscuola.mpd
 
 #EXTINF:-1 group-title="Rai" tvg-id="rai-sport" tvg-logo="https://i.imgur.com/xsGljsb.png" tvg-name="Rai Sport",Rai Sport
 https://raisportuno3-live.akamaized.net/hls/live/2018008/raisportuno3/raisportuno3/playlist.m3u8
@@ -76,7 +76,7 @@ https://raimovie3-live.akamaized.net/hls/live/2018010/raimovie3/raimovie3/playli
 https://raipremium3-live.akamaized.net/hls/live/2018013/raipremium3/raipremium3/playlist.m3u8
 
 #EXTINF:-1 group-title="Sky Italia" tvg-id="cielo" tvg-logo="https://i.imgur.com/cPluF03.png" tvg-name="Cielo",Cielo
-https://hlslive-web-gcdn-skycdn-it.akamaized.net/TACT/11219/cieloweb/master.m3u8?hdnea=st=1701861650~exp=1765449000~acl=/*~hmac=84c9f3f71e57b13c3a67afa8b29a8591ea9ed84bf786524399545d94be1ec04d
+https://hlslive-web-gcdn-skycdn-it.akamaized.net/TACT/11219/cieloweb/master.m3u8?hdnts=st=1766508842~exp=1766509142~acl=/*~hmac=033b93b5e305cf7a1ec8c482af5789db2d2b07219ff51b60607755e12462fcab&CMCD=cid%3D2%2Cmtp%3D500%2Cot%3Dm%2Csf%3Dh%2Csid%3D%22c1adf120-d029-4793-9948-720f78ae7116%22%2Csu
 
 #EXTINF:-1 group-title="Mediaset" tvg-id="27-twentyseven" tvg-logo="https://i.imgur.com/y2PdPCK.png" tvg-name="27 Twentyseven",27 Twentyseven
 https://live02-seg.msf.cdn.mediaset.net/live/ch-ts/ts-clr.isml/index.m3u8
