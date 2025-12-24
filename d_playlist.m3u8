@@ -97,7 +97,7 @@ https://d3562mgijzx0zq.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68
 https://stream10.xdevel.com/video14s975955-1911/stream/playlist.m3u8
 
 #EXTINF:-1 group-title="Campania" tvg-logo="https://patbuweb.com/tivustream/chanlogoz/ita/Tvoggisalerno.jpg",Tv Oggi
-https://dotfvxkfj90ca.cloudfront.net/live/tvoggi_aac/chunklist.m3u8?token=2f79a78c-5b55-4095-b6ee-ecd21a3e6400&streamSessionId=0b5a11b4-241f-4c24-8aa2-ae85a6205da8&code=REGIA1982&expires=1766581214556&ctrl=0199504777ec9474fbeed5695e1407387fd471b6070d65b9d1a9992bfcf51d2efa1b57d0f901ce1db7077edbdb81c905b9b2d3c58c95472310b2a4e599e85b6a
+https://dotfvxkfj90ca.cloudfront.net/live/tvoggi_aac/chunklist.m3u8?token=52e5af67-f4f3-45a9-92f1-e8feaac2e55c&streamSessionId=c0bac5fc-0790-4af1-9154-53c85ddf3fb7&code=REGIA1982&expires=1766667610998&ctrl=c0cda9cb3c396d2ad00910c9c83a53a4d80e8e6d065555a0590fcbd227861876126c165b5cf2e669fa5c99463015f1a6429edc29cd42d3a06a61c70920ba9a1a
 
 #EXTINF:-1 group-title="Mediaset" tvg-id="cine34" tvg-logo="https://i.imgur.com/YyldwhI.png" tvg-name="Cine34",Cine34
 https://live02-seg.msf.cdn.mediaset.net/live/ch-b6/b6-clr.isml/index.m3u8
