@@ -4,17 +4,18 @@
 
 ### 🛸 Trakt lists
 <!-- DASH:TRAKT -->
-[![X](https://img.shields.io/badge/New%20Movie-1-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20478939617/job/58848827771#step:7:37) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20478939617/job/58848827771#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2024%20dic%202025%206%3A19%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20478939617)
+[![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20499567216) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20499567216/job/58904864229#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2025%20dic%202025%206%3A20%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20499567216)
 <!-- /DASH:TRAKT -->
 
 <!-- TRAKT:OUTPUT -->
-#### ✨ _New movies!_
-🍿 Batgirl
+
 <!-- /TRAKT:OUTPUT -->
 
 <details><summary>Previous days</summary>
   
 <!-- TRAKT:HISTORY -->
+[![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20499567216) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20499567216/job/58904864229#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2025%20dic%202025%206%3A20%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20499567216) <!-- TRAKT_RUN:20499567216 -->
+
 [![X](https://img.shields.io/badge/New%20Movie-1-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20478939617/job/58848827771#step:7:37) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20478939617/job/58848827771#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2024%20dic%202025%206%3A19%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20478939617) <!-- TRAKT_RUN:20478939617 --><br>
 🍿 Batgirl
 
@@ -82,8 +83,6 @@
 [![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19725992916) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19725992916/job/56517475452#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2027%20nov%202025%206%3A16%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19725992916) <!-- TRAKT_RUN:19725992916 -->
 
 [![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19693326148) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19693326148/job/56413438009#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2026%20nov%202025%206%3A15%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19693326148) <!-- TRAKT_RUN:19693326148 -->
-
-[![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19659079974) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19659079974/job/56301769274#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2025%20nov%202025%206%3A15%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19659079974) <!-- TRAKT_RUN:19659079974 -->
 <!-- /TRAKT:HISTORY -->
 
 </details>
