@@ -137,7 +137,7 @@ def gh_sync_qid_issue(missing_titles):
     try:
         tok=(os.getenv("GITHUB_TOKEN") or "").strip()
         repo=(os.getenv("GITHUB_REPOSITORY") or "").strip()
-        if not tok or not repo or not missing_titles: return
+        if not tok or not repo: return
         ISSUE_TITLE="Missing QIDs"
         h={"Authorization":f"Bearer {tok}","Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"}
         base="https://api.github.com"
@@ -146,16 +146,26 @@ def gh_sync_qid_issue(missing_titles):
         items=(r.json() or {}).get("items") or []
         hit=next((it for it in items if (it.get("title") or "")==ISSUE_TITLE), None)
         num=hit.get("number") if hit else None
-        cur_body=""
+
+        cur_body=""; cur_state=""
         if num:
             rr=requests.get(f"{base}/repos/{repo}/issues/{num}",headers=h,timeout=HTTP_TIMEOUT)
-            cur_body=((rr.json() or {}).get("body") or "").strip()
-        body="\n".join(["Missing QIDs:"]+[f"- {t}" for t in missing_titles]).strip()
-        if num:
-            if cur_body!=body:
-                requests.patch(f"{base}/repos/{repo}/issues/{num}",json={"body":body},headers=h,timeout=HTTP_TIMEOUT)
+            j=rr.json() or {}
+            cur_body=(j.get("body") or "").strip()
+            cur_state=(j.get("state") or "").strip()
+
+        if missing_titles:
+            body="\n".join(["Missing QIDs:"]+[f"- {t}" for t in missing_titles]).strip()
+            if num:
+                payload={}
+                if cur_body!=body: payload["body"]=body
+                if cur_state!="open": payload["state"]="open"
+                if payload: requests.patch(f"{base}/repos/{repo}/issues/{num}",json=payload,headers=h,timeout=HTTP_TIMEOUT)
+            else:
+                requests.post(f"{base}/repos/{repo}/issues",json={"title":ISSUE_TITLE,"body":body,"state":"open","labels":["automation","qid"]},headers=h,timeout=HTTP_TIMEOUT)
         else:
-            requests.post(f"{base}/repos/{repo}/issues",json={"title":ISSUE_TITLE,"body":body,"labels":["automation","qid"]},headers=h,timeout=HTTP_TIMEOUT)
+            if num and cur_state=="open":
+                requests.patch(f"{base}/repos/{repo}/issues/{num}",json={"state":"closed"},headers=h,timeout=HTTP_TIMEOUT)
     except Exception as e:
         print("⚠️ GitHub issue sync failed:", type(e).__name__)
 
