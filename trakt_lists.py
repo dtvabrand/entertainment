@@ -43,8 +43,8 @@ SITES=[
 ]
 
 QIDS = [
-    ("Hunting Season", "Q137215321"),
-    ("Turbulence", "Q137366793"),
+    ("Hunting Season", "Q137292573"),
+    ("Turbulence", "Q137384638"),
     ("Batgirl", "Q109860581"),
     ("A Breed Apart", "Q133845943"),
     ("A Spartan Dream", "Q136655065"),
