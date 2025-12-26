@@ -43,7 +43,6 @@ SITES=[
 ]
 
 QIDS = [
-    ("A Breed Apart", ""),
     ("Batgirl", "Q109860581"),
     ("A Spartan Dream", "Q136655065"),
     ("Aftershock: The Nicole P Bell Story", "Q137103837"),
