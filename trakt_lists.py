@@ -147,19 +147,24 @@ def gh_sync_qid_issue(missing_titles):
         hit=next((it for it in items if (it.get("title") or "")==ISSUE_TITLE), None)
         num=hit.get("number") if hit else None
 
-        now=datetime.now().strftime("%Y-%m-%d %H:%M")
-        run=(os.getenv("RUN_URL") or "").strip()
+        cur_body=""; cur_state=""
+        if num:
+            rr=requests.get(f"{base}/repos/{repo}/issues/{num}",headers=h,timeout=HTTP_TIMEOUT)
+            j=rr.json() or {}
+            cur_body=(j.get("body") or "").strip()
+            cur_state=(j.get("state") or "").strip()
+
         if missing_titles:
-            body="\n".join([f"Auto-generated: {now}"]+([f"Run: {run}"] if run else [])+["","Missing QIDs:"]+[f"- [ ] {t}" for t in missing_titles])
+            body="\n".join(["Missing QIDs:"]+[f"- {t}" for t in missing_titles]).strip()
             payload={"body":body,"state":"open"}
             if num:
-                requests.patch(f"{base}/repos/{repo}/issues/{num}",json=payload,headers=h,timeout=HTTP_TIMEOUT)
+                if cur_state!="open" or cur_body!=body:
+                    requests.patch(f"{base}/repos/{repo}/issues/{num}",json=payload,headers=h,timeout=HTTP_TIMEOUT)
             else:
                 requests.post(f"{base}/repos/{repo}/issues",json={"title":ISSUE_TITLE,**payload,"labels":["automation","qid"]},headers=h,timeout=HTTP_TIMEOUT)
         else:
-            if num:
-                body="\n".join([f"Auto-generated: {now}","✅ No missing QIDs.",""])
-                requests.patch(f"{base}/repos/{repo}/issues/{num}",json={"body":body,"state":"closed"},headers=h,timeout=HTTP_TIMEOUT)
+            if num and cur_state=="open":
+                requests.patch(f"{base}/repos/{repo}/issues/{num}",json={"state":"closed"},headers=h,timeout=HTTP_TIMEOUT)
     except Exception as e:
         print("⚠️ GitHub issue sync failed:", type(e).__name__)
 
