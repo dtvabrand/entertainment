@@ -14,6 +14,7 @@ on:
 permissions:
   contents: write
   actions: read
+  issues: write
 
 concurrency:
   group: trakt-lists-${{ github.ref }}
@@ -36,7 +37,7 @@ jobs:
           PIP_DISABLE_PIP_VERSION_CHECK: '1'
           PIP_NO_PYTHON_VERSION_WARNING: '1'
         run: |
-          pip install requests lxml todoist-api-python "dataclass-wizard==0.35.0"
+          pip install requests lxml "dataclass-wizard==0.35.0"
 
       - name: Setup SSH for updates repo
         env:
@@ -59,7 +60,8 @@ jobs:
       - name: Run trakt
         id: run_trakt
         env:
-          TODOIST_API_KEY: ${{ secrets.TODOIST_API_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           set -o pipefail
           python trakt_lists.py 2>&1 | tee trakt_run.log
