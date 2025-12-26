@@ -43,8 +43,6 @@ SITES=[
 ]
 
 QIDS = [
-    ("Hunting Season", "Q137292573"),
-    ("Turbulence", "Q137384638"),
     ("Batgirl", "Q109860581"),
     ("A Breed Apart", "Q133845943"),
     ("A Spartan Dream", "Q136655065"),
@@ -67,6 +65,7 @@ QIDS = [
     ("Finding Joy", "Q136705825"),
     ("Frontier Crucible", "Q131308619"),
     ("Good Bad Things", "Q127763750"),
+    ("Hunting Season", "Q137292573"),
     ("It Ends", "Q133546293"),
     ("Jimmy and Stiggs", "Q136655063"),
     ("Joy to the World", "Q136682442"),
@@ -115,6 +114,7 @@ QIDS = [
     ("The Workout", "Q136655068"),
     ("To Die Alone", "Q136654935"),
     ("Trap House", "Q125388230"),
+    ("Turbulence", "Q137384638"),
     ("Uppercut", "Q136654989"),
     ("Violent Ends", "Q136673339"),
     ("Watchmen: Chapter I", "Q129485956"),
