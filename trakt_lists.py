@@ -43,9 +43,9 @@ SITES=[
 ]
 
 QIDS = [
+    ("Batgirl", "Q109860581"),
     ("A Breed Apart", "Q133845943"),
     ("A Spartan Dream", "Q136655065"),
-    ("Batgirl", "Q109860581"),
     ("Aftershock: The Nicole P Bell Story", "Q137103837"),
     ("Alma and the Wolf", "Q125029935"),
     ("Appalachian Dog", "Q135067975"),
