@@ -43,6 +43,11 @@ SITES=[
 ]
 
 QIDS = [
+    ("Holiday Harmony", ""),
+    ("A Christmas Mystery", ""),
+    ("A Hollywood Christmas", ""),
+    ("The Curse of the Necklace", ""),
+    ("Tom and Jerry: Forbidden Compass", ""),
     ("Batgirl", "Q109860581"),
     ("A Breed Apart", "Q133845943"),
     ("A Spartan Dream", "Q136655065"),
