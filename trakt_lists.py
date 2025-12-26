@@ -137,7 +137,7 @@ def gh_sync_qid_issue(missing_titles):
         tok=(os.getenv("GITHUB_TOKEN") or "").strip()
         repo=(os.getenv("GITHUB_REPOSITORY") or "").strip()
         if not tok or not repo: return
-        ISSUE_TITLE="QID missing (auto)"
+        ISSUE_TITLE="Missing QIDs"
         h={"Authorization":f"Bearer {tok}","Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"}
         base="https://api.github.com"
         q=f'repo:{repo} is:issue in:title "{ISSUE_TITLE}"'
@@ -580,10 +580,6 @@ def trakt_sync_list(per_site_films, per_site_pos, per_site_label, per_site_slug,
     if missing_titles: print("📝 Missing QIDs:", ", ".join(f'"{t}"' for t in missing_titles))
     gh_sync_qid_issue(missing_titles)
     p=os.path.realpath(__file__); s=open(p,encoding="utf-8").read()
-    prev_titles={t for (t,_) in QIDS}; added_titles=[t for (t,_) in out if t not in prev_titles]
-    if added_titles:
-        uniq=list(dict.fromkeys(added_titles))
-        log_msg="📝 QID for " + ", ".join(f'"{t}"' for t in uniq); print(log_msg)
     def _dump_QIDS():
         esc=lambda x: json.dumps(str(x),ensure_ascii=False)
         return "QIDS = [\n" + "\n".join(f"    ({esc(m)}, {esc(q)})," for (m,q) in out) + "\n]\n"
