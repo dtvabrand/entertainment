@@ -76,7 +76,7 @@ https://raimovie3-live.akamaized.net/hls/live/2018010/raimovie3/raimovie3/playli
 https://raipremium3-live.akamaized.net/hls/live/2018013/raipremium3/raipremium3/playlist.m3u8
 
 #EXTINF:-1 group-title="Sky Italia" tvg-id="cielo" tvg-logo="https://i.imgur.com/cPluF03.png" tvg-name="Cielo",Cielo
-https://yzarygw.7380990745.xyz:8443/hls/iitxpvl67.m3u8?s=yjD90jQ9zK0GQiHA2jjYWg&e=1766533904
+https://hlslive-web-gcdn-skycdn-it.akamaized.net/TACT/11219/cieloweb/master.m3u8?hdnts=st=1764666351~exp=1829466206~acl=/*~hmac=b0e9165b6c55027903ad103c8219f363d8765eb300c0d9a339e9767fc3509551
 
 #EXTINF:-1 group-title="Mediaset" tvg-id="27-twentyseven" tvg-logo="https://i.imgur.com/y2PdPCK.png" tvg-name="27 Twentyseven",27 Twentyseven
 https://live02-seg.msf.cdn.mediaset.net/live/ch-ts/ts-clr.isml/index.m3u8
