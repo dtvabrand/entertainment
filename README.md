@@ -4,7 +4,7 @@
 
 ### 🛸 Trakt lists
 <!-- DASH:TRAKT -->
-[![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20534790261) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20534790261/job/58991589773#step:7:19) [![X](https://img.shields.io/badge/Run-cron%2C%2027%20dic%202025%206%3A17%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20534790261)
+[![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20549326577) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20549326577/job/59024840012#step:7:19) [![X](https://img.shields.io/badge/Run-cron%2C%2028%20dic%202025%206%3A20%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20549326577)
 <!-- /DASH:TRAKT -->
 
 <!-- TRAKT:OUTPUT -->
@@ -14,6 +14,8 @@
 <details><summary>Previous days</summary>
   
 <!-- TRAKT:HISTORY -->
+[![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20549326577) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20549326577/job/59024840012#step:7:19) [![X](https://img.shields.io/badge/Run-cron%2C%2028%20dic%202025%206%3A20%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20549326577) <!-- TRAKT_RUN:20549326577 -->
+
 [![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20534790261) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20534790261/job/58991589773#step:7:19) [![X](https://img.shields.io/badge/Run-cron%2C%2027%20dic%202025%206%3A17%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20534790261) <!-- TRAKT_RUN:20534790261 -->
 
 [![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20516543204) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20516543204/job/58945266893#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2026%20dic%202025%206%3A18%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20516543204) <!-- TRAKT_RUN:20516543204 -->
@@ -80,9 +82,6 @@
 [![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19794267883) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19794267883/job/56712306247#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2030%20nov%202025%206%3A15%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19794267883) <!-- TRAKT_RUN:19794267883 -->
 
 [![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19779419459) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19779419459/job/56677464115#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2029%20nov%202025%206%3A15%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19779419459) <!-- TRAKT_RUN:19779419459 -->
-
-[![X](https://img.shields.io/badge/New%20Movie-2-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19754811502/job/56604428772#step:7:35) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19754811502/job/56604428772#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2028%20nov%202025%206%3A16%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19754811502) <!-- TRAKT_RUN:19754811502 --><br>
-🍿 Aftershock: The Nicole P Bell Story, Stone Creek Killer
 <!-- /TRAKT:HISTORY -->
 
 </details>
