@@ -47,7 +47,6 @@ QIDS = [
     ("Batman v Superman: Dawn of Justice", "Q14772351"),
     ("Blade II", "Q159638"),
     ("Buzz Lightyear of Star Command: The Adventure Begins", "Q1703163"),
-    ("Carrie", "Q162672"),
     ("Cats Don't Dance", "Q930134"),
     ("Cell", "Q17050502"),
     ("Children of the Corn 666: Isaac's Return", "Q1502325"),
@@ -76,7 +75,6 @@ QIDS = [
     ("Needful Things", "Q1660749"),
     ("One Hundred and One Dalmatians", "Q165512"),
     ("Osmosis Jones", "Q966690"),
-    ("Pet Sematary", "Q908213"),
     ("Piglet's Big Movie", "Q1406374"),
     ("Planes", "Q1657080"),
     ("Planes: Fire & Rescue", "Q15631322"),
@@ -226,7 +224,7 @@ def wikipedia_scraping(url:str,selector:Any)->List[WFilm]:
     return out
 
 def trakt_sync_list(per_site_films, per_site_pos, per_site_label, per_site_slug,
-                    page_to_qid, qid_to_tmdb, title_lower_to_qid, per_site_url, TRAKT_HEADERS):
+                    page_to_qid, qid_to_tmdb, title_lower_to_qid, title_year_to_qid, per_site_url, TRAKT_HEADERS):
     norm_key=lambda s: re.sub(r'[^a-z0-9]+','',(s or '').lower())
     ck=lambda s:(s or "").replace(" ","_")
 
@@ -288,16 +286,30 @@ def trakt_sync_list(per_site_films, per_site_pos, per_site_label, per_site_slug,
     title_lower_to_qid_norm={ norm_key(k):v for k,v in title_lower_to_qid.items() }
 
     def tmdb_id_for_film(f):
-        nk=norm_key(getattr(f,'title','') or '')
+        title=(getattr(f,'title','') or '').strip()
+        y=((getattr(f,'date_iso',None) or "")[:4])
+        tl=title.lower()
+        nk=norm_key(title)
+
+        if y.isdigit():
+            qid_y=title_year_to_qid.get((tl,y))
+            tm=_tmdb_from_qid(qid_y)
+            if tm: return tm
+
         qid_manual=qids_manual_map.get(nk)
         if qid_manual:
             tm=_tmdb_from_qid(qid_manual)
             if tm: return tm
+
         if getattr(f,'page',None):
-            qid=page_to_qid.get(ck(f.page)); tm=_tmdb_from_qid(qid)
+            qid=page_to_qid.get(ck(f.page))
+            tm=_tmdb_from_qid(qid)
             if tm: return tm
-        qid_auto=title_lower_to_qid_norm.get(nk); tm=_tmdb_from_qid(qid_auto)
+
+        qid_auto=title_lower_to_qid_norm.get(nk)
+        tm=_tmdb_from_qid(qid_auto)
         if tm: return tm
+
         return None
 
     idxs=list(range(len(per_site_films)))
@@ -632,20 +644,32 @@ def main():
             except: pass
 
     title_lower_to_qid={}
+    title_year_to_qid={}
     for i in range(len(SITES)):
         for f in per_site_films.get(i,[]):
-            if f.page:
-                qid=page_to_qid.get(ck(f.page))
-                if qid: title_lower_to_qid.setdefault(f.title.strip().lower(),qid)
+            if not f.page: 
+                continue
+            qid=page_to_qid.get(ck(f.page))
+            if not qid: 
+                continue
+            tl=f.title.strip().lower()
+            y=(f.date_iso or "")[:4]
+            if y.isdigit():
+                title_year_to_qid[(tl,y)]=qid
+            title_lower_to_qid.setdefault(tl,qid)
+
     for t,q in QIDS:
         qq=(q or "").strip()
         if qq:
             tl=t.strip().lower()
-            if tl and tl not in title_lower_to_qid:
-                title_lower_to_qid[tl]=qq
+            if tl:
+                title_lower_to_qid.setdefault(tl, qq)
+                m=re.search(r"\((\d{4})\)\s*$", tl)
+                if m:
+                    title_year_to_qid[(tl[:m.start()].strip(), m.group(1))]=qq
 
     trakt_sync_list(per_site_films, per_site_pos, per_site_label, per_site_slug,
-                    page_to_qid, qid_to_tmdb, title_lower_to_qid, per_site_url, TRAKT_HEADERS)
+                    page_to_qid, qid_to_tmdb, title_lower_to_qid, title_year_to_qid, per_site_url, TRAKT_HEADERS)
 
 if __name__ == "__main__":
     main()
