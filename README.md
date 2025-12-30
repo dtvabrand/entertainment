@@ -4,7 +4,7 @@
 
 ### 🛸 Trakt lists
 <!-- DASH:TRAKT -->
-[![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20565587771) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20565587771/job/59063294728#step:7:19) [![X](https://img.shields.io/badge/Run-cron%2C%2029%20dic%202025%206%3A25%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20565587771)
+[![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20589535172) [![X](https://img.shields.io/badge/Token-refreshed-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20589535172/job/59132176596#step:7:20) [![X](https://img.shields.io/badge/Run-cron%2C%2030%20dic%202025%206%3A20%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20589535172)
 <!-- /DASH:TRAKT -->
 
 <!-- TRAKT:OUTPUT -->
@@ -14,6 +14,8 @@
 <details><summary>Previous days</summary>
   
 <!-- TRAKT:HISTORY -->
+[![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20589535172) [![X](https://img.shields.io/badge/Token-refreshed-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20589535172/job/59132176596#step:7:20) [![X](https://img.shields.io/badge/Run-cron%2C%2030%20dic%202025%206%3A20%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20589535172) <!-- TRAKT_RUN:20589535172 -->
+
 [![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20565587771) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20565587771/job/59063294728#step:7:19) [![X](https://img.shields.io/badge/Run-cron%2C%2029%20dic%202025%206%3A25%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20565587771) <!-- TRAKT_RUN:20565587771 -->
 
 [![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20549326577) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20549326577/job/59024840012#step:7:19) [![X](https://img.shields.io/badge/Run-cron%2C%2028%20dic%202025%206%3A20%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/20549326577) <!-- TRAKT_RUN:20549326577 -->
@@ -80,8 +82,6 @@
 🍿 Savage Hunt, The Toy Talks Learning Movie
 
 [![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19812241404) [![X](https://img.shields.io/badge/Token-refreshed-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19812241404/job/56756813905#step:7:19) [![X](https://img.shields.io/badge/Run-cron%2C%201%20dic%202025%206%3A24%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19812241404) <!-- TRAKT_RUN:19812241404 -->
-
-[![X](https://img.shields.io/badge/New%20Movie-0-f1d70f?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19794267883) [![X](https://img.shields.io/badge/Token-valid-34a6db?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19794267883/job/56712306247#step:7:18) [![X](https://img.shields.io/badge/Run-cron%2C%2030%20nov%202025%206%3A15%20am-2cc36b?cacheSeconds=300)](https://github.com/dtvabrand/entertainment/actions/runs/19794267883) <!-- TRAKT_RUN:19794267883 -->
 <!-- /TRAKT:HISTORY -->
 
 </details>
