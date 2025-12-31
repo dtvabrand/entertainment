@@ -2,7 +2,7 @@ name: Trakt lists
 
 on:
   schedule:
-    - cron: '0 5 1 * *'   # 6 am CET / 7 am CEST
+    - cron: '0 5 1,16 * *'   # 6 am CET / 7 am CEST of the 1st and 16th day of the month
   workflow_dispatch:
     inputs:
       dry_run:
