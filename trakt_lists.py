@@ -32,8 +32,8 @@ SITES=[
     ("https://en.wikipedia.org/wiki/Disneytoon_Studios","🪄 Ink & Magic – A Disney Animation Journey","DTS","ink-magic-a-disney-animation-journey",0),
     ("https://en.wikipedia.org/wiki/List_of_Disney%2B_original_films","🪄 Ink & Magic – A Disney Animation Journey","D+","ink-magic-a-disney-animation-journey",{"tables":0,"href_contains":"animated"}),
     ("https://en.wikipedia.org/wiki/List_of_Pixar_films","🪄 Ink & Magic – A Disney Animation Journey","Pixar","ink-magic-a-disney-animation-journey",0),
-    ("https://en.wikipedia.org/wiki/List_of_Warner_Bros._Pictures_Animation_productions","🐰 Warner Bros. Toons — Films & TV","WBPA","warner-bros-toons-films-tv",0),    
-    ("https://en.wikipedia.org/wiki/List_of_Warner_Bros._Animation_productions","🐰 Warner Bros. Toons — Films & TV","WBA","warner-bros-toons-films-tv",[0,1,4]),
+    ("https://en.wikipedia.org/wiki/List_of_Warner_Bros._Pictures_Animation_productions","🐰 Warner Bros. Toons","WBPA","warner-bros-toons",0),    
+    ("https://en.wikipedia.org/wiki/List_of_Warner_Bros._Animation_productions","🐰 Warner Bros. Toons","WBA","warner-bros-toons",[0,1,3,4]),
 ]
 
 QIDS = [
