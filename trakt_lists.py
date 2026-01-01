@@ -394,7 +394,7 @@ def trakt_sync_list(per_site_films, per_site_pos, per_site_label, per_site_slug,
 
         label_out=canonical_label.get(slug, per_site_label[idx_list[0]])
         miss_total=len(missing_no_tmdb)+len(trakt_missing)
-        is_multi=len(idx_list)>1 and slug in ("ink-magic-a-disney-animation-journey","warner-bros-toons-films-tv")
+        is_multi=len(idx_list)>1 and slug in ("ink-magic-a-disney-animation-journey","warner-bros-toons")
         if is_multi:
             print(f"{label_out} – {total_films} film  |  🧩 Trakt list: {in_list}  |  ⚠️ Missing: {miss_total}{breakdown_counts()}")
         else:
