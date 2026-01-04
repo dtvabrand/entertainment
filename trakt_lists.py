@@ -46,6 +46,10 @@ QIDS = [
     ("Recess: Taking the Fifth Grade", "Q5412173"),
 ]
 
+UNRELEASED_BLOCK = [
+    ("Batgirl", "2022"),
+]
+
 def trakt_auth_refresh():
     TOKENS_PATH = "updates/trakt_tokens.json"; trakt_data = json.load(open(TOKENS_PATH, encoding="utf-8"))
     h={"Content-Type":"application/json","trakt-api-version":"2","trakt-api-key":trakt_data["client_id"],"Authorization":f"Bearer {trakt_data['access_token']}"}; now=time.time(); exp=trakt_data["created_at"]+trakt_data["expires_in"]
@@ -165,6 +169,7 @@ def trakt_sync_list(per_site_films, per_site_pos, per_site_label, per_site_slug,
                     page_to_qid, qid_to_tmdb, title_lower_to_qid, title_year_to_qid, per_site_url, TRAKT_HEADERS):
     norm_key=lambda s: re.sub(r'[^a-z0-9]+','',(s or '').lower())
     ck=lambda s:(s or "").replace(" ","_")
+    unreleased_block={(norm_key(t), str(y)) for (t,y) in UNRELEASED_BLOCK if (t or "").strip() and str(y).isdigit()}    
 
     def _safe_json_response(resp):
         try: js=resp.json()
@@ -262,7 +267,8 @@ def trakt_sync_list(per_site_films, per_site_pos, per_site_label, per_site_slug,
         "warner-bros-toons": "🐰 Warner Bros. Toons"
     }
 
-    label2idx_display={}
+    label2idx_display={}; rel_ok_cache={}
+
     for slug, idx_list in groups_by_slug.items():
         label_out=canonical_label.get(slug, per_site_label[idx_list[0]])
         label2idx_display[label_out]=min(idx_list)
@@ -304,14 +310,52 @@ def trakt_sync_list(per_site_films, per_site_pos, per_site_label, per_site_slug,
         for f in uniq:
             y=(f.date_iso[:4] if f and f.date_iso else None); title_to_year.setdefault(f.title.strip().lower(), y)
 
-        tm_to_titles_local=defaultdict(set); tmdb2title={}
+        tm_to_titles_local=defaultdict(set); tmdb2title={}; tmdb2dateiso={}
         for f in uniq:
             tm=tmdb_id_for_film(f)
             if tm:
                 tm_to_titles_local[tm].add(f.title)
                 tmdb2title.setdefault(tm,f.title)
+                tmdb2dateiso.setdefault(tm,f.date_iso)
 
         blocked_tm={ tm for tm in tm_to_titles_local if tm in tmdb_in_collision }
+        def _rel_ok(tm):
+            tm=str(tm)
+            if tm in rel_ok_cache: return rel_ok_cache[tm]
+            ok=False
+            try:
+                r=S.get(f"https://api.trakt.tv/search/tmdb/{int(tm)}",headers=TRAKT_HEADERS,params={"type":"movie","extended":"full"},timeout=(2,6))
+                js=_safe_json_response(r); js=js if isinstance(js,list) else []
+                mv=None
+                for it in js:
+                    if it.get("type")=="movie":
+                        mv=it.get("movie") or {}
+                        break
+                rel=(mv.get("released") or "").strip() if mv else ""
+                if not rel and mv:
+                    tid=((mv.get("ids") or {}).get("trakt"))
+                    if tid:
+                        r2=S.get(f"https://api.trakt.tv/movies/{tid}",headers=TRAKT_HEADERS,params={"extended":"full"},timeout=(2,6))
+                        mv2=_safe_json_response(r2) or {}
+                        rel=(mv2.get("released") or "").strip()
+                if rel:
+                    try: ok=datetime.strptime(rel,"%Y-%m-%d").date()<=TODAY
+                    except: ok=False
+            except:
+                ok=False
+            rel_ok_cache[tm]=ok
+            return ok
+
+        def _keep_tm(tm):
+            di=(tmdb2dateiso.get(tm) or "")
+            y=di[:4]
+            if (norm_key(tmdb2title.get(tm,"")), y) in unreleased_block: return False
+            if not di.endswith("-01-01"): return True
+            try: yy=int(y)
+            except: return True
+            if yy<TODAY.year: return True
+            if yy>TODAY.year: return False
+            return _rel_ok(tm)
 
         for tm,titles in tm_to_titles_local.items():
             if tm in blocked_tm:
@@ -324,7 +368,14 @@ def trakt_sync_list(per_site_films, per_site_pos, per_site_label, per_site_slug,
                             pos_i=per_site_pos[i][key]; prev=collisions_agg[tm]["pos_by_site"].get(i, 10**9)
                             if pos_i<prev: collisions_agg[tm]["pos_by_site"][i]=pos_i
 
-        site_tmdb_target={ tm for tm in tm_to_titles_local if tm not in blocked_tm }
+        site_tmdb_target=set(); unreleased_n=0
+        for tm in tm_to_titles_local:
+            if tm in blocked_tm: 
+                continue
+            if _keep_tm(tm): 
+                site_tmdb_target.add(tm)
+            else:
+                unreleased_n+=1
 
         base=None; r=S.get(f"https://api.trakt.tv/users/dtvabrand/lists/{slug}",headers=TRAKT_HEADERS,timeout=(4,10)); 
         if r.status_code<400: base=r.request.url
@@ -379,6 +430,8 @@ def trakt_sync_list(per_site_films, per_site_pos, per_site_label, per_site_slug,
             pos=pos_union.get(key,10**9); trakt_missing.append((pos,rep_title))
 
         total_films=len(uniq); in_list=len(after_tmdb)
+        wiki_count=total_films-unreleased_n
+        unreleased_suffix=f" (+{unreleased_n} unreleased)" if unreleased_n else ""
 
         def breakdown_counts():
             per_tag={}; title_to_tag={}
@@ -396,9 +449,9 @@ def trakt_sync_list(per_site_films, per_site_pos, per_site_label, per_site_slug,
         miss_total=len(missing_no_tmdb)+len(trakt_missing)
         is_multi=len(idx_list)>1 and slug in ("ink-magic-a-disney-animation-journey","warner-bros-toons")
         if is_multi:
-            print(f"{label_out} – {total_films} film  |  🧩 Trakt list: {in_list}  |  ⚠️ Missing: {miss_total}{breakdown_counts()}")
+            print(f"{label_out} – {wiki_count} film{unreleased_suffix}  |  🧩 Trakt list: {in_list}  |  ⚠️ Missing: {miss_total}{breakdown_counts()}")
         else:
-            print(f"{label_out} – {total_films} film  |  🧩 Trakt list: {in_list}  |  ⚠️ Missing: {miss_total}")
+            print(f"{label_out} – {wiki_count} film{unreleased_suffix}  |  🧩 Trakt list: {in_list}  |  ⚠️ Missing: {miss_total}")
 
         for (_pos,title) in missing_no_tmdb:
             dat=missing_agg[title]; dat["min_pos"]=min(dat["min_pos"], _pos)
@@ -471,7 +524,6 @@ def trakt_sync_list(per_site_films, per_site_pos, per_site_label, per_site_slug,
         return info
 
     order_info=_title_order_info()
-
     manual_exact={t:q for (t,q) in QIDS if (q or "").strip()}
     existing_by_norm={ norm_key(t): q for (t,q) in QIDS if (q or "").strip() }
 
