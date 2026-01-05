@@ -303,8 +303,8 @@ jobs:
           set -euo pipefail
           OUTDIR="${RUNNER_TEMP}/site"
           mkdir -p "$OUTDIR"
-          curl -fsSL "https://dtvabrand.github.io/entertainment/m_epg.xml" -o "$OUTDIR/m_epg.xml" || true
-          curl -fsSL "https://dtvabrand.github.io/entertainment/d_epg.xml" -o "$OUTDIR/d_epg.xml" || true
+          curl -fsSL "https://dtvabrand.github.io/iptv/m_epg.xml" -o "$OUTDIR/m_epg.xml" || true
+          curl -fsSL "https://dtvabrand.github.io/iptv/d_epg.xml" -o "$OUTDIR/d_epg.xml" || true
           [ -f "m_playlist.m3u8" ] && cp "m_playlist.m3u8" "$OUTDIR/"
           [ -f "d_playlist.m3u8" ] && cp "d_playlist.m3u8" "$OUTDIR/"
           echo "SITE=$OUTDIR" >> "$GITHUB_ENV"
